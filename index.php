@@ -18,35 +18,7 @@
     <div class='container-fluid'>
 
         <!-- inicio top menu -->
-        <div class='row justify-content-between menu-box'>
-            <!-- botões do site -->
-            <div class='col-md-9'>
-                <img src="" alt="">
-                <a href="#" class='btn btn-light'>Home</a>
-                <a href="#" class='btn btn-light'>Sobre</a>
-                <a href="#" class='btn btn-light'>Cadastro</a>
-            </div>
-            <!-- fim botões do site -->
-
-            <!-- inicio formulário de login -->
-            <div class='col-sm-3'>
-                <form method="POST" action="">
-                    <div class="form-row">
-                        <div class="col">
-                            <input type="text" class="form-control" placeholder="E-mail">
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" placeholder="Senha">
-                        </div>
-                        <div class="col">
-                            <input type="submit" class="form-control btn btn-light" value="Entrar">
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <!-- fim forulário de login -->
-
-        </div>
+        <?php require_once 'menu.php';?>
         <!-- fim top menu -->
     </div>
     <!-- <hr> -->
@@ -67,14 +39,14 @@
     </div>
     <div class="container-fluid  container-cards">
         <div class="cards">
-            <div class="card" style="width: 18rem;">
+            <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Controle de gastos</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Nossa plataforma é intuitiva e fácil de ser usada para
                         você acompanhar suas transações.</h6>
                 </div>
             </div>
-            <div class="card" style="width: 18rem;">
+            <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Saiba como seu dinheiro está sendo utilizado</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Chega de se perder com anotações no papel com fsys
@@ -82,21 +54,21 @@
                         analisa seus dados com relatórios e gráficos</h6>
                 </div>
             </div>
-            <div class="card" style="width: 18rem;">
+            <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Acesse de onde estiver</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Sempre que precisar acompanhe suas finanças, até mesmo
                         offline</h6>
                 </div>
             </div>
-            <div class="card" style="width: 18rem;">
+            <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Controle de gastos</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Nossa plataforma é intuitiva e fácil de ser usada para
                         você acompanhar suas transações.</h6>
                 </div>
             </div>
-            <div class="card" style="width: 18rem;">
+            <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Saiba como seu dinheiro está sendo utilizado</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Chega de se perder com anotações no papel com fsys
@@ -104,7 +76,7 @@
                         analisa seus dados com relatórios e gráficos</h6>
                 </div>
             </div>
-            <div class="card" style="width: 18rem;">
+            <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Acesse de onde estiver</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Sempre que precisar acompanhe suas finanças, até mesmo
