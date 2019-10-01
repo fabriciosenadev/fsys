@@ -1,16 +1,28 @@
-.convite {
+body{
+  background: #fcfcfc;
+}
+
+.menu-box{
+  padding: 15px 10px 15px 10px;
+  background: #28a745;
+}
+
+.invide {
   height: 30%;
-  border-bottom: .001em solid rgb(201, 201, 201);
+  /* border-bottom: .001em solid rgb(201, 201, 201); */
   padding: 5em 2em 7em;
   background-color: #00af33";
 }
 
-.convite h2 {
+.invide h2 {
   font-size: 50px;
+}
+.container-cards{
+  background: #28a745;
 }
 .cards {
   padding: 7em 2em 7em;
-  margin-top: 15px;
+  /* margin-top: 15px; */
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
@@ -23,6 +35,6 @@
 footer {
   text-align: center;
   margin-top: 15px;
-  border-top: .001em solid rgb(201, 201, 201);
+  /* border-top: .001em solid rgb(201, 201, 201); */
   padding: 2.5em;
 }
