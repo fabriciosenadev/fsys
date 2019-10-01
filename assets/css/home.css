@@ -1,0 +1,27 @@
+.convite {
+  height: 30%;
+  border-bottom: .001em solid rgb(201, 201, 201);
+  padding: 5em 2em 7em;
+}
+
+.convite h2 {
+  font-size: 50px;
+}
+.cards {
+  padding: 7em 2em 7em;
+  margin-top: 15px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+
+}
+.card {
+  flex-basis: 29%;
+  margin: 1em;
+}
+footer {
+  text-align: center;
+  margin-top: 15px;
+  border-top: .001em solid rgb(201, 201, 201);
+  padding: 2.5em;
+}
