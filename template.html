@@ -8,48 +8,73 @@
 
     <!-- CSS do Bootstrap 4.3.1 -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">    
-    <title>sistema de visitas</title>
+    <title>fsys</title>
 </head>
 <body>
-    
+    <!-- inicio container  -->
     <div class='container-fluid'>
        
+        <!-- inicio top menu -->
         <div class='row justify-content-between' style="padding: 15px 10px 0px 10px;">
+            <!-- botões do site -->
             <div>
                 <!-- <h3>Painel de Login</h3> -->
+                <a href="#" class='btn btn-success'>Home</a>
+                <a href="#" class='btn btn-success'>Sobre</a>
+                <a href="#" class='btn btn-success'>Cadastro</a>
             </div>
-            <div>
-                    <a href="#" class='btn btn-success'>Home</a>
-                    <a href="#" class='btn btn-success'>Sobre</a>
+            <!-- fim botões do site -->
 
-                    <a href="#" class='btn btn-success'>Cadastro</a>
-            </div>
             <div>
-                        <a href="#" class='btn btn-success'>Login</a>
+                <!-- <a href="#" class='btn btn-success'>Login</a> -->
             </div>
-            <div></div>
+
+            <!-- inicio formulário de login -->
+            <div>
+                <form method="POST" action="">
+                    <div class="form-row">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="E-mail">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Senha">
+                        </div>
+                        <div class="col">
+                            <input type="submit" class="form-control btn btn-success">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- fim forulário de login -->
+
         </div>
+        <!-- fim top menu -->
         
         <hr>
 
+        <!-- inicio  conteudo do site-->
         <div class="row">
             
             <div class="col"></div>
 
+            <!-- incio formulario de login -->
             <div class='col-sm' style="border: lightgray solid 1px;border-radius: 0 10px 0 10px;padding: 15px 0 0 10px;">
-                <form method='post' action='<?php $_SERVER['PHP_SELF'];?>
+                <form method='post' action=''>
+                    
                     <div class="form-group row">
                         <label for="inputLogin" class="col-sm-3 col-form-label">E-mail</label>
                         <div class="col-sm-6">
                             <input type="email" class="form-control" id="inputLogin" name='email'>
                         </div>
                     </div>
+                    
                     <div class="form-group row">
                         <label for="inputSenha" class="col-sm-3 col-form-label">Senha</label>
                         <div class="col-sm-6">
                             <input type="password" class="form-control" id="inputSenha" name='senha'>
                         </div>
                     </div>
+                    
                     <div class="form-group row">
                         <div class="col-sm-10">
                             <button type="submit" class="btn btn-success"name='btnConectar' value='Entrar'>
@@ -57,14 +82,19 @@
                             </button>
                         </div>
                     </div>
+
                 </form>        
             </div>
+            <!-- fim formulário de login -->
 
             <div class="col"></div>
+
         </div>
-
-
+        <!-- fim conteúdo do site -->
+        
     </div>
+    <!-- fim container -->
+
     <!-- Arquivo do JQuery -->
     <script type='text/javascript' src="assets/js/jquery-3.3.1.min.js"></script>
     <!-- Arquivo do bootstrap 4.3.1-->
