@@ -17,21 +17,32 @@
         <!-- inicio top menu -->
         <div class='row justify-content-between' style="padding: 15px 10px 0px 10px;">
             <!-- botões do site -->
-            <div>
+            <div class='col-md-9'>
                 <!-- <h3>Painel de Login</h3> -->
                 <img src="" alt="">
                 <a href="#" class='btn btn-success'>Home</a>
                 <a href="#" class='btn btn-success'>Sobre</a>
                 <a href="#" class='btn btn-success'>Cadastro</a>
+                <!-- <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="btn btn-success nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-success nav-link" href="como_funciona.html">Sobre o Desafio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-success nav-link" href="calcular_desafio.html">Faça as Contas</a>
+                    </li>
+                </ul> -->
             </div>
             <!-- fim botões do site -->
 
-            <div>
+            <!-- <div class='col'> -->
                 <!-- <a href="#" class='btn btn-success'>Login</a> -->
-            </div>
+            <!-- </div> -->
 
             <!-- inicio formulário de login -->
-            <div>
+            <div class='col-sm-3'>
                 <form method="POST" action="">
                     <div class="form-row">
                         <div class="col">
