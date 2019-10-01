@@ -18,7 +18,7 @@
     <div class='container-fluid'>
 
         <!-- inicio top menu -->
-        <?php require_once '../menu.php';?>
+        <?php require_once 'app.menu.php';?>
         <!-- fim top menu -->
     </div>
     <!-- <hr> -->
