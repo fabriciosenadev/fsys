@@ -8,23 +8,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- CSS do Bootstrap 4.3.1 -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/home.css">
     <title>fsys</title>
 </head>
 
-<body>
+<body style="background: #fcfcfc;">
     <!-- inicio container  -->
     <div class='container-fluid'>
 
         <!-- inicio top menu -->
-        <div class='row justify-content-between' style="padding: 15px 10px 0px 10px;">
+        <div class='row justify-content-between' style="padding: 15px 10px 15px 10px;background: #28a745;">
             <!-- botões do site -->
             <div class='col-md-9'>
                 <img src="" alt="">
-                <a href="#" class='btn btn-success'>Home</a>
-                <a href="#" class='btn btn-success'>Sobre</a>
-                <a href="#" class='btn btn-success'>Cadastro</a>
+                <a href="#" class='btn btn-light'>Home</a>
+                <a href="#" class='btn btn-light'>Sobre</a>
+                <a href="#" class='btn btn-light'>Cadastro</a>
             </div>
             <!-- fim botões do site -->
 
@@ -39,7 +39,7 @@
                             <input type="text" class="form-control" placeholder="Senha">
                         </div>
                         <div class="col">
-                            <input type="submit" class="form-control btn btn-success" value="Entrar">
+                            <input type="submit" class="form-control btn btn-light" value="Entrar">
                         </div>
                     </div>
                 </form>
@@ -48,23 +48,24 @@
 
         </div>
         <!-- fim top menu -->
+    </div>
+    <!-- <hr> -->
 
-        <hr>
-
-        <!-- inicio  conteudo do site-->
+    <!-- inicio  conteudo do site-->
+    <div class="container-fluid">
         <div class="convite">
-            <div class="container-fluid">
-                <h2>Gerencie suas finanças <br>de forma simples.</h2>
-                <h5>Cadastre-se, é facil e gratuito.</h5>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Digite seu e-mail."
-                        aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-success" type="button" id="button-addon2">Cadastre-se grátis</button>
-                    </div>
+            <h2>Gerencie suas finanças <br>de forma simples.</h2>
+            <h5>Cadastre-se, é facil e gratuito.</h5>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Digite seu e-mail."
+                    aria-label="Recipient's username" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-success" type="button" id="button-addon2">Cadastre-se grátis</button>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="container-fluid" style="background: #28a745;">
         <div class="cards">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
@@ -76,7 +77,8 @@
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Saiba como seu dinheiro está sendo utilizado</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Chega de se perder com anotações no papel com fsys você
+                    <h6 class="card-subtitle mb-2 text-muted">Chega de se perder com anotações no papel com fsys
+                        você
                         analisa seus dados com relatórios e gráficos</h6>
                 </div>
             </div>
@@ -97,7 +99,8 @@
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Saiba como seu dinheiro está sendo utilizado</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Chega de se perder com anotações no papel com fsys você
+                    <h6 class="card-subtitle mb-2 text-muted">Chega de se perder com anotações no papel com fsys
+                        você
                         analisa seus dados com relatórios e gráficos</h6>
                 </div>
             </div>
@@ -109,10 +112,11 @@
                 </div>
             </div>
         </div>
-
-        <!-- fim conteúdo do site -->
-
     </div>
+
+    <!-- fim conteúdo do site -->
+
+
     <!-- fim container -->
     <footer>
         <p>&copy; 2019 Fsys - Todos os direitos reservados
