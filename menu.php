@@ -1,15 +1,26 @@
 <div class='row justify-content-between menu-box'>
     <!-- botões do site -->
-    <div class='col-md-9'>
-        <img src="" alt="">
-        <a href="#" class='btn btn-light'>Home</a>
-        <a href="#" class='btn btn-light'>Sobre</a>
-        <a href="#" class='btn btn-light'>Cadastro</a>
+    <div class='col-md-7'>
+        <!-- <img src="" alt=""> -->
+        <div class="row align-items-start text-center">
+                <div class="">
+                    <a href="#" class='text-white text-decoration-none' 
+                        style='margin:20px;padding: 10px; hover:rgba(255, 255, 255, 0.5)'>
+                        Home
+                    </a>
+                </div>
+                <div>
+                    <a href="#" class='text-white' style='padding: 10px;'>Sobre</a>
+                </div>
+                <div>
+                    <a href="#" class='text-white' style='padding: 10px;'>Cadastro</a>
+                </div>
+            </div>
     </div>
     <!-- fim botões do site -->
 
     <!-- inicio formulário de login -->
-    <div class='col-sm-3'>
+    <div class='col-sm-5'>
         <form method="POST" action="">
             <div class="form-row">
                 <div class="col">
