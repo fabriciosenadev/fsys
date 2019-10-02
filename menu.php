@@ -2,20 +2,20 @@
     <!-- botões do site -->
     <div class='col-md-7'>
         <!-- <img src="" alt=""> -->
-        <div class="row align-items-start text-center">
-                <div class="">
-                    <a href="#" class='text-white text-decoration-none' 
-                        style='margin:20px;padding: 10px; hover:rgba(255, 255, 255, 0.5)'>
-                        Home
-                    </a>
-                </div>
-                <div>
-                    <a href="#" class='text-white' style='padding: 10px;'>Sobre</a>
-                </div>
-                <div>
-                    <a href="#" class='text-white' style='padding: 10px;'>Cadastro</a>
-                </div>
-            </div>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">Sobre</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">Cadastro</a>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </li> -->
+        </ul>
     </div>
     <!-- fim botões do site -->
 

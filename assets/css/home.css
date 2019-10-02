@@ -6,8 +6,8 @@ body {
   padding: 15px 10px 15px 10px;
   background: #28a745;
 }
-.button-left {
-  border: solid 1px;
+.text-white:hover {
+  color: rgba(255, 255, 255, 0.5) !important;
 }
 
 .invide {
