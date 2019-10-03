@@ -1,0 +1,53 @@
+/* body{
+  background: linear-gradient(to bottom,white, #28a745, white);
+} */
+.titulo-section1 {
+  padding: 2em 0 0.5em 0;
+  text-align: center;
+}
+.section1 {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 5em;
+  border-bottom: 1px solid rgba(19, 20, 20, 0.2);
+}
+.card {
+  height: 13em;
+  flex-basis: 22%;
+
+}
+.title-section2{
+
+}
+.section2{
+  padding: 5em 0 0 8em;
+  display: flex;
+  border-bottom: 1px solid rgba(18, 19, 18, 0.2);
+  height: 500px;
+}
+blockquote {
+  width: 30%;
+  height: 15em;
+}
+
+.teste {
+  margin-left: 6em;
+  width: 30%;
+  height: 15em;
+  border: 1px solid black;
+}
+.title-section3 {
+  padding: 3em 0 0 0;
+  text-align: center;
+}
+.section3 {
+  padding: 5em 0 0 8em;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+}
+.card3 {
+  flex-basis: 27%;
+
+}
+
