@@ -53,7 +53,7 @@ h1 {
 }
 .registry{
   position: absolute;
-  bottom: 9em;
+  bottom: 11em;
   width: 20em;
   height: 3em;
   border: 1px solid grey;
@@ -66,7 +66,7 @@ h1 {
 } 
 footer {
   text-align: center;
-  margin-top: 15px;
+  margin-top: -30px;
   /* border-top: .001em solid rgb(201, 201, 201); */
   padding: 1em;
 }
