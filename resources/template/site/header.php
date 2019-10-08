@@ -21,6 +21,6 @@
     <div class='container-fluid'>
 
         <!-- inicio top menu -->
-        <?php require_once 'resources/views/MenuView.php';?>
+        <?php require_once 'resources/views/menu.view.php';?>
         <!-- fim top menu -->
     </div>
