@@ -1,0 +1,60 @@
+********************************************************************************
+*******************                                         ********************
+*******************  Sistema Fsys documentação simplificada ********************
+*******************                                         ********************
+********************************************************************************
+*******************         Dados da Documentação           ********************
+*******************  versão: 1                              ********************
+*******************  criado por: Fabricio Sena              ********************
+*******************  criado em: 08/10/2019                  ********************
+********************************************************************************
+
+Este sistema tem como visão, agilizar o desenvolvimento buscando produtividade.
+Para isso ele foi pré disposto em disretórios conforme o mapa abaixo:
+
+                #--root
+                #----app
+                #----doc
+                #----resources
+                #------assets
+                #------template
+                #------views
+                #----temporary
+
+No diretório root:: fica prédisposto todos os arquivos de controller que fazem parte 
+                    das primeiras páginas do sistema. Podendo ser elas um site, 
+                    um portal, um blog, etc...
+
+No diretório app:: fica prédisposto todos os arquivos de controller que fazem parte 
+                    da aplicação. 
+                    Estes controllers serão a base para funcionamento do app.
+
+No diretório doc:: fica prédisposto todos os arquivos de documentação da aplicação. 
+                   Estes documentos conterão o essencial sobre a aplicação em geral.
+
+No diretório resources:: fica prédisposto todos os arquivos de recursos que fazem parte 
+                        da aplicação. Estes cursos serão utilizados em toda a aplicação 
+                        podendo ser arquivos de: interface, views, template e assets em 
+                        geral, que serão utilizados para formar os recursos de front-end.
+                    
+No diretório resource: assets:: fica prédisposto todos os arquivos de recurso visual e 
+                                front-end do sistema. 
+                                
+No diretório resource: template::  fica prédisposto todos os arquivos que serão aplicados 
+                                   como template para o usuário.
+
+No diretório resource: views::  fica prédisposto todos os arquivos que serão aplicados 
+                                para o coteudo de cada página.
+
+********************************************************************************
+*******************            Padrões do Sistema           ********************
+********************************************************************************
+
+Todos os controllers deverão: ter seus nomes literais, em caixa baixa e dentro do
+    diretório correpondente de acordo com o que atender a necessidade da aplicação
+    seguindo a nomenclatura padrão conforme abaixo;
+    Ex: arquivo.php
+
+Todas as views deverão: estár alocados no diretório correspondente, e devem seguir 
+    a nomenclatura padrão conforme abaixo;
+    Ex: arquivo.view.php
