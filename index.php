@@ -6,7 +6,7 @@ $error = isset($error) ? $error : null;
 
 if(!($error))
 {
-    include 'resources/views/HomeView.php'; 
+    include 'resources/views/site/home.view.php'; 
 }
 
 require_once 'resources/template/site/footer.php';
