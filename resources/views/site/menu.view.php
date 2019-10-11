@@ -21,7 +21,7 @@
 
     <!-- inicio formulário de login -->
     <div class='col-sm-5'>
-        <form method="POST" action="<?php $_SERVER['PHP_SELF']?>">
+        <form method="post" action="<?php $_SERVER['PHP_SELF']?>">
             <div class="form-row">
                 <div class="col">
                     <input name="login" type="text" class="form-control" placeholder="E-mail">
@@ -30,7 +30,7 @@
                     <input name="password" type="password" class="form-control" placeholder="Senha">
                 </div>
                 <div class="col">
-                    <input name="btnConnect" type="submit" class="form-control btn btn-light" value="Entrar">
+                    <input name="btnLogin" type="submit" class="form-control btn btn-light" value="Entrar">
                 </div>
             </div>
         </form>
