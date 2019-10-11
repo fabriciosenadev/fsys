@@ -70,7 +70,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- CSS do Bootstrap 4.3.1 -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">    
+    <link rel="stylesheet" href="../resources/assets/css/bootstrap.min.css">    
     <title>sistema de visitas</title>
 </head>
 <body>
