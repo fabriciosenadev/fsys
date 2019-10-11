@@ -14,7 +14,8 @@ h1 {
 }
 .login {
   width: 20em;
-  height: 14em;
+  min-height: 14em;
+  height:auto;
   margin: auto;
   border: thin solid grey;
   border-radius: 2%;
@@ -30,6 +31,12 @@ h1 {
 .email, .password { 
   margin-top: 10px;
   margin-bottom: 1%;
+}
+.error{
+  color:red;
+  margin-left: 1em;
+  width: 18em;
+  height: auto;
 }
 .email {
   display: block;
@@ -47,8 +54,7 @@ h1 {
   float: right;
 }
 #btn-login{
-  margin-top: 1em;
-  margin-left: 1em;
+  margin: 1em 0 1em 1em;
   width: 18em;
 }
 .registry{
