@@ -1,10 +1,10 @@
 <?php
-$nome_server = "localhost";
-$nome_usuario = "fabricio";
-$senha = "2um0n3ry";
-$base_nome = "fsys";
+$db_server = "localhost";
+$db_user = "fabricio";
+$db_pass = "2um0n3ry";
+$db_name = "fsys";
 
-$conexao = mysqli_connect($nome_server, $nome_usuario, $senha, $base_nome);
+$connection = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
 
 if(mysqli_connect_error()){
     echo "Falha na conexao: ".mysqli_connect_error();
