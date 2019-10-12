@@ -3,7 +3,7 @@
 // header do site ==> não alterar
 require_once 'resources/template/site/header.php';
 
-// require_once 'db/connect.php';
+require_once 'db/connect.php';
 require_once "app/models/site/index.model.php";
 
 
@@ -16,22 +16,32 @@ $_SESSION['errors']  = [];
 
 
 if($btnLogin){
+    
     if(empty($login) or empty($password)) {
+    
         //TODO: envia erros para exibir
-        $_SESSION['errors'] = "informe os dados de acesso";
-        header("Location: login.php");
+        $_SESSION['errors'] = "Informe os dados de acesso";        
+    
     }else{
+    
         // faz a consulta no banco de dados
-        ?>
-        <pre>
-            <?php var_dump($_POST);?>
-        </pre>
-        <?php
+        $search = "SELECT * FROM Users WHERE  login =  '$login' ";
+        $result = mysqli_query($connection, $search);
+        
+        if($result){
+
+        }else{
+            $_SESSION['errors'] = "Usuário e/ou senha incorreto(s)";            
+        }
+    
     }
+    
 }
 
 if(!($_SESSION['errors'])){    
     include 'resources/views/site/index.view.php'; 
+}else{
+    header("Location: login.php");
 }
 
 // footer do site ==> não alterar
