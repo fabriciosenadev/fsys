@@ -9,5 +9,5 @@ $connection = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
 if(mysqli_connect_error()){
     echo "Falha na conexao: ".mysqli_connect_error();
 
-    header("Location: erro.php");
+    // header("Location: erro.php");
 }
