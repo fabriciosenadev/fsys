@@ -3,7 +3,7 @@
       <h1>Fsys</h1>
       <fieldset class="login">
         <p class="email">E-mail</p>
-        <input id="email" name="login" placeholder="seu@email.com" type="email" required/>
+        <input id="email" name="email" placeholder="seu@email.com" type="email" required/>
         <p class="password">Senha</p> <a href="#" class="forgot-password">esqueceu sua senha?</a>
         <input id="password" name="password" placeholder="********" type="password" required>
         <div class="error">
