@@ -21,7 +21,7 @@
                     <a class="dropdown-item">Another action</a>
                     <a class="dropdown-item">Something else here</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item"><strong>Sair</strong></a>
+                    <a href="logout.php" class="dropdown-item"><strong>Sair</strong></a>
                 </div>
             </div>
 
