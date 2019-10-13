@@ -13,6 +13,7 @@ $email = isset($_POST['email']) ? $_POST['email'] : null;
 $password = isset($_POST['password']) ? $_POST['password'] : null;
 $btnLogin = isset($_POST['btnLogin']) ? $_POST['btnLogin'] : null;
 
+$redirect = false;
 $_SESSION['logged'] = false;
 $_SESSION['errors'] = [];
 
@@ -20,7 +21,8 @@ if($btnLogin){
     
     if ( empty($email) or empty($password) ) {
     
-        $_SESSION['errors'] = "Informe os dados de acesso";        
+        $_SESSION['errors'] = "Informe os dados de acesso";
+        $redirect = true;         
     
     } else {
 
@@ -31,23 +33,27 @@ if($btnLogin){
             $_SESSION['logged'] = true;
             $_SESSION['id_user'] = $userData['id'];
         } else {
+
             $_SESSION['errors'] = "Usuário e/ou senha incorreto(s)";
+            $redirect = true;
+
         }
     
     }
     
 }
 
+
 // redirecionamentos
-if(!($_SESSION['errors'])){    
-    include 'resources/views/site/index.view.php'; 
-}else{
+if ($redirect) {
     header("Location: login.php");
 }
 
-if($_SESSION['logged']){
+if ($_SESSION['logged']) {
     header("Location: app/");
 }
+
+include 'resources/views/site/about.view.php'; 
 
 // footer do site ==> não alterar
 require_once 'resources/template/site/footer.php';
