@@ -24,7 +24,7 @@
         <form method="post" action="<?php $_SERVER['PHP_SELF']?>">
             <div class="form-row">
                 <div class="col">
-                    <input name="login" type="text" class="form-control" placeholder="E-mail">
+                    <input name="email" type="text" class="form-control" placeholder="E-mail">
                 </div>
                 <div class="col">
                     <input name="password" type="password" class="form-control" placeholder="Senha">

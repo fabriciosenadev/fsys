@@ -3,36 +3,57 @@
 // header do site ==> não alterar
 require_once 'resources/template/site/header.php';
 
-// require_once 'db/connect.php';
-require_once "app/models/site/index.model.php";
-
+// inclusão dos models utilizados
+require_once "app/models/site/login.model.php";
 
 // controller
 session_start();
-$login = isset($_POST['login']) ? $_POST['login'] : null;
+
+$email = isset($_POST['email']) ? $_POST['email'] : null;
 $password = isset($_POST['password']) ? $_POST['password'] : null;
 $btnLogin = isset($_POST['btnLogin']) ? $_POST['btnLogin'] : null;
-$_SESSION['errors']  = [];
 
+$redirect = false;
+$_SESSION['logged'] = false;
+$_SESSION['errors'] = [];
 
 if($btnLogin){
-    if(empty($login) or empty($password)) {
-        //TODO: envia erros para exibir
-        $_SESSION['errors'] = "informe os dados de acesso";
-        header("Location: login.php");
-    }else{
+    
+    if ( empty($email) or empty($password) ) {
+    
+        $_SESSION['errors'] = "Informe os dados de acesso";
+        $redirect = true;         
+    
+    } else {
+
         // faz a consulta no banco de dados
-        ?>
-        <pre>
-            <?php var_dump($_POST);?>
-        </pre>
-        <?php
+        $userData = selectUser($email);
+
+        if ($userData['email'] == $email && $userData['password'] == $password) {
+            $_SESSION['logged'] = true;
+            $_SESSION['id_user'] = $userData['id'];
+        } else {
+
+            $_SESSION['errors'] = "Usuário e/ou senha incorreto(s)";
+            $redirect = true;
+
+        }
+    
     }
+    
 }
 
-if(!($_SESSION['errors'])){    
-    include 'resources/views/site/index.view.php'; 
+
+// redirecionamentos
+if ($redirect) {
+    header("Location: login.php");
 }
+
+if ($_SESSION['logged']) {
+    header("Location: app/");
+}
+
+include 'resources/views/site/index.view.php'; 
 
 // footer do site ==> não alterar
 require_once 'resources/template/site/footer.php';
