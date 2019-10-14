@@ -14,7 +14,7 @@ body {
   height: 30%;
   /* border-bottom: .001em solid rgb(201, 201, 201); */
   padding: 5em 2em 7em;
-  background-color: #00af33";
+  background-color: #00af33;
 }
 
 .invide h2 {
@@ -33,7 +33,7 @@ body {
 }
 .card {
   flex-basis: 29%;
-  margin: 1em;
+  margin: 2em;
   width: 18rem;
 }
 footer {
