@@ -56,9 +56,9 @@ DELETE FROM `historics`;
 /*!40000 ALTER TABLE `historics` DISABLE KEYS */;
 /*!40000 ALTER TABLE `historics` ENABLE KEYS */;
 
--- Copiando estrutura para tabela fsys.methods
-DROP TABLE IF EXISTS `methods`;
-CREATE TABLE IF NOT EXISTS `methods` (
+-- Copiando estrutura para tabela fsys.pay_methods
+DROP TABLE IF EXISTS `pay_methods`;
+CREATE TABLE IF NOT EXISTS `pay_methods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `method` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `applicable` enum('WALLET','ACCOUNT','CARD') COLLATE utf8_unicode_ci NOT NULL,
@@ -69,10 +69,10 @@ CREATE TABLE IF NOT EXISTS `methods` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Copiando dados para a tabela fsys.methods: ~0 rows (aproximadamente)
-DELETE FROM `methods`;
-/*!40000 ALTER TABLE `methods` DISABLE KEYS */;
-/*!40000 ALTER TABLE `methods` ENABLE KEYS */;
+-- Copiando dados para a tabela fsys.pay_methods: ~0 rows (aproximadamente)
+DELETE FROM `pay_methods`;
+/*!40000 ALTER TABLE `pay_methods` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pay_methods` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela fsys.users
 DROP TABLE IF EXISTS `users`;
