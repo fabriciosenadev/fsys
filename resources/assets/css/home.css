@@ -23,7 +23,7 @@ body {
   background: #28a745;
 }
 .cards {
-  padding: 7em 2em 7em;
+  padding: 4em 0 4em;
   /* margin-top: 15px; */
   display: flex;
   flex-flow: row wrap;
@@ -40,4 +40,7 @@ footer {
   margin-top: 15px;
   /* border-top: .001em solid rgb(201, 201, 201); */
   padding: 2.5em;
+}
+.input-group {
+    width: 53%;
 }
