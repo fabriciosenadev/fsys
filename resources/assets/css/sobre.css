@@ -24,10 +24,14 @@
   display: flex;
   border-bottom: 1px solid rgba(18, 19, 18, 0.2);
   height: 500px;
+  background-color: #28a745;
 }
 blockquote {
   width: 30%;
-  height: 15em;
+  /* height: 15em; */
+  height: 18em;
+  border-radius: 10px;
+  background-color: white;
 }
 
 .teste {
@@ -48,6 +52,9 @@ blockquote {
 }
 .card3 {
   flex-basis: 27%;
-
 }
 
+.material-icons {
+    height: 28px;
+    vertical-align: middle;
+}

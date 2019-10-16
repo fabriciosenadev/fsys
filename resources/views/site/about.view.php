@@ -60,7 +60,7 @@
       </div>
       <div class="card card3">
         <div class="card-body">
-          <h5 class="card-title">Customizável</h5>
+          <h5 class="card-title"><i class="small material-icons">brush</i>Customizável</h5>
           <h6 class="card-subtitle mb-2 text-muted">
           Nos preocupamos com o que você gosta. Por isso, criamos temas para você deixar o Fsys com a sua cara.</h6>
         </div>

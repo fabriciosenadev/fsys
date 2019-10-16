@@ -9,6 +9,7 @@
             <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="Digite seu e-mail."
                     aria-label="Recipient's username" aria-describedby="button-addon2">
+                
                 <div class="input-group-append">
                     <button class="btn btn-success" type="button" id="button-addon2">Cadastre-se grátis</button>
                 </div>
