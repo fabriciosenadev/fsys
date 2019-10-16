@@ -6,8 +6,16 @@ $db_name = "fsys";
 
 $connection = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
 
-if(mysqli_connect_error()){
-    echo "Falha na conexao: ".mysqli_connect_error();
+//
+$error = "Falha na conexao: ".mysqli_connect_error();
 
+if($error){
+    // echo $error;
+    $arrError = explode(" ",$error);
+    if(in_array("Unknown",$arrError)){
+        var_dump($arrError);
+        // https://www.w3schools.com/php/php_mysql_create.asp
+        // usar para criar banco de dados
+    }
     // header("Location: erro.php");
 }
