@@ -6,8 +6,12 @@ $db_name = "fsys";
 
 $connection = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
 
-if(mysqli_connect_error()){
-    echo "Falha na conexao: ".mysqli_connect_error();
+// erros
+$error = "Falha na conexao: ".mysqli_connect_error();
 
+if(mysqli_connect_error()){
+    echo $error;
+    // $command = 'php ../db/build.bd.php';
+    // shell_exec($command);
     // header("Location: erro.php");
 }

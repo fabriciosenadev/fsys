@@ -17,6 +17,71 @@ DROP DATABASE IF EXISTS `fsys`;
 CREATE DATABASE IF NOT EXISTS `fsys` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
 USE `fsys`;
 
+-- Copiando estrutura para tabela fsys.categories
+DROP TABLE IF EXISTS `categories`;
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `applicable` enum('IN','OUT') COLLATE utf8_unicode_ci NOT NULL COMMENT 'IN = ENTRADA, OUT= SAIDA',
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Copiando dados para a tabela fsys.categories: ~0 rows (aproximadamente)
+DELETE FROM `categories`;
+/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` (`id`, `category`, `applicable`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+	(1, 'salary', 'IN', NULL, NULL, NULL, NULL),
+	(2, 'transportation', 'OUT', NULL, NULL, NULL, NULL),
+	(3, 'supermarket', 'OUT', NULL, NULL, NULL, NULL);
+/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela fsys.historics
+DROP TABLE IF EXISTS `historics`;
+CREATE TABLE IF NOT EXISTS `historics` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `id_category` int(11) NOT NULL,
+  `description` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `id_method` int(11) NOT NULL,
+  `value` decimal(8,2) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Copiando dados para a tabela fsys.historics: ~0 rows (aproximadamente)
+DELETE FROM `historics`;
+/*!40000 ALTER TABLE `historics` DISABLE KEYS */;
+/*!40000 ALTER TABLE `historics` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela fsys.pay_methods
+DROP TABLE IF EXISTS `pay_methods`;
+CREATE TABLE IF NOT EXISTS `pay_methods` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `method` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `applicable` enum('WALLET','ACCOUNT','CREDIT') COLLATE utf8_unicode_ci NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Copiando dados para a tabela fsys.pay_methods: ~3 rows (aproximadamente)
+DELETE FROM `pay_methods`;
+/*!40000 ALTER TABLE `pay_methods` DISABLE KEYS */;
+INSERT INTO `pay_methods` (`id`, `method`, `applicable`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+	(1, 'money', 'WALLET', NULL, NULL, NULL, NULL),
+	(2, 'debit card', 'ACCOUNT', NULL, NULL, NULL, NULL),
+	(3, 'credit card', 'CREDIT', NULL, NULL, NULL, NULL);
+/*!40000 ALTER TABLE `pay_methods` ENABLE KEYS */;
+
 -- Copiando estrutura para tabela fsys.users
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
