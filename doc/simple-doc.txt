@@ -14,6 +14,7 @@ Para isso ele foi pré disposto em disretórios conforme o mapa abaixo:
 
                 #--root
                 #----app
+                #----db
                 #----doc
                 #----resources
                 #------assets
@@ -28,6 +29,12 @@ No diretório root:: fica prédisposto todos os arquivos de controller que fazem
 No diretório app:: fica prédisposto todos os arquivos de controller que fazem parte 
                     da aplicação. 
                     Estes controllers serão a base para funcionamento do app.
+
+No diretório db::  fica prédisposto todos os arquivos de banco de dados da aplicação. 
+                   Estes arquivos conterão a conexão de banco de dados e criação/atualização
+                   caso seja necessário. Para utilizar o recurso de criação/ atualização de 
+                   banco é necessário, dentro da pasta do sistema, no terminal do linux, digitar: 
+                   php db/build.db.php
 
 No diretório doc:: fica prédisposto todos os arquivos de documentação da aplicação. 
                    Estes documentos conterão o essencial sobre a aplicação em geral.
