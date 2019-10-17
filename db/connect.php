@@ -1,7 +1,7 @@
 <?php
 $db_server = "localhost";
 $db_user = "fabricio";
-$db_pass = "Con2309r!";
+$db_pass = "2um0n3ry";
 $db_name = "fsys";
 
 $query = '';
@@ -25,8 +25,11 @@ if($error){
         if($check) {
             echo "It was created successfully";
         }
-        // https://www.w3schools.com/php/php_mysql_create.asp
         // usar para criar banco de dados
+        // https://www.w3schools.com/php/php_mysql_create.asp
+
+        // executar .sql usando comandos
+        // https://stackoverflow.com/questions/4027769/running-mysql-sql-files-in-php
     }
     // header("Location: erro.php");
 }
