@@ -13,7 +13,7 @@
     <title>fsys</title>
 </head>
 
-<body>
+<body style="background-color:#e9e9e9;">
     <!-- inicio container  -->
     <div class='container-fluid'>
 

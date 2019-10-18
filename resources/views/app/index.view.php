@@ -7,15 +7,15 @@
             <div class="col-sm-3 px-1">
                 <div class="row py-2 sticky-top flex-grow-1 justify-content-center">
                     <div class="btn-group " role="group" aria-label="Basic example">
-                        <a href="?entry=in" class="btn btn-success">Entrada</a>
-                        <a href="?entry=out" class="btn btn-success">Saída</a>
+                        <a href="money_deposit.php" class="btn btn-success">Entrada</a>
+                        <a href="cash_outflow.php" class="btn btn-success">Saída</a>
                     </div>
                 </div>
             </div>
             <div class="col" id="main">
                 <div class="row justify-content-center" style="margin:50px;">
                     <?php
-                        include 'subview/entry.sub.php';
+                        include 'launch.view.php';
                     ?>
                 </div>
                 <!-- <h1>Main Area</h1>

@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   CONSTRAINT `fk_categories_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Copiando dados para a tabela fsys.categories: ~3 rows (aproximadamente)
+-- Copiando dados para a tabela fsys.categories: ~2 rows (aproximadamente)
 DELETE FROM `categories`;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
 INSERT INTO `categories` (`id`, `category`, `applicable`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
@@ -47,10 +47,10 @@ INSERT INTO `categories` (`id`, `category`, `applicable`, `created_by`, `created
 DROP TABLE IF EXISTS `historics`;
 CREATE TABLE IF NOT EXISTS `historics` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `date` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `id_category` int(11) NOT NULL,
   `description` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `id_method` int(11) NOT NULL,
+  `id_pay_method` int(11) NOT NULL,
   `value` decimal(8,2) NOT NULL,
   `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -58,7 +58,11 @@ CREATE TABLE IF NOT EXISTS `historics` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_historics_created_by` (`created_by`),
-  CONSTRAINT `fk_historics_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE
+  KEY `fk_historics_id_pay_method` (`id_pay_method`),
+  KEY `fk_historics_id_category` (`id_category`),
+  CONSTRAINT `fk_historics_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_historics_id_category` FOREIGN KEY (`id_category`) REFERENCES `categories` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_historics_id_pay_method` FOREIGN KEY (`id_pay_method`) REFERENCES `pay_methods` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Copiando dados para a tabela fsys.historics: ~0 rows (aproximadamente)
@@ -81,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `pay_methods` (
   CONSTRAINT `fk_pay_method_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Copiando dados para a tabela fsys.pay_methods: ~3 rows (aproximadamente)
+-- Copiando dados para a tabela fsys.pay_methods: ~2 rows (aproximadamente)
 DELETE FROM `pay_methods`;
 /*!40000 ALTER TABLE `pay_methods` DISABLE KEYS */;
 INSERT INTO `pay_methods` (`id`, `method`, `applicable`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
