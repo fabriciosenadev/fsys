@@ -4,6 +4,7 @@
     <!-- inicio  conteudo do site-->
     <div class="container-fluid">
         <div class="row">
+
             <div class="col-sm-3 px-1">
                 <div class="row py-2 sticky-top flex-grow-1 justify-content-center">
                     <div class="btn-group " role="group" aria-label="Basic example">
@@ -12,8 +13,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col" id="main">
-                <div class="row justify-content-center" style="margin:50px;">
+
+            <div class="col-md-6" id="main">
+                <div class="row justify-content-center" style="margin-top:50px;">
                     <?php
                         include 'launch.view.php';
                     ?>
@@ -35,6 +37,9 @@
                     raw denim deep v taxidermy messenger bag. Tofu YOLO Etsy, direct trade ethical Odd Future jean shorts paleo. Forage Shoreditch tousled aesthetic irony, street art organic Bushwick artisan cliche semiotics ugh synth chillwave meditation.
                     Shabby chic lomo plaid vinyl chambray Vice. Vice sustainable cardigan, Williamsburg master cleanse hella DIY 90's blog.</p> -->
             </div>
+
+            <div class="col-sm-3"></div>
+
         </div>
     </div>
 

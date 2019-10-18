@@ -5,9 +5,8 @@
 ?>
 
 <form>
-
     <div class="border-top border-secondary rounded-bottom" 
-        style="padding: 10px; background-color:white;">
+        style="padding: 50px; background-color:white;">
         <h2>Entrada</h2>
         <div class="form-row">
 
