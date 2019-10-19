@@ -4,15 +4,15 @@
 
 ?>
 
-<form>
-    <div class="border-top border-secondary rounded-bottom" 
-        style="padding: 50px; background-color:white;">
+<div class="border-top border-secondary rounded-bottom" 
+    style="width:500px;padding: 10px; background-color:white;">
+    <form>
         <h2>Entrada</h2>
         <div class="form-row">
 
             <div class="form-group col-md-6">
                 <label for="inputDate">Data</label>
-                    <input type="date" class="form-control" id="inputDate" placeholder="dd/mm/aaaa">
+                    <input type="date" class="form-control" id="inputDate">
             </div>
             <div class="form-group col-md-6">
                 <label for="inputCategory">Category</label>
@@ -80,6 +80,7 @@
 
         <button type="submit" class="btn btn-dark">Gravar</button>
 
-    </div>
 
-</form>
+    </form>
+</div>
+
