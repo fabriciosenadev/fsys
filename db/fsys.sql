@@ -36,11 +36,11 @@ CREATE TABLE IF NOT EXISTS `categories` (
 DELETE FROM `categories`;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
 INSERT INTO `categories` (`id`, `category`, `applicable`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(1, 'salary', 'IN', NULL, NULL, NULL, NULL);
+	(1, 'Salario', 'IN', NULL, NULL, NULL, NULL);
 INSERT INTO `categories` (`id`, `category`, `applicable`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(2, 'transportation', 'OUT', NULL, NULL, NULL, NULL);
+	(2, 'Transporte', 'OUT', NULL, NULL, NULL, NULL);
 INSERT INTO `categories` (`id`, `category`, `applicable`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(3, 'supermarket', 'OUT', NULL, NULL, NULL, NULL);
+	(3, 'Supermercado', 'OUT', NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela fsys.historics
@@ -74,7 +74,7 @@ DELETE FROM `historics`;
 DROP TABLE IF EXISTS `pay_methods`;
 CREATE TABLE IF NOT EXISTS `pay_methods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `method` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `pay_method` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `applicable` enum('WALLET','ACCOUNT','CREDIT') COLLATE utf8_unicode_ci NOT NULL,
   `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -88,12 +88,12 @@ CREATE TABLE IF NOT EXISTS `pay_methods` (
 -- Copiando dados para a tabela fsys.pay_methods: ~2 rows (aproximadamente)
 DELETE FROM `pay_methods`;
 /*!40000 ALTER TABLE `pay_methods` DISABLE KEYS */;
-INSERT INTO `pay_methods` (`id`, `method`, `applicable`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(1, 'money', 'WALLET', NULL, NULL, NULL, NULL);
-INSERT INTO `pay_methods` (`id`, `method`, `applicable`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(2, 'debit card', 'ACCOUNT', NULL, NULL, NULL, NULL);
-INSERT INTO `pay_methods` (`id`, `method`, `applicable`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(3, 'credit card', 'CREDIT', NULL, NULL, NULL, NULL);
+INSERT INTO `pay_methods` (`id`, `pay_method`, `applicable`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+	(1, 'Dinheiro', 'WALLET', NULL, NULL, NULL, NULL);
+INSERT INTO `pay_methods` (`id`, `pay_method`, `applicable`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+	(2, 'Debito', 'ACCOUNT', NULL, NULL, NULL, NULL);
+INSERT INTO `pay_methods` (`id`, `pay_method`, `applicable`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+	(3, 'Credito', 'CREDIT', NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `pay_methods` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela fsys.users
