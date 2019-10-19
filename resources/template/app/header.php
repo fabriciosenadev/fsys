@@ -18,6 +18,6 @@
     <div class='container-fluid'>
 
         <!-- inicio top menu -->
-        <?php require_once '../resources/views/app/menu.view.php';?>
+        <?php require_once 'top-menu.php';?>
         <!-- fim top menu -->
     </div>
