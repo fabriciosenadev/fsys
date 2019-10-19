@@ -5,9 +5,9 @@
     <div class="container-fluid">
         <div class="row">
 
-            <div class="col-sm-3 px-1">
+            <div class="col-sm px-1">
                 <div class="row py-2 sticky-top flex-grow-1 justify-content-center">
-                    <div class="btn-group " role="group" aria-label="Basic example">
+                    <div class="btn-group-vertical" role="group" aria-label="Basic example">
                         <a href="money_deposit.php" class="btn btn-success">Entrada</a>
                         <a href="cash_outflow.php" class="btn btn-success">Saída</a>
                     </div>
