@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row">
 
-            <div class="col-sm px-1">
+            <div class="col-sm">
                 <?php include '../resources/template/app/side-menu.php';?>
             </div>
 
