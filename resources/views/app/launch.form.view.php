@@ -5,10 +5,12 @@
     if ( in_array("cash_in.php", $currentPage) ) {
         $formTitle = 'Entrada';
         $borderTop = 'border-success';
+        $valueTile = 'Valor de Entrada';
         $visible = false;
     } else {
         $formTitle = 'Saída';
         $borderTop = 'border-danger';
+        $valueTile = 'Valor da Compra';
         $visible = true;
     }
 
@@ -21,7 +23,7 @@
     <div class="container-fluid">
         <div class="row">
 
-            <div class="col-sm px-1">
+            <div class="col-sm">
                 <?php include '../resources/template/app/side-menu.php';?>
             </div>
 
@@ -48,13 +50,17 @@
 
                                 <div class="form-group col-md-6">
                                     <label for="inputDate">Data</label>
-                                        <input type="date" id="inputDate"name="date"
+                                        <input type="date" id="inputDate"name="date" value="<?php echo $date;?>"
                                             class="form-control <?php echo $styleDate;?>">
                                         <div class="valid-feedback">
                                             Parece bom!
                                         </div>  
                                         <div class="invalid-feedback">
-                                            Parece bom!
+                                        <?php                                       
+                                            echo ($_SESSION['errors']['date']) 
+                                                ?   $_SESSION['errors']['date']
+                                                :   null;
+?>
                                         </div>  
                                 </div>
 
@@ -74,6 +80,9 @@
                                             }
 ?>
                                         </select>
+                                        <div class="valid-feedback">
+                                            Parece bom!
+                                        </div>
                                         <div class="invalid-feedback">
 <?php                                       
                                             echo ($_SESSION['errors']['category']) 
@@ -88,7 +97,7 @@
                             <div class="form-group">
                                 
                                 <label for="inputDescription">Descrição</label>
-                                    <input type="text" class="form-control" id="inputDescription" 
+                                    <input type="text" class="form-control" id="inputDescription" value="<?php echo $description;?>" 
                                         placeholder="Ex:.compras do mês" name="description">
 
                             </div>
@@ -101,9 +110,29 @@
                                 </div> -->
 
                                 <div class="form-group col-md-6">
-                                    <label for="inputValue">Valor da Compra</label>
-                                        <input type="number" id="inputValue" name="value" step="0.01"
-                                            class="form-control  <?php echo $styleValue;?>" >
+                                    <label for="inputValue"><?php echo $valueTile; ?></label>
+                                        <!-- <input type="number" id="inputValue" name="value" step="0.01"
+                                            placeholder="1,57" class="form-control  <?php echo $styleValue;?>" >
+                                            <label class="sr-only" for="inlineFormInputGroup">Username</label> -->
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">R$</div>
+                                        </div>
+                                        <input type="text" id="inputValue" name="value" step="0.01" value="<?php echo $value;?>"
+                                            placeholder="1,57" class="form-control  <?php echo $styleValue;?>" >
+                                        
+                                        <div class="valid-feedback">
+                                            Parece bom!
+                                        </div>
+                                        <div class="invalid-feedback">
+<?php                                       
+                                            echo ($_SESSION['errors']['value']) 
+                                                ?   $_SESSION['errors']['value']
+                                                :   null;
+?>
+                                        </div> 
+                                    </div>
+
                                 </div>
 
 <?php 
@@ -111,7 +140,8 @@
 ?>
                                 <div class="form-group col-md-6">
                                     <label for="inputPayMethod">Forma de Pagamento</label>
-                                        <select id="inputPayMethod" class="form-control" name="payMethod">
+                                        <select id="inputPayMethod" name="payMethod" 
+                                            class="form-control <?php echo $stylePayMethod;?>">
                                             <option value="">Escolha...</option>
 <?php
                                             foreach ($payMethods as $payMethod) {
@@ -123,6 +153,16 @@
                                             }
 ?>                                            
                                         </select>
+                                        <div class="valid-feedback">
+                                            Parece bom!
+                                        </div>
+                                        <div class="invalid-feedback">
+<?php                                       
+                                            echo ($_SESSION['errors']['payMethod']) 
+                                                ?   $_SESSION['errors']['payMethod']
+                                                :   null;
+?>
+                                        </div>                                         
                                 </div>
 <?php
                             }
