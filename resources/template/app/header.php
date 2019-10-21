@@ -9,15 +9,15 @@
 
     <!-- CSS do Bootstrap 4.3.1 -->
     <link rel="stylesheet" href="../resources/assets/css/bootstrap.css">
-    <link rel="stylesheet" href="../resources/assets/css/home.css">
+    <link rel="stylesheet" href="../resources/assets/css/app/home.css">
     <title>fsys</title>
 </head>
 
-<body>
+<body style="background-color:#e9e9e9;">
     <!-- inicio container  -->
     <div class='container-fluid'>
 
         <!-- inicio top menu -->
-        <?php require_once '../resources/views/app/menu.view.php';?>
+        <?php require_once 'top-menu.php';?>
         <!-- fim top menu -->
     </div>

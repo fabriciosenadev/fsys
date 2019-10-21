@@ -1,0 +1,46 @@
+body {
+  background: #fcfcfc;
+}
+
+.menu-box {
+  padding: 15px 10px 15px 10px;
+  background: #28a745;
+}
+.text-white:hover {
+  color: #ffffff80 !important;
+}
+
+.invide {
+  height: 30%;
+  /* border-bottom: .001em solid rgb(201, 201, 201); */
+  padding: 5em 2em 7em;
+}
+
+.invide h2 {
+  font-size: 50px;
+}
+.container-cards{
+  background: #28a745;
+}
+.cards {
+  padding: 4em 0 4em;
+  /* margin-top: 15px; */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+
+}
+.card {
+  flex-basis: 29%;
+  margin: 2em;
+  width: 18rem;
+}
+footer {
+  text-align: center;
+  margin-top: 15px;
+  /* border-top: .001em solid rgb(201, 201, 201); */
+  padding: 2.5em;
+}
+.input-group {
+    width: 100%;
+}
