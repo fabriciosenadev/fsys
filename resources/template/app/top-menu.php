@@ -2,7 +2,7 @@
     <!-- botões do site -->
     <div class='col-md-8'>
         <div class="row justify-content-start">
-            <a href="#" class='btn btn-light'>Home<img src="" alt=""></a>
+            <a href="index.php" class='btn btn-light'>Home<img src="" alt=""></a>
         </div>
     </div>
     <!-- fim botões do site -->
