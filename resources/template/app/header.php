@@ -9,7 +9,7 @@
 
     <!-- CSS do Bootstrap 4.3.1 -->
     <link rel="stylesheet" href="../resources/assets/css/bootstrap.css">
-    <link rel="stylesheet" href="../resources/assets/css/home.css">
+    <link rel="stylesheet" href="../resources/assets/css/app/home.css">
     <title>fsys</title>
 </head>
 
