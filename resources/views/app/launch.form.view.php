@@ -11,6 +11,8 @@
         $borderTop = 'border-danger';
         $visible = true;
     }
+
+    
 ?>
 
     <!-- <hr> -->
@@ -34,26 +36,34 @@
                             <h2><?php echo $formTitle;?></h2>
                             <div class="error">
 <?php 
-                                if ($_SESSION['errors']) {
-                                    echo $_SESSION['errors'];
-                                    }
+                                // if ($_SESSION['errors']) {
+                                //     // echo $_SESSION['errors'];
+                                //     foreach($_SESSION['errors'] as $msg){
+                                //         echo $msg;
+                                //     }
+                                // }
 ?>
                             </div>
                             <div class="form-row">
 
                                 <div class="form-group col-md-6">
                                     <label for="inputDate">Data</label>
-                                        <input type="date" class="form-control is-valid" id="inputDate"name="date">
+                                        <input type="date" id="inputDate"name="date"
+                                            class="form-control <?php echo $styleDate;?>">
                                         <div class="valid-feedback">
                                             Parece bom!
-                                        </div>    
+                                        </div>  
+                                        <div class="invalid-feedback">
+                                            Parece bom!
+                                        </div>  
                                 </div>
 
                                 <div class="form-group col-md-6">
 
                                     <label for="inputCategory">Categoria</label>
-                                        <select id="inputCategory" class="form-control is-invalid" name="category">
-                                            <option selected>Escolha...</option>
+                                        <select id="inputCategory" name="category"
+                                        class="form-control <?php echo $styleCategory;?>">
+                                            <option value="">Escolha...</option>
 <?php
                                             foreach ($categories as $category) {
 ?>
@@ -65,7 +75,11 @@
 ?>
                                         </select>
                                         <div class="invalid-feedback">
-                                            Por favor escolha uma categoria.
+<?php                                       
+                                            echo ($_SESSION['errors']['category']) 
+                                                ?   $_SESSION['errors']['category']
+                                                :   null;
+?>
                                         </div>
                                 </div>
 
@@ -88,8 +102,8 @@
 
                                 <div class="form-group col-md-6">
                                     <label for="inputValue">Valor da Compra</label>
-                                        <input type="number" class="form-control" id="inputValue" 
-                                            name="value" step="0.01">
+                                        <input type="number" id="inputValue" name="value" step="0.01"
+                                            class="form-control  <?php echo $styleValue;?>" >
                                 </div>
 
 <?php 
@@ -98,7 +112,7 @@
                                 <div class="form-group col-md-6">
                                     <label for="inputPayMethod">Forma de Pagamento</label>
                                         <select id="inputPayMethod" class="form-control" name="payMethod">
-                                            <option selected>Escolha...</option>
+                                            <option value="">Escolha...</option>
 <?php
                                             foreach ($payMethods as $payMethod) {
 ?>
