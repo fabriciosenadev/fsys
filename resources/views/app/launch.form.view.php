@@ -1,7 +1,6 @@
 <?php
     // get link param
     $currentPage = explode("/", $_SERVER['REQUEST_URI']);
-    // $formTitle = in_array("cash_in.php", $currentPage) ? 'Entrada' : 'Saída';
     if ( in_array("cash_in.php", $currentPage) ) {
         $formTitle = 'Entrada';
         $borderTop = 'border-success';
@@ -38,11 +37,11 @@
 
                             <div class="form-row">
 
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md">
                                     <h2><?php echo $formTitle;?></h2>
                                 </div>
 
-                                <!-- <div class="form-group col-md-6">
+                                <!-- <div class="form-group col-md-10">
                                     
                                 </div> -->
 
@@ -109,16 +108,8 @@
 
                             <div class="form-row">
                         
-                                <!-- <div class="form-group col-md-6">
-                                    <label for="inputCity">City</label>
-                                        <input type="text" class="form-control" id="inputCity">
-                                </div> -->
-
                                 <div class="form-group col-md-6">
                                     <label for="inputValue"><?php echo $valueTile; ?></label>
-                                        <!-- <input type="number" id="inputValue" name="value" step="0.01"
-                                            placeholder="1,57" class="form-control  <?php echo $styleValue;?>" >
-                                            <label class="sr-only" for="inlineFormInputGroup">Username</label> -->
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">R$</div>
@@ -174,19 +165,6 @@
 <?php
                             }
 ?>
-                                <!-- <div class="form-group col-md-4">
-                                    <label for="inputState">State</label>
-                                        <select id="inputState" class="form-control">
-                                            <option selected>Choose...</option>
-                                            <option>...</option>
-                                        </select>
-                                </div>
-                        
-                                <div class="form-group col-md-2">
-                                    <label for="inputZip">Zip</label>
-                                        <input type="text" class="form-control" id="inputZip">
-                                </div> -->
-
                             </div>
 
                              <div class="form-row">
@@ -198,7 +176,9 @@
                             </div>
 
                              <div class="form-row">
-
+<?php
+                                if(isset($_SESSION['success'])){
+?>
                                 <div class="form-group col-md">
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                                         <strong>:D</strong> Dados salvos com sucesso!
@@ -207,7 +187,9 @@
                                         </button>
                                     </div>
                                 </div>
-
+<?php
+                                }
+?>
                             </div>
                         </form>
                     </div>

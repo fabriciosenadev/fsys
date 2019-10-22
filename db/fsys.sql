@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `historics` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date` date DEFAULT NULL,
   `id_category` int(11) NOT NULL,
-  `description` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
   `value` decimal(8,2) NOT NULL,
   `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,

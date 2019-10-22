@@ -4,6 +4,7 @@ require_once '../resources/template/app/header.php';
 
 // inclusão dos models utilizados
 require_once "models/app/fulfill_fields.model.php";
+require_once "models/app/cash_in.model.php";
 
 //controller
 session_start();
@@ -16,20 +17,14 @@ if (!$_SESSION['logged']) {
 $date = isset($_REQUEST['date']) ? $_REQUEST['date'] : null;
 $idCategory = isset($_REQUEST['category']) ? $_REQUEST['category'] : null;
 $description = isset($_REQUEST['description']) ? $_REQUEST['description'] : null;
-$value = isset($_REQUEST['value']) ? floatval($_REQUEST['value']) : null;
+$value = isset($_REQUEST['value']) ? str_replace(',','.',$_REQUEST['value']) : null;
+$value = floatval($value);
 
 $btnSave = isset($_REQUEST['btnSave']) ? $_REQUEST : null;
 
-$errors = [];
+$errors = $dataSave = [];
 $styleDate = $styleCategory = $styleValue = '';
 $reload = false;
-// echo "<pre>";
-// var_dump($_REQUEST);
-// var_dump($_SESSION['errors']);
-// echo "</pre>";
-
-
-
 
 //TODO: criar metodo de gravação dos dados do lançamento
 if ($btnSave) {
@@ -65,11 +60,21 @@ if ($btnSave) {
     // valida descrição enviada pelo usuário
     if ($description) {
         $description = filter_var($description, FILTER_SANITIZE_STRING);
-    }
+    } 
+    // $description = $description ? filter_var($description, FILTER_SANITIZE_STRING) : 'null';
+
 
     // metodo de gravação de dados
     if(!($errors)) {
-        echo "nothing of errors found";
+        // echo "nothing of errors found";
+        $dataSave['date'] = $date;
+        $dataSave['id_category'] = $idCategory;
+        $dataSave['description'] = $description;
+        $dataSave['value'] = $value;
+        $dataSave['created_by'] = intval($_SESSION['id_user']);
+
+        $result = saveIn($dataSave);
+        //  var_dump($result);
     }
 
     // if ($_SESSION['errors']) {

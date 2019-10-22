@@ -16,8 +16,10 @@ if (!$_SESSION['logged']) {
 $date = isset($_REQUEST['date']) ? $_REQUEST['date'] : null;
 $idCategory = isset($_REQUEST['category']) ? $_REQUEST['category'] : null;
 $description = isset($_REQUEST['description']) ? $_REQUEST['description'] : null;
-$value = isset($_REQUEST['value']) ? floatval($_REQUEST['value']) : null;
 $idPayMethod = isset($_REQUEST['payMethod']) ? $_REQUEST['payMethod'] : null;
+
+$value = isset($_REQUEST['value']) ? str_replace(',','.',$_REQUEST['value']) : null;
+$value = floatval($value);
 
 $btnSave = isset($_REQUEST['btnSave']) ? $_REQUEST : null;
 
