@@ -13,10 +13,12 @@
 
 
 -- Copiando estrutura do banco de dados para fsys
+DROP DATABASE IF EXISTS `fsys`;
 CREATE DATABASE IF NOT EXISTS `fsys` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
 USE `fsys`;
 
 -- Copiando estrutura para tabela fsys.categories
+DROP TABLE IF EXISTS `categories`;
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -39,9 +41,10 @@ INSERT INTO `categories` (`id`, `category`, `applicable`, `created_by`, `created
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela fsys.historics
+DROP TABLE IF EXISTS `historics`;
 CREATE TABLE IF NOT EXISTS `historics` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `date` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `date` date DEFAULT NULL,
   `id_category` int(11) NOT NULL,
   `description` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
   `value` decimal(8,2) NOT NULL,
@@ -60,29 +63,8 @@ CREATE TABLE IF NOT EXISTS `historics` (
 /*!40000 ALTER TABLE `historics` DISABLE KEYS */;
 /*!40000 ALTER TABLE `historics` ENABLE KEYS */;
 
--- Copiando estrutura para tabela fsys.historic_pay_methods
-CREATE TABLE IF NOT EXISTS `historic_pay_methods` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_historic` int(11) NOT NULL DEFAULT '0',
-  `id_pay_method` int(11) NOT NULL DEFAULT '0',
-  `created_by` int(11) NOT NULL DEFAULT '0',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_historic_id_pay_methods_historics` (`id_historic`),
-  KEY `fk_historic_id_pay_methods_pay_methods` (`id_pay_method`),
-  KEY `fk_historic_id_pay_methods_user` (`created_by`),
-  CONSTRAINT `fk_historic_id_pay_methods_historics` FOREIGN KEY (`id_historic`) REFERENCES `historics` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_historic_id_pay_methods_pay_methods` FOREIGN KEY (`id_pay_method`) REFERENCES `pay_methods` (`id`),
-  CONSTRAINT `fk_historic_id_pay_methods_user` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='relation between historics and pay_methods';
-
--- Copiando dados para a tabela fsys.historic_pay_methods: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `historic_pay_methods` DISABLE KEYS */;
-/*!40000 ALTER TABLE `historic_pay_methods` ENABLE KEYS */;
-
 -- Copiando estrutura para tabela fsys.pay_methods
+DROP TABLE IF EXISTS `pay_methods`;
 CREATE TABLE IF NOT EXISTS `pay_methods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pay_method` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -104,7 +86,31 @@ INSERT INTO `pay_methods` (`id`, `pay_method`, `applicable`, `created_by`, `crea
 	(3, 'Credito', 'CREDIT', NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `pay_methods` ENABLE KEYS */;
 
+-- Copiando estrutura para tabela fsys.pay_method_historics
+DROP TABLE IF EXISTS `pay_method_historics`;
+CREATE TABLE IF NOT EXISTS `pay_method_historics` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_historic` int(11) NOT NULL DEFAULT '0',
+  `id_pay_method` int(11) NOT NULL DEFAULT '0',
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_pay_method_historics_id_historics` (`id_historic`),
+  KEY `fk_pay_method_historics_id_pay_methods` (`id_pay_method`),
+  KEY `fk_pay_method_historics_id_users` (`created_by`),
+  CONSTRAINT `fk_pay_method_historics_id_historics` FOREIGN KEY (`id_historic`) REFERENCES `historics` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_pay_method_historics_id_pay_methods` FOREIGN KEY (`id_pay_method`) REFERENCES `pay_methods` (`id`),
+  CONSTRAINT `fk_pay_method_historics_id_users` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='relation between historics and pay_methods';
+
+-- Copiando dados para a tabela fsys.pay_method_historics: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `pay_method_historics` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pay_method_historics` ENABLE KEYS */;
+
 -- Copiando estrutura para tabela fsys.users
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
