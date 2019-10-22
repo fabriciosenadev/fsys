@@ -4,6 +4,7 @@ require_once '../resources/template/app/header.php';
 
 // inclusão dos models utilizados
 require_once "models/app/fulfill_fields.model.php";
+require_once "models/app/cash_in.model.php";
 
 //controller
 session_start();
@@ -14,81 +15,75 @@ if (!$_SESSION['logged']) {
 
 // fields
 $date = isset($_REQUEST['date']) ? $_REQUEST['date'] : null;
-$category = isset($_REQUEST['category']) ? $_REQUEST['category'] : null;
+$idCategory = isset($_REQUEST['category']) ? $_REQUEST['category'] : null;
 $description = isset($_REQUEST['description']) ? $_REQUEST['description'] : null;
-$value = isset($_REQUEST['value']) ? floatval($_REQUEST['value']) : null;
+$value = isset($_REQUEST['value']) ? str_replace(',','.',$_REQUEST['value']) : null;
+$value = floatval($value);
 
 $btnSave = isset($_REQUEST['btnSave']) ? $_REQUEST : null;
 
-$_SESSION['errors'] = [];
+$errors = $dataSave = [];
 $styleDate = $styleCategory = $styleValue = '';
 $reload = false;
-// echo "<pre>";
-// var_dump($_REQUEST);
-// var_dump($_SESSION['errors']);
-// echo "</pre>";
-
-
-
 
 //TODO: criar metodo de gravação dos dados do lançamento
 if ($btnSave) {
 
         // TODO: criar erros
     if (empty($date)) {
-        $_SESSION['errors']['date'] ="Preencha a data."; 
+        $errors['date'] ="Preencha a data."; 
         $styleDate = 'is-invalid'; 
     } 
 
-    if (empty($category)) {
-        $_SESSION['errors']['category'] = "Escolha uma categoria.";
+    if (empty($idCategory)) {
+        $errors['category'] = "Escolha uma categoria.";
         $styleCategory = 'is-invalid';    
     } 
 
     if(empty($value)){
-        $_SESSION['errors']['value'] = "Preencha o valor.";
+        $errors['value'] = "Preencha o valor.";
         $styleValue = 'is-invalid';    
-    } else if($value <= 0.00) {
-        $_SESSION['errors']['value'] = "Valor muito baixo.";
-        $styleValue = 'is-invalid';
-    }
+    } 
 
-    if (count($_SESSION['errors']) > 0 && !(empty($date))){
+    if (count($errors) > 0 && !(empty($date))){
         $styleDate = 'is-valid';
     }
 
-    if (count($_SESSION['errors']) > 0 && !(empty($category))){
+    if (count($errors) > 0 && !(empty($idCategory))){
         $styleCategory = 'is-valid';
     }
 
-    if (count($_SESSION['errors']) > 0 && !(empty($value))){
+    if (count($errors) > 0 && !(empty($value))){
         $styleValue = 'is-valid';
     }
 
     // valida descrição enviada pelo usuário
-    if ($description) {
-        $description = filter_var($description, FILTER_SANITIZE_STRING);
+    $description = $description ? filter_var($description, FILTER_SANITIZE_STRING) : 'null';
+
+    // metodo de gravação de dados
+    if(!($errors)) {
+        // echo "nothing of errors found";
+        $dataSave['date'] = $date;
+        $dataSave['id_category'] = $idCategory;
+        $dataSave['description'] = $description;
+        $dataSave['value'] = $value;
+        $dataSave['created_by'] = intval($_SESSION['id_user']);
+
+        $result = saveIn($dataSave);
+
+        if($result) {
+            $_SESSION['success'] = "Entrada registrada.";
+            header("Location: cash_in.php");
+        }
     }
 
-
-
-    // if ($_SESSION['errors']) {
-    //     $reload = true;
-    // }
 }
 
-
-// redirecionamentos
-if($reload){
-    // header("Location: cash_in.php");
-}
 
 
 //TODO: criar metodo de retorno de dados dos campos category e payMethod
 $categories = selectCategories('IN');    
-$payMethods = selectPayMethod();
 
 include '../resources/views/app/launch.form.view.php'; 
-
 
 require_once '../resources/template/app/footer.php';
