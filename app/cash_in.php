@@ -58,10 +58,10 @@ if ($btnSave) {
     }
 
     // valida descrição enviada pelo usuário
-    if ($description) {
-        $description = filter_var($description, FILTER_SANITIZE_STRING);
-    } 
-    // $description = $description ? filter_var($description, FILTER_SANITIZE_STRING) : 'null';
+    // if ($description) {
+    //     $description = filter_var($description, FILTER_SANITIZE_STRING);
+    // } 
+    $description = $description ? filter_var($description, FILTER_SANITIZE_STRING) : 'null';
 
 
     // metodo de gravação de dados
@@ -74,7 +74,11 @@ if ($btnSave) {
         $dataSave['created_by'] = intval($_SESSION['id_user']);
 
         $result = saveIn($dataSave);
-        //  var_dump($result);
+
+        if($result) {
+            $_SESSION['success'] = "Entrada registrada.";
+            header("Location: cash_in.php");
+        }
     }
 
     // if ($_SESSION['errors']) {

@@ -181,7 +181,7 @@
 ?>
                                 <div class="form-group col-md">
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <strong>:D</strong> Dados salvos com sucesso!
+                                        <strong>Sucesso!</strong> <?php echo $_SESSION['success']?>
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
