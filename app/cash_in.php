@@ -58,11 +58,7 @@ if ($btnSave) {
     }
 
     // valida descrição enviada pelo usuário
-    // if ($description) {
-    //     $description = filter_var($description, FILTER_SANITIZE_STRING);
-    // } 
     $description = $description ? filter_var($description, FILTER_SANITIZE_STRING) : 'null';
-
 
     // metodo de gravação de dados
     if(!($errors)) {
@@ -81,16 +77,8 @@ if ($btnSave) {
         }
     }
 
-    // if ($_SESSION['errors']) {
-    //     $reload = true;
-    // }
 }
 
-
-// redirecionamentos
-if($reload){
-    // header("Location: cash_in.php");
-}
 
 
 //TODO: criar metodo de retorno de dados dos campos category e payMethod
