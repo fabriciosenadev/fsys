@@ -14,14 +14,15 @@ if (!$_SESSION['logged']) {
 
 // fields
 $date = isset($_REQUEST['date']) ? $_REQUEST['date'] : null;
-$category = isset($_REQUEST['category']) ? $_REQUEST['category'] : null;
+$idCategory = isset($_REQUEST['category']) ? $_REQUEST['category'] : null;
 $description = isset($_REQUEST['description']) ? $_REQUEST['description'] : null;
 $value = isset($_REQUEST['value']) ? floatval($_REQUEST['value']) : null;
-$payMethod = isset($_REQUEST['payMethod']) ? $_REQUEST['payMethod'] : null;
+$idPayMethod = isset($_REQUEST['payMethod']) ? $_REQUEST['payMethod'] : null;
+
 $btnSave = isset($_REQUEST['btnSave']) ? $_REQUEST : null;
 
-$_SESSION['errors'] = [];
-$styleDate = $styleCategory = $styleValue = '';
+$errors = [];
+$styleDate = $styleCategory = $styleValue = $stylePayMethod ='';
 $reload = false;
 // echo "<pre>";
 // var_dump($_REQUEST);
@@ -34,43 +35,52 @@ $reload = false;
 //TODO: criar metodo de gravação dos dados do lançamento
 if ($btnSave) {
 
-        // TODO: criar erros
+    // TODO: criar erros
     if (empty($date)) {
-        $_SESSION['errors']['date'] ="Preencha a data."; 
+        $errors['date'] ="Preencha a data."; 
         $styleDate = 'is-invalid'; 
     } 
 
-    if (empty($category)) {
-        $_SESSION['errors']['category'] = "Escolha uma categoria.";
+    if (empty($idCategory)) {
+        $errors['category'] = "Escolha uma categoria.";
         $styleCategory = 'is-invalid';    
-    } 
-
-    if(empty($value)){
-        $_SESSION['errors']['value'] = "Preencha o valor.";
-        $styleValue = 'is-invalid';    
-    } else if($value <= 0.00) {
-        $_SESSION['errors']['value'] = "Valor muito baixo.";
-        $styleValue = 'is-invalid';
     }
 
-    if (empty($payMethod)) {        
-        $_SESSION['errors']['payMethod'] = "Escolha uma forma de pagamento.";
-        $stylePayMethod = 'is-invalid';    
+    if(empty($value)){
+        $errors['value'] = "Preencha o valor.";
+        $styleValue = 'is-invalid';    
     } 
 
-    if (count($_SESSION['errors']) > 0 && !(empty($date))){
+    if (count($errors) > 0 && !(empty($date))){
         $styleDate = 'is-valid';
     }
 
-    if (count($_SESSION['errors']) > 0 && !(empty($category))){
+    if (count($errors) > 0 && !(empty($idCategory))){
         $styleCategory = 'is-valid';
     }
 
-    if (count($_SESSION['errors']) > 0 && !(empty($value))){
+    if (count($errors) > 0 && !(empty($value))){
         $styleValue = 'is-valid';
     }
 
-    if (count($_SESSION['errors']) > 0 && !(empty($payMethod))){
+    if (empty($idPayMethod)) {        
+        $errors['payMethod'] = "Escolha uma forma de pagamento.";
+        $stylePayMethod = 'is-invalid';    
+    } 
+
+    if (count($errors) > 0 && !(empty($date))){
+        $styleDate = 'is-valid';
+    }
+
+    if (count($errors) > 0 && !(empty($category))){
+        $styleCategory = 'is-valid';
+    }
+
+    if (count($errors) > 0 && !(empty($value))){
+        $styleValue = 'is-valid';
+    }
+
+    if (count($errors) > 0 && !(empty($idPayMethod))){
         $stylePayMethod = 'is-valid';
     }
 
@@ -79,7 +89,10 @@ if ($btnSave) {
         $description = filter_var($description, FILTER_SANITIZE_STRING);
     }
 
-
+    // metodo de gravação de dados
+    if(!($errors)) {
+        echo "nothing of errors found";
+    }
 
     // if ($_SESSION['errors']) {
     //     $reload = true;
