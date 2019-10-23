@@ -5,7 +5,8 @@ require '../db/connect.php';
 
 /**
  *  function saveIn
- *  @param $data[] array
+ *  @param $data array
+ *  @return $save boolean
  */
 function saveIn($data) 
 {
@@ -19,7 +20,4 @@ function saveIn($data)
     $save = mysqli_query($connection, $insert);
 
     return $save;
-
-
-
 }
