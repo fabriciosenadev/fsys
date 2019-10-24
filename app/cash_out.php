@@ -4,6 +4,7 @@ require_once '../resources/template/app/header.php';
 
 // inclusão dos models utilizados
 require_once "models/app/fulfill_fields.model.php";
+require_once "models/app/cash_out.model.php";
 
 //controller
 session_start();
@@ -26,13 +27,6 @@ $btnSave = isset($_REQUEST['btnSave']) ? $_REQUEST : null;
 $errors = [];
 $styleDate = $styleCategory = $styleValue = $stylePayMethod ='';
 $reload = false;
-// echo "<pre>";
-// var_dump($_REQUEST);
-// var_dump($_SESSION['errors']);
-// echo "</pre>";
-
-
-
 
 //TODO: criar metodo de gravação dos dados do lançamento
 if ($btnSave) {
@@ -87,13 +81,24 @@ if ($btnSave) {
     }
 
     // valida descrição enviada pelo usuário
-    if ($description) {
-        $description = filter_var($description, FILTER_SANITIZE_STRING);
-    }
+    $description = $description ? filter_var($description, FILTER_SANITIZE_STRING) : 'null';
 
     // metodo de gravação de dados
     if(!($errors)) {
-        echo "nothing of errors found";
+        // echo "nothing of errors found";
+        $dataSave['date'] = $date;
+        $dataSave['id_category'] = $idCategory;
+        $dataSave['description'] = $description;
+        $dataSave['value'] = $value;
+        $dataSave['id_pay_method'] = $idPayMethod;
+        $dataSave['created_by'] = intval($_SESSION['id_user']);
+
+        $result = SaveOut($dataSave);
+
+        if($result) {
+            $_SESSION['success'] = "Entrada registrada.";
+            header("Location: cash_out.php");
+        }
     }
 
     // if ($_SESSION['errors']) {
