@@ -188,6 +188,7 @@
                                     </div>
                                 </div>
 <?php
+                                    session_unset($_SESSION['success']);
                                 }
 ?>
                             </div>

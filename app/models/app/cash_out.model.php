@@ -10,17 +10,16 @@ require '../db/connect.php';
  */
 function saveOut($data) 
 {
-    $createReturn = createOut($data);
+    $createOutReturn = createOut($data);
 
-    if ($createReturn[0] == true) {
+    if ($createOutReturn) {
+        $data['id_historic'] = $createOutReturn;
 
-
+        $savePayMethodOutReturn = savePayMethodOut($data);
 
     }
-    
-    
 
-
+    return $savePayMethodOutReturn;
 
 }
 
@@ -29,22 +28,31 @@ function createOut($data)
     $connection = $GLOBALS['connection'];
 
     extract($data);
-    $now = 'now()';
-    $insert .= "INSERT INTO historics(date, id_category, description, value, created_by, created_at)";
-    $insert .= "VALUES('$date', $id_category, $description, $value, $created_by, $now)";
-
-    $save = mysqli_query($connection, $insert);
-
-    return [$save, $now];
-
-}
-
-function selectOut($date)
-{
-
-}
-
-function savePayMethodOut($id)
-{
     
+    $insert = "INSERT INTO historics(date, id_category, description, value, created_by, created_at)";
+    $insert .= "VALUES('$date', $id_category, '$description', $value, $created_by, now() )";
+
+    if (mysqli_query($connection, $insert) ) {
+        $IdHistoric = mysqli_insert_id($connection);
+    }
+
+    return $IdHistoric;
+
+}
+
+function savePayMethodOut($data)
+{
+    $connection = $GLOBALS['connection'];
+
+    extract($data);
+
+    $insert = "INSERT INTO pay_method_historics(id_historic, id_pay_method, created_by, created_at)";
+    $insert .= "VALUES($id_historic, $id_pay_method, $created_by, now() )";
+
+    if (mysqli_query($connection, $insert) ) {
+        $IdPayMethodHistoric = mysqli_insert_id($connection);
+    }
+
+    return $IdPayMethodHistoric;
+
 }

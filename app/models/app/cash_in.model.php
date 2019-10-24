@@ -14,8 +14,8 @@ function saveIn($data)
     
     extract($data);
     
-    $insert .= "INSERT INTO historics(date, id_category, description, value, created_by, created_at)";
-    $insert .= "VALUES('$date', $id_category, $description, $value, $created_by, now())";
+    $insert = "INSERT INTO historics(date, id_category, description, value, created_by, created_at)";
+    $insert .= "VALUES('$date', $id_category, '$description', $value, $created_by, now())";
 
     $save = mysqli_query($connection, $insert);
 

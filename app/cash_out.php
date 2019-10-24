@@ -84,7 +84,6 @@ if ($btnSave) {
     $description = $description ? filter_var($description, FILTER_SANITIZE_STRING) : 'null';
 
     // metodo de gravação de dados
-    // metodo de gravação de dados
     if(!($errors)) {
         // echo "nothing of errors found";
         $dataSave['date'] = $date;
@@ -94,11 +93,11 @@ if ($btnSave) {
         $dataSave['id_pay_method'] = $idPayMethod;
         $dataSave['created_by'] = intval($_SESSION['id_user']);
 
-        $result = saveOut($dataSave);
+        $result = SaveOut($dataSave);
 
         if($result) {
             $_SESSION['success'] = "Entrada registrada.";
-            header("Location: cash_in.php");
+            header("Location: cash_out.php");
         }
     }
 
