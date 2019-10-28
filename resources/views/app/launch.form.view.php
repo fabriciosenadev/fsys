@@ -11,9 +11,7 @@
         $borderTop = 'border-danger';
         $valueTile = 'Valor da Compra';
         $visible = true;
-    }
-    
-    
+    }    
 ?>
 
     <!-- <hr> -->

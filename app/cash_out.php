@@ -4,7 +4,7 @@ require_once '../resources/template/app/header.php';
 
 // inclusão dos models utilizados
 require_once "models/app/fulfill_fields.model.php";
-require_once "models/app/cash_out.model.php";
+require_once "models/app/cash_flow.model.php";
 
 //controller
 session_start();
@@ -93,7 +93,7 @@ if ($btnSave) {
         $dataSave['id_pay_method'] = $idPayMethod;
         $dataSave['created_by'] = intval($_SESSION['id_user']);
 
-        $result = SaveOut($dataSave);
+        $result = SaveLaunch($dataSave);
 
         if($result) {
             $_SESSION['success'] = "Saída registrada.";
