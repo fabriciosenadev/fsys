@@ -2,7 +2,10 @@
     <!-- botões do site -->
     <div class='col-md-8'>
         <div class="row justify-content-start">
-            <a href="index.php" class='btn btn-light'>Home<img src="" alt=""></a>
+            <div class="col">
+                <a href="index.php" class='btn btn-light'>Home<img src="" alt=""></a>
+                <a href="#" class='btn btn-light'>Lançados<img src="" alt=""></a>
+            </div>
         </div>
     </div>
     <!-- fim botões do site -->
@@ -17,9 +20,8 @@
                     Opções
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item">Action</a>
-                    <a class="dropdown-item">Another action</a>
-                    <a class="dropdown-item">Something else here</a>
+                    <a href="#" class="dropdown-item">Formas de pagamento</a>
+                    <a href="#" class="dropdown-item">Categorias</a>
                     <div class="dropdown-divider"></div>
                     <a href="logout.php" class="dropdown-item"><strong>Sair</strong></a>
                 </div>
