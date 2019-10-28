@@ -96,7 +96,7 @@ if ($btnSave) {
         $result = SaveOut($dataSave);
 
         if($result) {
-            $_SESSION['success'] = "Entrada registrada.";
+            $_SESSION['success'] = "Saída registrada.";
             header("Location: cash_out.php");
         }
     }
