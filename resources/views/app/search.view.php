@@ -81,9 +81,10 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Handle</th>
+                                        <th scope="col">Data</th>
+                                        <th scope="col">Categoria</th>
+                                        <th scope="col">Valor</th>
+                                        <th scope="col">Descrição</th>
                                     </tr>
                                 </thead>
 
@@ -92,11 +93,13 @@
                                         <th scope="row">1</th>
                                         <td>Mark</td>
                                         <td>Otto</td>
+                                        <td>Otto</td>
                                         <td>@mdo</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">2</th>
                                         <td>Jacob</td>
+                                        <td>Thornton</td>
                                         <td>Thornton</td>
                                         <td>@fat</td>
                                     </tr>
@@ -104,11 +107,13 @@
                                         <th scope="row">3</th>
                                         <td>Larry</td>
                                         <td>the Bird</td>
+                                        <td>the Bird</td>
                                         <td>@twitter</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">4</th>
                                         <td>Larry</td>
+                                        <td>the Bird</td>
                                         <td>the Bird</td>
                                         <td>@twitter</td>
                                     </tr>
@@ -116,11 +121,13 @@
                                         <th scope="row">5</th>
                                         <td>Larry</td>
                                         <td>the Bird</td>
+                                        <td>the Bird</td>
                                         <td>@twitter</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">6</th>
                                         <td>Larry</td>
+                                        <td>the Bird</td>
                                         <td>the Bird</td>
                                         <td>@twitter</td>
                                     </tr>
@@ -128,11 +135,13 @@
                                         <th scope="row">7</th>
                                         <td>Larry</td>
                                         <td>the Bird</td>
+                                        <td>the Bird</td>
                                         <td>@twitter</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">8</th>
                                         <td>Larry</td>
+                                        <td>the Bird</td>
                                         <td>the Bird</td>
                                         <td>@twitter</td>
                                     </tr>
@@ -148,9 +157,11 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Handle</th>
+                                        <th scope="col">Data</th>
+                                        <th scope="col">Categoria</th>
+                                        <th scope="col">Forma Pagto.</th>
+                                        <th scope="col">Valor</th>
+                                        <th scope="col">Descrição</th>
                                     </tr>
                                 </thead>
 
@@ -159,17 +170,23 @@
                                         <th scope="row">1</th>
                                         <td>Mark</td>
                                         <td>Otto</td>
+                                        <td>Otto</td>
+                                        <td>Otto</td>
                                         <td>@mdo</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">2</th>
                                         <td>Jacob</td>
                                         <td>Thornton</td>
+                                        <td>Thornton</td>
+                                        <td>Thornton</td>
                                         <td>@fat</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">3</th>
                                         <td>Larry</td>
+                                        <td>the Bird</td>
+                                        <td>the Bird</td>
                                         <td>the Bird</td>
                                         <td>@twitter</td>
                                     </tr>
