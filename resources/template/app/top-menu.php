@@ -4,7 +4,7 @@
         <div class="row justify-content-start">
             <div class="col">
                 <a href="index.php" class='btn btn-light'>Home<img src="" alt=""></a>
-                <a href="#" class='btn btn-light'>Lançados<img src="" alt=""></a>
+                <a href="search.php" class='btn btn-light'>Lançados<img src="" alt=""></a>
             </div>
         </div>
     </div>
