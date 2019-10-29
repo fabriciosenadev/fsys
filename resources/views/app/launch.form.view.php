@@ -11,9 +11,7 @@
         $borderTop = 'border-danger';
         $valueTile = 'Valor da Compra';
         $visible = true;
-    }
-    
-    
+    }    
 ?>
 
     <!-- <hr> -->
@@ -26,7 +24,7 @@
                 <?php include '../resources/template/app/side-menu.php';?>
             </div>
 
-            <div class="col-md-6" id="main">
+            <div class="col-md-8" id="main">
                 <div class="row justify-content-center" style="margin-top:50px;">
 
 
@@ -199,7 +197,7 @@
 
             </div>
 
-            <div class="col-sm-3"></div>
+            <div class="col-sm-2"></div>
 
         </div>
     </div>

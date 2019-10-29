@@ -5,25 +5,35 @@ require '../db/connect.php';
 
 /**
  *  function saveIn
- *  @param $data array
- *  @return $save boolean
+ *  @param array $data
+ *  @return int|boolean
  */
-function saveOut($data) 
+function saveLaunch($data) 
 {
-    $createOutReturn = createOut($data);
+    $createHistoricReturn = createHistoric($data);
 
-    if ($createOutReturn) {
-        $data['id_historic'] = $createOutReturn;
+    if ($createHistoricReturn && $data['id_pay_method']) {
+        $data['id_historic'] = $createHistoricReturn;
 
         $savePayMethodOutReturn = savePayMethodOut($data);
 
+        return $savePayMethodOutReturn;
+    } else {
+
+        return $createHistoricReturn;
+
     }
 
-    return $savePayMethodOutReturn;
 
 }
 
-function createOut($data)
+
+/**
+ * function createHistoric
+ * @param array $data
+ * @return int|boolean
+ */
+function createHistoric($data)
 {
     $connection = $GLOBALS['connection'];
 
@@ -40,6 +50,11 @@ function createOut($data)
 
 }
 
+/**
+ * function savePayMethodOut
+ * @param array $data
+ * @return int|boolean
+ */
 function savePayMethodOut($data)
 {
     $connection = $GLOBALS['connection'];
