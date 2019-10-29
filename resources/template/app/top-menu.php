@@ -3,8 +3,8 @@
     <div class='col-md-8'>
         <div class="row justify-content-start">
             <div class="col">
-                <a href="index.php" class='btn btn-light'>Home<img src="" alt=""></a>
-                <a href="search.php" class='btn btn-light'>Lançados<img src="" alt=""></a>
+                <a href="<?php echo $dir; ?>index.php" class='btn btn-light'>Home<img src="" alt=""></a>
+                <a href="<?php echo $dir; ?>search.php" class='btn btn-light'>Lançados<img src="" alt=""></a>
             </div>
         </div>
     </div>
@@ -15,15 +15,21 @@
         <div class="row justify-content-end">
                 
             <div class="btn-group">
+                
                 <button type="button" class="btn btn-light dropdown-toggle" 
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Opções
                 </button>
+                
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a href="#" class="dropdown-item">Formas de pagamento</a>
-                    <a href="#" class="dropdown-item">Categorias</a>
+                
+                    <!-- <a href="#" class="dropdown-item">Formas de pagamento</a> -->
+                    <a href="<?php echo $dir; ?>options/category.php" class="dropdown-item">Categorias</a>
+                    
                     <div class="dropdown-divider"></div>
-                    <a href="logout.php" class="dropdown-item"><strong>Sair</strong></a>
+                    
+                    <a href="<?php echo $dir; ?>logout.php" class="dropdown-item"><strong>Sair</strong></a>
+                
                 </div>
             </div>
 
