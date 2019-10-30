@@ -23,6 +23,10 @@ $btnDelCategory = isset($_REQUEST['btnDelCategory']) ? $_REQUEST : null;
 $errors = [];
 $styleDate = $styleCategory = $styleValue = '';
 
+$msg = isset($_SESSION['success']) ? $_SESSION['success']: null ;
+if (isset($_SESSION['success'])) {
+    unset($_SESSION['success']);
+}
 
 if ($btnDelCategory && $delCategory) {
     var_dump($btnDelCategory);
@@ -47,9 +51,8 @@ if($btnSave) {
         $dataSave['created_by'] = intval($_SESSION['id_user']);
         
         $result = saveCategory($dataSave);
-        // var_dump($result);
         
-        if ($result['category']) {
+        if (isset($result[0]['category'])) {
             $errors['category'] = "Categoria já existe.";
         }
 

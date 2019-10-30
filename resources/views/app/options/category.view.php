@@ -1,6 +1,8 @@
 
     <!-- <hr> -->
-
+<?php
+    var_dump($errors);
+?>
     <!-- inicio  conteudo do site-->
     <div class="container-fluid">
         <div class="row">
@@ -45,16 +47,16 @@
                         <div>
                                 
 <?php
-                                if ($_SESSION['success']) {
+                                if ($msg) {
 ?>
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <strong>Sucesso!</strong> <?php echo $_SESSION['success']?>
+                                    <strong>Sucesso!</strong> <?php echo $msg; ?>
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
 <?php
-                                    session_unset($_SESSION['success']);
+                                    
                                 }
 ?>
                         </div>
