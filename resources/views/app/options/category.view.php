@@ -1,30 +1,3 @@
-<?php
-    // get link param
-    // $folders = explode("/", $_SERVER['REQUEST_URI']);
-    // $i = array_search('fsys',$folders);
-    // do{
-    //     $i--;
-    //     unset($folders[$i]);
-    // } while ( $i > 0);
-
-    // $count = count($folders);
-
-    // $go_back = 0;
-    // $dir = '';
-    // // check the current folder
-    // while($count > 2){
-    //     $count--;
-    //     $folders[$count];
-    //     $go_back++;
-    // }
-    // //if the current folder will greates than 5 return one level
-    // while($go_back > 0){
-    //     $dir = "../".$dir;
-    //     $go_back--;
-    // }
-
-    var_dump($_SESSION);
-?>
 
     <!-- <hr> -->
 
