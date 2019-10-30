@@ -44,10 +44,9 @@
                             </form>
                         </div>
 
-                        <div>
-                                
+                        <div>                                
 <?php
-                                if ($msg) {
+                            if ($msg) {
 ?>
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                     <strong>Sucesso!</strong> <?php echo $msg; ?>
@@ -57,7 +56,7 @@
                                 </div>
 <?php
                                     
-                                }
+                            }
 ?>
                         </div>
 
