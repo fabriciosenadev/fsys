@@ -12,7 +12,7 @@ function saveLaunch($data)
 {
     $createHistoricReturn = createHistoric($data);
 
-    if ($createHistoricReturn && $data['id_pay_method']) {
+    if ($createHistoricReturn && isset($data['id_pay_method'])) {
         $data['id_historic'] = $createHistoricReturn;
 
         $savePayMethodOutReturn = savePayMethodOut($data);
