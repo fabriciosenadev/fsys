@@ -11,7 +11,7 @@
         $borderTop = 'border-danger';
         $valueTile = 'Valor da Compra';
         $visible = true;
-    }    
+    } 
 ?>
 
     <!-- <hr> -->
@@ -173,24 +173,25 @@
 
                             </div>
 
-                             <div class="form-row">
-<?php
-                                if(isset($_SESSION['success'])){
+                        </form>
+
+                        <div>
+                        <?php
+                                if($msg){
 ?>
                                 <div class="form-group col-md">
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <strong>Sucesso!</strong> <?php echo $_SESSION['success']?>
+                                        <strong>Sucesso!</strong> <?php echo $msg; ?>
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                 </div>
 <?php
-                                    session_unset($_SESSION['success']);
+                                    // unset($_SESSION['success']);
                                 }
-?>
-                            </div>
-                        </form>
+?>                        
+                        </div>
                     </div>
 
                 </div>

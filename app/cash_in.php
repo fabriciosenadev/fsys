@@ -21,10 +21,17 @@ $value = isset($_REQUEST['value']) ? str_replace(',','.',$_REQUEST['value']) : n
 $value = floatval($value);
 
 $btnSave = isset($_REQUEST['btnSave']) ? $_REQUEST : null;
+// $_SESSION['success'] = isset($_SESSION['success']) ? $_SESSION['success'] : null;
 
 $errors = $dataSave = [];
 $styleDate = $styleCategory = $styleValue = '';
 $reload = false;
+
+$msg = isset($_SESSION['success']) ? $_SESSION['success']: null ;
+if (isset($_SESSION['success'])) {
+    unset($_SESSION['success']);
+}
+
 
 //TODO: criar metodo de gravação dos dados do lançamento
 if ($btnSave) {
@@ -72,13 +79,13 @@ if ($btnSave) {
         $result = SaveLaunch($dataSave);
 
         if($result) {
+
             $_SESSION['success'] = "Entrada registrada.";
             header("Location: cash_in.php");
         }
     }
 
 }
-
 
 
 //TODO: criar metodo de retorno de dados dos campos category e payMethod
