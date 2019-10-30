@@ -22,6 +22,8 @@
     //     $dir = "../".$dir;
     //     $go_back--;
     // }
+
+    var_dump($_SESSION);
 ?>
 
     <!-- <hr> -->
@@ -72,13 +74,11 @@
                                     </div>
                                 </div>
 <?php
-                            session_unset($_SESSION['success']);
+                                session_unset($_SESSION['success']);
                             }
 ?>
 
                         </form>
-
-
 
                         <nav>
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -97,29 +97,77 @@
 
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
-                                <div class="row">
+                                <table class="table table-striped">
                                     
-                                    <div class="col" style="margin: 20px 75px;padding-top:10px;">
-                                
-                                    Entrada...
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Categoria</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
 
-                                    </div>
-                                
-                                </div>
+                                    <tbody>
+                                    <?php 
+                                        foreach($categories as $category) {
+                                            if($category['applicable'] == 'IN') {
+                                    ?>
+                                        <tr>
+                                            <th scope="row"><?php echo $category['id']?></th>
+                                            <td><?php echo $category['category']?></td>
+                                            <td>
+                                                <a href="#" >                            
+                                                    <button type="submit" class="close" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>                    
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                            }
+                                        }
+                                    ?>
+                                    </tbody>
+
+                                </table>
 
                             </div>
 
                             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                             
-                                <div class="row">
+                            <table class="table table-striped">
                                     
-                                    <div class="col" style="margin: 20px 75px;padding-top:10px;">
-                                
-                                    saída...
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Categoria</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
 
-                                    </div>
-                                
-                                </div>
+                                    <tbody>
+                                    <?php 
+                                        foreach($categories as $category) {
+                                            if($category['applicable'] == 'OUT') {
+                                    ?>
+                                        <tr>
+                                            <th scope="row"><?php echo $category['id']?></th>
+                                            <td><?php echo $category['category']?></td>
+                                            <td>
+                                                <a href="#" >                            
+                                                    <button type="submit" class="close" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>                    
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                            }
+                                        }
+                                    ?>
+                                    </tbody>
+
+                                </table>
                                 
                             </div>
                         </div>
