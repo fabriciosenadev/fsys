@@ -49,7 +49,7 @@ if($reload){
     header("Location: login.php");
 }
 if($_SESSION['logged']){
-    header("Location: app/");
+    header("Location: app/index.php");
 }
 
 include 'resources/views/site/login.view.php'; 

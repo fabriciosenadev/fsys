@@ -28,6 +28,13 @@ $errors = [];
 $styleDate = $styleCategory = $styleValue = $stylePayMethod ='';
 $reload = false;
 
+
+$msg = isset($_SESSION['success']) ? $_SESSION['success']: null ;
+if (isset($_SESSION['success'])) {
+    unset($_SESSION['success']);
+}
+
+
 //TODO: criar metodo de gravação dos dados do lançamento
 if ($btnSave) {
 

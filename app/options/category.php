@@ -1,6 +1,8 @@
 <?php
 
 require_once '../../resources/template/app/header.php';
+require_once "../models/app/options/category.model.php";
+
 
 session_start();
 if (!$_SESSION['logged']) {
@@ -9,6 +11,60 @@ if (!$_SESSION['logged']) {
 }
 
 
+//dados para novas/alterar categorias
+$category = isset($_REQUEST['category']) ? $_REQUEST['category'] : null;
+$applicable = isset($_REQUEST['applicable']) ? $_REQUEST['applicable'] : null;
+$btnSave = isset($_REQUEST['btnSave']) ? $_REQUEST : null;
+
+//dados para deletar categoria
+$delCategory = isset($_REQUEST['delCategory']) ? $_REQUEST['delCategory'] : null;
+$btnDelCategory = isset($_REQUEST['btnDelCategory']) ? $_REQUEST : null;
+
+$errors = [];
+$styleDate = $styleCategory = $styleValue = '';
+
+$msg = isset($_SESSION['success']) ? $_SESSION['success']: null ;
+if (isset($_SESSION['success'])) {
+    unset($_SESSION['success']);
+}
+
+if ($btnDelCategory && $delCategory) {
+    var_dump($btnDelCategory);
+}
+
+if($btnSave) {
+
+    if (empty($category)){
+        $errors['category'] = "Preencha a categoria.";
+    } 
+    
+    if(empty($applicable)) {
+        $errors['applicable'] = "Selecione a aplicabilidade.";
+    }
+    
+    if (!$errors) {
+        
+        $category = filter_var($category, FILTER_SANITIZE_STRING);
+        
+        $dataSave['category'] = $category;
+        $dataSave['applicable'] = $applicable;
+        $dataSave['created_by'] = intval($_SESSION['id_user']);
+        
+        $result = saveCategory($dataSave);
+        
+        if (isset($result[0]['category'])) {
+            $errors['category'] = "Categoria já existe.";
+        }
+
+        if (is_int($result)) {
+            $_SESSION['success'] = "Categoria registrada.";
+            header("Location: category.php");
+        }
+
+    }
+}
+
+$categories = selectCategory(null);
 include '../../resources/views/app/options/category.view.php'; 
 
 
