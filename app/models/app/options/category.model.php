@@ -52,9 +52,11 @@ function selectCategory ($data)
     $connection = $GLOBALS['connection'];
     $return = [];
 
-    $where = isset($data) ? "and category = '{$data['category']}'" : '';
+    extract($data);
+
+    $where = isset($category) ? "AND category = '$category'" : '';
     
-    $select = "SELECT * FROM categories WHERE deleted_at is null $where";
+    $select = "SELECT * FROM categories WHERE deleted_at is null AND created_by = $created_by $where";
 
     $result = mysqli_query($connection, $select);
     while ($category = mysqli_fetch_assoc($result)) {

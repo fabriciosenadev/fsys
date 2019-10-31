@@ -28,6 +28,7 @@ if ($btnFilter) {
     if (!$errors) {
         $dataSelect['dateFrom'] = $dateFrom;
         $dataSelect['dateTo'] = $dateTo;
+        $dataSelect['created_by'] = $_SESSION['id_user'];
 
         $launches = selectLaunched($dataSelect);
         // var_dump($launches);
