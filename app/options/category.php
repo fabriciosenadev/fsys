@@ -69,7 +69,7 @@ if($btnSave) {
         if (is_int($result)) {
             $_SESSION['success'] = "Categoria registrada.";
             header("Location: category.php");
-            header("Location: cash_out.php");
+            
         }
 
     }
