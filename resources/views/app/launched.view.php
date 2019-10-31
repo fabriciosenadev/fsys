@@ -65,7 +65,9 @@
 
                 <!-- <div class="row justify-content-center" style="margin-top:50px;"> -->
 
-                
+<?php 
+    if(isset($launches)) {
+?>                  
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="in-tab" data-toggle="tab" href="#in" role="tab" aria-controls="in" aria-selected="false">Entrada</a>
@@ -77,7 +79,8 @@
 
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="in" role="tabpanel" aria-labelledby="in-tab">
-                        
+
+                     
                             <table class="table table-striped">
                                 
                                 <thead>
@@ -121,8 +124,8 @@
 
                             </table>
 
-
                         </div>
+
                         <div class="tab-pane fade" id="out" role="tabpanel" aria-labelledby="out-tab">
                             <table class="table table-striped">
                                 
@@ -174,7 +177,9 @@
                         <!-- <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div> -->
                         
                     </div>                
-
+<?php
+    }
+?>
 
                 <!-- </div> -->
 
