@@ -91,62 +91,32 @@
                                 </thead>
 
                                 <tbody>
+                                <?php 
+                                    foreach($launches as $launch) {
+                                        if($launch['applicable'] == 'IN') {
+                                                // $link = "?act=d&cat={$category['id']}";
+                                    ?>
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
+                                        <th scope="row"><?php echo $launch['id']?></th>
+                                        <td><?php echo $launch['date']?></td>
+                                        <td><?php echo $launch['category']?></td>
+                                        <td><?php echo $launch['value']?></td>
+                                        <td><?php echo $launch['description']?></td>
+                                        <td>
+                                            <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
+                                                <input type="hidden" name="delCategory" value="<?php echo $launch['id']?>">
+                                                <button type="submit" name="btnDelCategory" class="close" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>                    
+                                            </form>
+                                            <!-- <a href="<?php //echo $link;?>" >
+                                            </a> -->
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">4</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">5</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">6</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">7</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">8</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
+                                    <?php
+                                            }
+                                        }
+                                    ?>
                                 </tbody>
 
                             </table>
@@ -168,30 +138,33 @@
                                 </thead>
 
                                 <tbody>
+                                <?php 
+                                    foreach($launches as $launch) {
+                                        if($launch['applicable'] == 'OUT') {
+                                                // $link = "?act=d&cat={$category['id']}";
+                                    ?>
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>Otto</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
+                                        <th scope="row"><?php echo $launch['id']?></th>
+                                        <td><?php echo $launch['date']?></td>
+                                        <td><?php echo $launch['category']?></td>
+                                        <td><?php echo $launch['pay_method']?></td>
+                                        <td><?php echo $launch['value']?></td>
+                                        <td><?php echo $launch['description']?></td>
+                                        <td>
+                                            <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
+                                                <input type="hidden" name="delCategory" value="<?php echo $launch['id']?>">
+                                                <button type="submit" name="btnDelCategory" class="close" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>                    
+                                            </form>
+                                            <!-- <a href="<?php //echo $link;?>" >
+                                            </a> -->
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>Thornton</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>the Bird</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
+                                    <?php
+                                            }
+                                        }
+                                    ?>
                                 </tbody>
 
                             </table>

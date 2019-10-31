@@ -17,9 +17,12 @@ $btnFilter = isset($_REQUEST['btnFilter']) ? $_REQUEST : null;
 $dataSelect = $errors = [];
 
 
-if ($btnFilter) {
-    if (strtotime($dateFrom) > strtotime($dateTo)) {
 
+// filtra a busca para exibição
+if ($btnFilter) {
+
+    if (strtotime($dateFrom) > strtotime($dateTo)) {
+        $errors['date'] = "Data inicial menor que a final";
     }
 
     if (!$errors) {
@@ -27,16 +30,9 @@ if ($btnFilter) {
         $dataSelect['dateTo'] = $dateTo;
 
         $launches = selectLaunched($dataSelect);
-
-        var_dump($launches);
+        // var_dump($launches);
     }
 }
-// var_dump (strtotime($dateFrom) < strtotime($dateTo)) ;
-    // var_dump($dateFrom,$dateTo);
-    // echo "funcionou";
-    
-
-    
 
 include '../resources/views/app/launched.view.php'; 
 
