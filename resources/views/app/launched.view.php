@@ -20,7 +20,8 @@
                             <div class="input-group-prepend">
                             <div class="input-group-text">De</div>
                             </div>
-                            <input type="date" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Username">
+                            <input type="date" class="form-control" name="dateFrom"
+                                id="inlineFormInputGroupUsername2" placeholder="Username">
                         </div>
 
                         <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
@@ -28,11 +29,12 @@
                             <div class="input-group-prepend">
                             <div class="input-group-text">Até</div>
                             </div>
-                            <input type="date" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Username">
+                            <input type="date" class="form-control" name="dateTo"
+                                id="inlineFormInputGroupUsername2" placeholder="Username">
                         </div>
                         
 
-                        <label class="my-1 mr-2" for="inlineFormCustomSelectPref"></label>
+                        <!-- <label class="my-1 mr-2" for="inlineFormCustomSelectPref"></label>
                             <div class="input-group mb-2 mr-sm-2">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">Preferencias</div>
@@ -43,7 +45,7 @@
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
                                 </select>
-                            </div>
+                            </div> -->
                             
 
                         <!-- <div class="custom-control custom-checkbox my-1 mr-sm-2">
@@ -55,7 +57,7 @@
                             <label class="custom-control-label" for="customControlInline2">Saida</label>
                         </div> -->
 
-                        <button type="submit" class="btn btn-success mb-2">Filtrar</button>
+                        <button type="submit" name="btnFilter" class="btn btn-success mb-2">Filtrar</button>
 
                     </form>
 
@@ -89,62 +91,32 @@
                                 </thead>
 
                                 <tbody>
+                                <?php 
+                                    foreach($launches as $launch) {
+                                        if($launch['applicable'] == 'IN') {
+                                                // $link = "?act=d&cat={$category['id']}";
+                                    ?>
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
+                                        <th scope="row"><?php echo $launch['id']?></th>
+                                        <td><?php echo $launch['date']?></td>
+                                        <td><?php echo $launch['category']?></td>
+                                        <td><?php echo $launch['value']?></td>
+                                        <td><?php echo $launch['description']?></td>
+                                        <td>
+                                            <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
+                                                <input type="hidden" name="delCategory" value="<?php echo $launch['id']?>">
+                                                <button type="submit" name="btnDelCategory" class="close" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>                    
+                                            </form>
+                                            <!-- <a href="<?php //echo $link;?>" >
+                                            </a> -->
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">4</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">5</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">6</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">7</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">8</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
+                                    <?php
+                                            }
+                                        }
+                                    ?>
                                 </tbody>
 
                             </table>
@@ -166,30 +138,33 @@
                                 </thead>
 
                                 <tbody>
+                                <?php 
+                                    foreach($launches as $launch) {
+                                        if($launch['applicable'] == 'OUT') {
+                                                // $link = "?act=d&cat={$category['id']}";
+                                    ?>
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>Otto</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
+                                        <th scope="row"><?php echo $launch['id']?></th>
+                                        <td><?php echo $launch['date']?></td>
+                                        <td><?php echo $launch['category']?></td>
+                                        <td><?php echo $launch['pay_method']?></td>
+                                        <td><?php echo $launch['value']?></td>
+                                        <td><?php echo $launch['description']?></td>
+                                        <td>
+                                            <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
+                                                <input type="hidden" name="delCategory" value="<?php echo $launch['id']?>">
+                                                <button type="submit" name="btnDelCategory" class="close" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>                    
+                                            </form>
+                                            <!-- <a href="<?php //echo $link;?>" >
+                                            </a> -->
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>Thornton</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>the Bird</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
+                                    <?php
+                                            }
+                                        }
+                                    ?>
                                 </tbody>
 
                             </table>

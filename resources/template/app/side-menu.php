@@ -4,12 +4,12 @@
 
     $pageCashIn = in_array("cash_in.php", $currentPage);
     $pageCashOut = in_array("cash_out.php", $currentPage);
-    $pageSearch = in_array("search.php", $currentPage);
+    $pageLaunched = in_array("launched.php", $currentPage);
     $pageIndex = in_array("index.php", $currentPage);
     $pageCategory = in_array("category.php", $currentPage);
     // var_dump($currentPage);
     
-    if ($pageCashIn or $pageCashOut or $pageSearch or $pageIndex) {
+    if ($pageCashIn or $pageCashOut or $pageLaunched or $pageIndex) {
         launchMenu();
     } 
     // if ($category) {
