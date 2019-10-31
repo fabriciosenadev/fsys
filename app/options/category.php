@@ -19,7 +19,7 @@ $btnSave = isset($_REQUEST['btnSave']) ? $_REQUEST : null;
 //dados para deletar categoria
 $delCategory = isset($_REQUEST['delCategory']) ? $_REQUEST['delCategory'] : null;
 $btnDelCategory = isset($_REQUEST['btnDelCategory']) ? $_REQUEST : null;
-
+$delCategory = intval($delCategory);
 $errors = [];
 $styleApplicable = $styleCategory = '';
 
@@ -29,7 +29,14 @@ if (isset($_SESSION['success'])) {
 }
 
 if ($btnDelCategory && $delCategory) {
-    var_dump($btnDelCategory);
+    
+    $result = deleteCategory($delCategory);
+
+    if ($result) {
+        $_SESSION['success'] = "Categoria removida.";
+        header("Location: category.php");
+        
+    }
 }
 
 if($btnSave) {

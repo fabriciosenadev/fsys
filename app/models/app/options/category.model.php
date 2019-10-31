@@ -45,7 +45,7 @@ function createCategory ($data)
 /**
  * function selectCategory
  * @param array|null $data
- * @return array $data
+ * @return array
  */
 function selectCategory ($data) 
 {
@@ -63,4 +63,20 @@ function selectCategory ($data)
 
     }
     return $return;
+}
+
+/**
+ * function deleteCategory
+ * @param int $idCategory
+ * @return bool
+ */
+function deleteCategory ($idCategory) 
+{
+    $connection = $GLOBALS['connection'];
+    
+    $update = "UPDATE categories SET deleted_at = now() WHERE id = $idCategory";
+
+    $result = mysqli_query($connection, $update);
+
+    return $result;
 }
