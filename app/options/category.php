@@ -19,9 +19,9 @@ $btnSave = isset($_REQUEST['btnSave']) ? $_REQUEST : null;
 //dados para deletar categoria
 $delCategory = isset($_REQUEST['delCategory']) ? $_REQUEST['delCategory'] : null;
 $btnDelCategory = isset($_REQUEST['btnDelCategory']) ? $_REQUEST : null;
-
+$delCategory = intval($delCategory);
 $errors = [];
-$styleDate = $styleCategory = $styleValue = '';
+$styleApplicable = $styleCategory = '';
 
 $msg = isset($_SESSION['success']) ? $_SESSION['success']: null ;
 if (isset($_SESSION['success'])) {
@@ -29,17 +29,33 @@ if (isset($_SESSION['success'])) {
 }
 
 if ($btnDelCategory && $delCategory) {
-    var_dump($btnDelCategory);
+    
+    $result = deleteCategory($delCategory);
+
+    if ($result) {
+        $_SESSION['success'] = "Categoria removida.";
+        header("Location: category.php");
+        
+    }
 }
 
 if($btnSave) {
 
     if (empty($category)){
         $errors['category'] = "Preencha a categoria.";
+        $styleCategory = "is-invalid";
     } 
     
     if(empty($applicable)) {
         $errors['applicable'] = "Selecione a aplicabilidade.";
+        $styleApplicable = "is-invalid";
+    }
+
+    if(count($errors) > 0 && !empty($category)) {
+        $styleCategory = "is-valid";
+    }
+    if(count($errors) > 0 && !empty($applicable)) {
+        $styleCategory = "is-valid";
     }
     
     if (!$errors) {
@@ -51,14 +67,16 @@ if($btnSave) {
         $dataSave['created_by'] = intval($_SESSION['id_user']);
         
         $result = saveCategory($dataSave);
-        
+
         if (isset($result[0]['category'])) {
             $errors['category'] = "Categoria já existe.";
+            $styleCategory = "is-invalid";
         }
 
         if (is_int($result)) {
             $_SESSION['success'] = "Categoria registrada.";
             header("Location: category.php");
+            
         }
 
     }

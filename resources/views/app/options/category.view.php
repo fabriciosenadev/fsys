@@ -1,7 +1,7 @@
 
     <!-- <hr> -->
 <?php
-    var_dump($errors);
+    // var_dump($errors);
 ?>
     <!-- inicio  conteudo do site-->
     <div class="container-fluid">
@@ -17,37 +17,58 @@
                     <div class="border-top rounded-bottom" 
                         style="width:500px;padding: 10px; background-color:white;">
 
-                        <div class="col" style="margin:15px;">
+                        <div class="col" style="margin:15px 0;">
 
-                            <form class="form-inline" action="<?php $_SERVER['PHP_SELF']?>" method="post">
-                                
-                                <label class="sr-only" for="category">Categoria</label>
-                                <input type="text" name="category" class="form-control mb-2 mr-sm-2" id="category" 
-                                    placeholder="Categoria" >
+                            <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
+                            <div class="form-row">
 
-
-                                <label class="my-1 mr-2" for="selectApplicable"></label>
-                                <div class="input-group mb-2 mr-sm-2">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">Aplicável</div>
-                                    </div>
-                                    <select class="form-control custom-select" name="applicable" id="selectApplicable">
-                                        <option value="">Escolha...</option>
-                                        <option value="IN">Entrada</option>
-                                        <option value="OUT">Saída</option>
-                                    </select>
+                                <div class="form-group col-md-6">
+                                    <label for="inputCategory">Categoria</label>
+                                        <input type="text" id="inputCategory"name="category" value="<?php echo $category;?>"
+                                            class="form-control <?php echo $styleCategory;?>">
+                                        <div class="valid-feedback">
+                                            Parece bom!
+                                        </div>  
+                                        <div class="invalid-feedback">
+<?php                                       
+                                            echo ($errors['category']) 
+                                                ?   $errors['category']
+                                                :   null;
+?>
+                                        </div>  
                                 </div>
-                                <button type="submit" class="btn btn-success" name="btnSave">Salvar</button>
-                                <!-- <button type="submit" name="btnSave" class="btn btn-success mb-2">Salvar</button> -->
 
+                                <div class="form-group col-md-6">
+
+                                    <label for="inputApplicable">Aplicável</label>
+                                        <select id="inputApplicable" name="applicable"
+                                            class="form-control <?php echo $styleApplicable;?>">
+                                            <option value="">Escolha...</option>
+                                            <option value="IN">Entrada</option>
+                                            <option value="OUT">Saída</option>
+                                        </select>
+                                        <div class="valid-feedback">
+                                            Parece bom!
+                                        </div>
+                                        <div class="invalid-feedback">
+<?php                                       
+                                            echo ($errors['applicable']) 
+                                                ?   $errors['applicable']
+                                                :   null;
+?>
+                                        </div>
+                                </div>
+
+                            </div>
+                                    
+                            <button type="submit" class="btn btn-success" name="btnSave">Salvar</button>
 
                             </form>
                         </div>
 
-                        <div>
-                                
+                        <div>                                
 <?php
-                                if ($msg) {
+                            if ($msg) {
 ?>
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                     <strong>Sucesso!</strong> <?php echo $msg; ?>
@@ -57,7 +78,7 @@
                                 </div>
 <?php
                                     
-                                }
+                            }
 ?>
                         </div>
 
