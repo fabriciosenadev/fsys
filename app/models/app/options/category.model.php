@@ -15,9 +15,10 @@ function saveCategory ($data)
     if (!empty($selectCategory)) {
         return $selectCategory;
     }
+    
     $createCategory = createCategory($data);
 
-    // return $callback;
+    return $createCategory;
 }
 
 /**
