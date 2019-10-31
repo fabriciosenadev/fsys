@@ -20,7 +20,8 @@
                             <div class="input-group-prepend">
                             <div class="input-group-text">De</div>
                             </div>
-                            <input type="date" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Username">
+                            <input type="date" class="form-control" name="dateFrom"
+                                id="inlineFormInputGroupUsername2" placeholder="Username">
                         </div>
 
                         <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
@@ -28,11 +29,12 @@
                             <div class="input-group-prepend">
                             <div class="input-group-text">Até</div>
                             </div>
-                            <input type="date" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Username">
+                            <input type="date" class="form-control" name="dateTo"
+                                id="inlineFormInputGroupUsername2" placeholder="Username">
                         </div>
                         
 
-                        <label class="my-1 mr-2" for="inlineFormCustomSelectPref"></label>
+                        <!-- <label class="my-1 mr-2" for="inlineFormCustomSelectPref"></label>
                             <div class="input-group mb-2 mr-sm-2">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">Preferencias</div>
@@ -43,7 +45,7 @@
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
                                 </select>
-                            </div>
+                            </div> -->
                             
 
                         <!-- <div class="custom-control custom-checkbox my-1 mr-sm-2">
@@ -55,7 +57,7 @@
                             <label class="custom-control-label" for="customControlInline2">Saida</label>
                         </div> -->
 
-                        <button type="submit" class="btn btn-success mb-2">Filtrar</button>
+                        <button type="submit" name="btnFilter" class="btn btn-success mb-2">Filtrar</button>
 
                     </form>
 
