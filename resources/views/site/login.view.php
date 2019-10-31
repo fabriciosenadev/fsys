@@ -27,7 +27,7 @@
   </fieldset>
 
   <div class="registry">       
-    <p>Novo por aqui? <a href="#">Cadastre-se é gratuito!</a></p>
+    <p>Novo por aqui? <a href="register.view.html">Cadastre-se é gratuito!</a></p>
   </div>
 
 </form>

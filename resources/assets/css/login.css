@@ -1,4 +1,4 @@
-body{
+body {
   background: linear-gradient(to bottom, #28a745, white);
 }
 form {
@@ -10,7 +10,7 @@ form {
 }
 h1 {
   position: absolute;
-  top: 3em;
+  top: 1em;
 }
 .login {
   width: 20em;
