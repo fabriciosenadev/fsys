@@ -81,8 +81,8 @@ if($btnSave) {
 
     }
 }
-
-$categories = selectCategory(null);
+$dataSelect['created_by'];
+$categories = selectCategory($dataSelect);
 include '../../resources/views/app/options/category.view.php'; 
 
 
