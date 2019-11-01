@@ -32,7 +32,7 @@
     }
 
     ?>
-    <link rel="stylesheet" href="resources/assets/css/register.css">
+    
     <title>fsys</title>
 </head>
 

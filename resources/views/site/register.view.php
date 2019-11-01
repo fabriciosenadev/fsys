@@ -1,67 +1,154 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../../assets/css/register.css">
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-    <title>Cadastro</title>
-</head>
-
-<body>-->
-    <form> 
-        <div class="row ">
-            <div class="col">
-                <div class="row justify-content-center">
-                    <h1>Fsys</h1>           
-                </div>
-            </div>
-            
-        </div>
-
+    <!-- <hr> -->
+    <?php
+    // var_dump($errors);
+?>
+    <!-- inicio  conteudo do site-->
+    <div class="container-fluid">
         <div class="row">
-            <div class="col">
-                
+
+            <div class="col-sm">
+                <!-- <?php include '../../resources/template/app/side-menu.php';?> -->
             </div>
-            <div class="col">
+
+            <div class="col-md-8" id="main">
+            
                 <div class="row justify-content-center">
-                <fieldset class="login">
-                
-                <p class="name">Nome</p>
-                <input id="name" name="name" type="text" required />
-    
-                <!-- campo de e-mail -->
-                <p class="email">E-mail</p>
-                <input id="email" name="email" placeholder="seu@email.com" type="email" required />
-    
-                <!-- campo de senha -->
-                <p class="password">Senha</p>
-                <input id="password" name="password" placeholder="********" type="password" required>
-                
-                <!-- campo de repetir senha -->
-                <p class="password">Repetir Senha</p>
-                <input id="password" name="password" placeholder="********" type="password" required>
-    
-                <button class="btn btn-success" type="submit" id="btn-login" name="btnLogin" value="Entrar">
-                    Cadastrar
-                </button>
-    
-            </fieldset>
+                <a href="index.php" style="color:black;">
+
+                    <h1>Fsys</h1>            
+                </a>    
+                </div>
+
+                <div class="row justify-content-center" style="margin-top:10px;">
+                        
+
+                        <div class="border-top rounded-bottom" 
+                        style="width:400px;padding: 10px; background-color:white;">
+
+                        <div class="col" style="margin:15px 0;">
+
+                        <div>                                
+<?php
+                            if (0) {
+?>
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong>Sucesso!</strong> <?php //echo $msg; ?>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+<?php
+                                    
+                            }
+?>
+                        </div>
+
+
+                            <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
+
+                            <div class="form-row">
+
+                                <div class="form-group col-md">
+                                    <label for="inputCategory">Nome completo</label>
+                                        <input type="text" id="inputCategory"name="category" value="<?php //echo $category;?>"
+                                            class="form-control <?php //echo $styleCategory;?>">
+                                        <div class="valid-feedback">
+                                            Parece bom!
+                                        </div>  
+                                        <div class="invalid-feedback">
+<?php                                       
+                                            echo ($errors['category']) 
+                                                ?   $errors['category']
+                                                :   null;
+?>
+                                        </div>  
+                                </div>
+
+                            </div>
+                            <div class="form-row">
+
+                                <div class="form-group col-md">
+                                    <label for="inputCategory">E-mail</label>
+                                        <input type="text" id="inputCategory"name="category" value="<?php //echo $category;?>"
+                                            class="form-control <?php //echo $styleCategory;?>">
+                                        <div class="valid-feedback">
+                                            Parece bom!
+                                        </div>  
+                                        <div class="invalid-feedback">
+<?php                                       
+                                            echo ($errors['category']) 
+                                                ?   $errors['category']
+                                                :   null;
+?>
+                                        </div>  
+                                </div>
+
+                            </div>
+                            <div class="form-row">
+
+                                <div class="form-group col-md">
+                                    <label for="inputCategory">Senha</label>
+                                        <input type="text" id="inputCategory"name="category" value="<?php //echo $category;?>"
+                                            class="form-control <?php //echo $styleCategory;?>">
+                                        <div class="valid-feedback">
+                                            Parece bom!
+                                        </div>  
+                                        <div class="invalid-feedback">
+<?php                                       
+                                            echo ($errors['category']) 
+                                                ?   $errors['category']
+                                                :   null;
+?>
+                                        </div>  
+                                </div>
+
+                            </div>
+                            <div class="form-row">
+
+                                <div class="form-group col-md">
+                                    <label for="inputCategory">Repita a senha</label>
+                                        <input type="text" id="inputCategory"name="category" value="<?php //echo $category;?>"
+                                            class="form-control <?php //echo $styleCategory;?>">
+                                        <div class="valid-feedback">
+                                            Parece bom!
+                                        </div>  
+                                        <div class="invalid-feedback">
+<?php                                       
+                                            echo ($errors['category']) 
+                                                ?   $errors['category']
+                                                :   null;
+?>
+                                        </div>  
+                                </div>
+
+                            </div>
+                                    
+                            <button type="submit" class="btn btn-success" name="btnSave">Salvar</button>
+
+                            </form>
+                        </div>
+
+
+
+
+
+
+                    </div>
 
                 </div>
+
             </div>
-            <div class="col">
-                
-            </div>
-        </form>
+
+            <div class="col-sm-2"></div>
 
         </div>
-    <!-- <footer>
-        © 2019 Fsys - Todos os direitos reservados<br><a href="register.view.html"></a>
-        Termos de uso e Política de privacidade
-    </footer> -->
-<!-- </body>
+    </div>
 
-</html> -->
+    <!-- fim conteúdo do site -->
+
+
+    <!-- fim container -->
+
+
+

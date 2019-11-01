@@ -1,70 +1,70 @@
 body {
     background: linear-gradient( to bottom, #28a745, white);
   }
-  form {
+  /* form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 600px;
+    height: 600px; */
     /* border: 5px solid black; */
-  }
-  h1 {
+  /* } */
+  /* h1 {
     position: absolute;
     top: 1em;
-  }
-  .login {
-    width: 20em;
+  } */
+  /* .login {
+    width: 400px;
     min-height: 14em;
-    height:auto;
+    height:auto; */
     /* margin: auto; */
-    margin-top: 8em;
+    /* margin-top: 8em;
     border: thin solid grey;
     border-radius: 2%;
     background-color: white;
-  }
-  #email, #password, #name {
+  } */
+  /* #email, #password, #name {
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 18em;
     margin-bottom: 1em;
-  }
-  .email, .password, .name { 
+  } */
+  /* .email, .password, .name { 
     margin-top: 10px;
     margin-bottom: 1%;
-  }
-  .error{
+  } */
+  /* .error{
     color:red;
     margin-left: 1em;
     width: 18em;
     height: auto;
-  }
-  .name {
+  } */
+  /* .name {
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 90%;  
-  }
-  .email {
+  } */
+  /* .email {
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 90%; 
-  }
-  .password {
+  } */
+  /* .password {
     margin-left: 1em;
     margin-top: -1%;
     float: left;
-  }
-  .forgot-password{
+  } */
+  /* .forgot-password{
     margin-right: 1em;
     float: right;
-  }
-  #btn-login{
+  } */
+  /* #btn-login{
     margin: 1em 0 1em 1em;
     width: 18em;
-  }
-  .registry{
+  } */
+  /* .registry{
     position: absolute;
     bottom: 8em;
     width: 20em;
@@ -76,11 +76,11 @@ body {
     align-items: center;
     flex-direction: column;
     padding-top: 10px;
-  } 
+  }  */
   footer {
-    text-align: center;
-    /* margin-top: -30px; */
+    /* text-align: center; */
+    margin-top: -5px;
     /* border-top: .001em solid rgb(201, 201, 201); */
-    padding: 1em;
-    margin-top: -3.6em;
+    /* padding: 1em; */
+    /* margin-bottom: 1em; */
   }
