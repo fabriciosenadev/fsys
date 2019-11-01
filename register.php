@@ -3,7 +3,7 @@
 // header do site ==> não alterar
 require_once 'resources/template/site/header.php';
 
-var_dump($_REQUEST);
+// var_dump($_REQUEST);
 
 include 'resources/views/site/register.view.php'; 
 

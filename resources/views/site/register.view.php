@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -10,37 +10,58 @@
     <title>Cadastro</title>
 </head>
 
-<body>
-    <form>
-        <h1>Fsys</h1>
-
-        <fieldset class="login">
+<body>-->
+    <form> 
+        <div class="row ">
+            <div class="col">
+                <div class="row justify-content-center">
+                    <h1>Fsys</h1>           
+                </div>
+            </div>
             
-            <p class="name">Nome</p>
-            <input id="name" name="name" type="text" required />
+        </div>
 
-            <!-- campo de e-mail -->
-            <p class="email">E-mail</p>
-            <input id="email" name="email" placeholder="seu@email.com" type="email" required />
+        <div class="row">
+            <div class="col">
+                
+            </div>
+            <div class="col">
+                <div class="row justify-content-center">
+                <fieldset class="login">
+                
+                <p class="name">Nome</p>
+                <input id="name" name="name" type="text" required />
+    
+                <!-- campo de e-mail -->
+                <p class="email">E-mail</p>
+                <input id="email" name="email" placeholder="seu@email.com" type="email" required />
+    
+                <!-- campo de senha -->
+                <p class="password">Senha</p>
+                <input id="password" name="password" placeholder="********" type="password" required>
+                
+                <!-- campo de repetir senha -->
+                <p class="password">Repetir Senha</p>
+                <input id="password" name="password" placeholder="********" type="password" required>
+    
+                <button class="btn btn-success" type="submit" id="btn-login" name="btnLogin" value="Entrar">
+                    Cadastrar
+                </button>
+    
+            </fieldset>
 
-            <!-- campo de senha -->
-            <p class="password">Senha</p>
-            <input id="password" name="password" placeholder="********" type="password" required>
-            
-            <!-- campo de repetir senha -->
-            <p class="password">Repetir Senha</p>
-            <input id="password" name="password" placeholder="********" type="password" required>
+                </div>
+            </div>
+            <div class="col">
+                
+            </div>
+        </form>
 
-            <button class="btn btn-success" type="submit" id="btn-login" name="btnLogin" value="Entrar">
-                Cadastrar
-            </button>
-
-        </fieldset>
-    </form>
-    <footer>
+        </div>
+    <!-- <footer>
         © 2019 Fsys - Todos os direitos reservados<br><a href="register.view.html"></a>
         Termos de uso e Política de privacidade
-    </footer>
-</body>
+    </footer> -->
+<!-- </body>
 
-</html>
+</html> -->
