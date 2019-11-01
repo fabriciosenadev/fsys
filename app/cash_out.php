@@ -24,7 +24,7 @@ $value = floatval($value);
 
 $btnSave = isset($_REQUEST['btnSave']) ? $_REQUEST : null;
 
-$errors = [];
+$errors = $dataSelect = [];
 $styleDate = $styleCategory = $styleValue = $stylePayMethod ='';
 $reload = false;
 
@@ -121,7 +121,9 @@ if($reload){
 
 
 //TODO: criar metodo de retorno de dados dos campos category e payMethod
-$categories = selectCategories('OUT');    
+$dataSelect['applicable'] = 'OUT';
+$dataSelect['created_by'] = $_SESSION['id_user'];
+$categories = selectCategories($dataSelect);    
 $payMethods = selectPayMethod();
 
 include '../resources/views/app/launch.form.view.php'; 

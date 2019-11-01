@@ -7,8 +7,8 @@ require 'db/connect.php';
 
 /**
  *  function selectUser
- *  @param $login string
- *  @param $password string
+ *  @param string $login
+ *  @param string $password
  */
 function selectUser ($login) 
     {

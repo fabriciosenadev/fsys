@@ -4,45 +4,46 @@
 // criação das definições do banco de dados
 require '../db/connect.php';
 
-
 /**
- *  function selectUser
- *  @param $login string
- *  @param $password string
+ *  function selectCategories
+ *  @param array $data
+ *  @return array
  */
-function selectCategories ($type_launch) 
+function selectCategories ($data) 
 {
     $connection = $GLOBALS['connection'];
-    $data = [];
-
-    $findCategories = "SELECT * FROM categories WHERE applicable = '$type_launch' ";
-    $categories = mysqli_query($connection, $findCategories);
-
+    $result = [];
     
+    extract($data);
+    $findCategories = "SELECT * FROM categories ";
+    $findCategories .= "WHERE applicable = '$applicable' AND created_by = $created_by";
+    $categories = mysqli_query($connection, $findCategories);    
 
     while($category = mysqli_fetch_assoc($categories))
     {
-        $data[] = $category;
+        $result[] = $category;
     }
-    // mysqli_close($connection);
-    return $data;
+
+    return $result;
 
 }
 
+/**
+ * function select PayMethod
+ * @return array
+ */
 function selectPayMethod ()
 {
     $connection = $GLOBALS['connection'];
     $data = [];
 
     $findPayMethods = "SELECT * FROM pay_methods ";
-    $PayMethods = mysqli_query($connection, $findPayMethods);
-
-    
+    $PayMethods = mysqli_query($connection, $findPayMethods);    
 
     while($PayMethod = mysqli_fetch_assoc($PayMethods))
     {
         $data[] = $PayMethod;
     }
-    // mysqli_close($connection);   
+
     return $data;
 }

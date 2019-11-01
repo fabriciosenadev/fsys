@@ -4,7 +4,7 @@
 require '../db/connect.php';
 
 /**
- *  function saveIn
+ *  function saveLaunch
  *  @param array $data
  *  @return int|boolean
  */
