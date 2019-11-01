@@ -1,8 +1,3 @@
-
-    <!-- <hr> -->
-    <?php
-    // var_dump($errors);
-?>
     <!-- inicio  conteudo do site-->
     <div class="container-fluid">
         <div class="row">
@@ -50,7 +45,7 @@
                             <div class="form-row">
 
                                 <div class="form-group col-md">
-                                    <label for="inputCategory">Nome completo</label>
+                                    <label for="inputCategory">E-mail</label>
                                         <input type="text" id="inputCategory"name="category" value="<?php //echo $category;?>"
                                             class="form-control <?php //echo $styleCategory;?>">
                                         <div class="valid-feedback">
@@ -69,7 +64,7 @@
                             <div class="form-row">
 
                                 <div class="form-group col-md">
-                                    <label for="inputCategory">E-mail</label>
+                                    <label for="inputCategory">Senha</label>
                                         <input type="text" id="inputCategory"name="category" value="<?php //echo $category;?>"
                                             class="form-control <?php //echo $styleCategory;?>">
                                         <div class="valid-feedback">
@@ -123,16 +118,13 @@
                                 </div>
 
                             </div>
-                                    
-                            <button type="submit" class="btn btn-success" name="btnSave">Salvar</button>
+
+                            <button type="submit" class="btn btn-success form-control" name="btnSave">
+                                Cadastrar
+                            </button>
 
                             </form>
                         </div>
-
-
-
-
-
 
                     </div>
 
@@ -143,10 +135,10 @@
             <div class="col-sm-2"></div>
 
         </div>
+        
     </div>
-
     <!-- fim conteúdo do site -->
-
+        
 
     <!-- fim container -->
 
