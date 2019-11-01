@@ -11,7 +11,9 @@
                     aria-label="Recipient's username" aria-describedby="button-addon2">
                 
                 <div class="input-group-append">
-                    <button class="btn btn-success" type="button" id="button-addon2"><a href="resources/views/site/register.view.php">Cadastre-se grátis</a></button>
+                    <button class="btn btn-success" type="button" id="button-addon2">
+                        <a href="resources/views/site/register.view.php" style="color:white;">Cadastre-se grátis</a>
+                    </button>
                 </div>
             </div>
         </div>

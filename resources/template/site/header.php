@@ -25,8 +25,14 @@
         <link rel="stylesheet" href="resources/assets/css/login.css">
         <?php
     }
+    if($script_name[$i - 1] == 'register.php'){
+        ?>
+        <link rel="stylesheet" href="resources/assets/css/register.css">
+        <?php
+    }
 
     ?>
+
     <title>fsys</title>
 </head>
 
@@ -36,8 +42,8 @@
 
         <!-- inicio top menu -->
         <?php 
-            if($script_name[$i - 1] != 'login.php'){
-                require_once 'resources/views/site/menu.view.php';
+            if( ($script_name[$i - 1] != 'login.php') and ($script_name[$i - 1] != 'register.php') ){
+                require_once 'top-menu.php';
             }
         ?>
         <!-- fim top menu -->
