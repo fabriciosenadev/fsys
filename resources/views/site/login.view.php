@@ -86,10 +86,10 @@
 
                                 </div> -->
                                 <!-- <a href="#" class="forgot-password">esqueceu sua senha?</a> -->
-                                  <button type="submit" class="btn btn-success form-control" name="btnSave">
-                                  Entrar
-                                </button>
                             </div>
+                            <button type="submit" class="btn btn-success form-control" name="btnSave">
+                              Entrar
+                            </button>
                             <div class="form-row">
                               <div class="form-group col-md">
 
