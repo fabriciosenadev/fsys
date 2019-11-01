@@ -3,7 +3,11 @@
 // criação das definições do banco de dados
 require '../db/connect.php';
 
-
+/**
+ * function selectLaunched
+ * @param array $data
+ * @return array
+ */
 function selectLaunched ($data)
 {
     $connection = $GLOBALS['connection'];

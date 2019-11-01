@@ -9,9 +9,11 @@
     $pageCategory = in_array("category.php", $currentPage);
     // var_dump($currentPage);
     
-    if ($pageCashIn or $pageCashOut or $pageLaunched or $pageIndex) {
+    if ($pageCategory) {
+        // launchMenu();
+    } else {
         launchMenu();
-    } 
+    }
     // if ($category) {
     //     optionMenu();
     // }    
