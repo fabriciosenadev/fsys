@@ -26,11 +26,11 @@ if (isset($_SESSION['success'])) {
 if ($btnRegister) {
     
     // errors
-    if (empty($name)) {
+    if (empty($name) || strlen($name) < 15 ) {
         $errors['name'] = "Preencha seu nome completo";
         $styleName = "is-invalid";
     }
-    if (empty($email)) {
+    if (empty($email) || !(filter_var($email, FILTER_VALIDATE_EMAIL))) {
         $errors['email'] = "Informe um e-mail válido";
         $styleEmail = "is-invalid";
     }
@@ -66,12 +66,12 @@ if ($btnRegister) {
     if (!$errors) {
         $securePass = password_hash($password, PASSWORD_DEFAULT);
 
-        $dataSave['name'] = $name;
-        $dataSave['email'] = $email;
-        $dataSave['password'] = $securePass;
+        $dataSave['name'] = filter_var($name, FILTER_SANITIZE_STRING);
+        $dataSave['email'] = filter_var($email, FILTER_VALIDATE_EMAIL);
+        $dataSave['password'] = filter_var($securePass, FILTER_SANITIZE_STRING);
 
         $result = saveUser($dataSave);
-        var_dump($result);
+
         if (isset($result[0]['email'])) {
             $errors['email'] = "E-mail já cadastrado.";
             $styleEmail = "is-invalid";
