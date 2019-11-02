@@ -26,11 +26,11 @@ if (isset($_SESSION['success'])) {
 if ($btnRegister) {
     
     // errors
-    if (empty($name) || strlen($name) < 15 ) {
+    if (strlen($name) < 15 ) {
         $errors['name'] = "Preencha seu nome completo";
         $styleName = "is-invalid";
     }
-    if (empty($email) || !(filter_var($email, FILTER_VALIDATE_EMAIL))) {
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = "Informe um e-mail válido";
         $styleEmail = "is-invalid";
     }
@@ -49,10 +49,11 @@ if ($btnRegister) {
         $stylePassword = "is-invalid";
     }
 
-    if (count($errors) > 0 and !empty($name)) {
+
+    if (count($errors) > 0 and strlen($name) >= 15) {
         $styleName = "is-valid";
     }
-    if (count($errors) > 0 and !empty($email)) {
+    if (count($errors) > 0 and filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $styleEmail = "is-valid";
     }
     if (count($errors) > 0 and !empty($password)) {
@@ -62,13 +63,12 @@ if ($btnRegister) {
         $styleVerify = "is-valid";
     }
 
-
     if (!$errors) {
         $securePass = password_hash($password, PASSWORD_DEFAULT);
 
-        $dataSave['name'] = filter_var($name, FILTER_SANITIZE_STRING);
-        $dataSave['email'] = filter_var($email, FILTER_VALIDATE_EMAIL);
-        $dataSave['password'] = filter_var($securePass, FILTER_SANITIZE_STRING);
+        $dataSave['name'] = $name;
+        $dataSave['email'] = $email;
+        $dataSave['password'] = $securePass;
 
         $result = saveUser($dataSave);
 

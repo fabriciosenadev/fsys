@@ -30,14 +30,14 @@ CREATE TABLE IF NOT EXISTS `categories` (
   PRIMARY KEY (`id`),
   KEY `fk_categories_created_by` (`created_by`),
   CONSTRAINT `fk_categories_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Copiando dados para a tabela fsys.categories: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` (`id`, `category`, `applicable`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(1, 'Salario', 'IN', NULL, NULL, NULL, NULL),
-	(2, 'Transporte', 'OUT', NULL, NULL, NULL, NULL),
-	(3, 'Supermercado', 'OUT', NULL, NULL, NULL, NULL);
+--INSERT INTO `categories` (`id`, `category`, `applicable`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+--	(1, 'Salario', 'IN', NULL, NULL, NULL, NULL),
+--	(2, 'Transporte', 'OUT', NULL, NULL, NULL, NULL),
+--	(3, 'Supermercado', 'OUT', NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela fsys.historics
@@ -120,12 +120,12 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Copiando dados para a tabela fsys.users: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(1, 'teste', 'teste@teste.com', '123', NULL, NULL, NULL);
+--INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `updated_at`, `deleted_at`) VALUES
+--	(1, 'teste', 'teste@teste.com', '123', NULL, NULL, NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
