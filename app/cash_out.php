@@ -49,7 +49,7 @@ if ($btnSave) {
         $styleCategory = 'is-invalid';    
     }
 
-    if(empty($value)){
+    if(empty($value) || $value < 0.01){
         $errors['value'] = "Preencha o valor.";
         $styleValue = 'is-invalid';    
     } 

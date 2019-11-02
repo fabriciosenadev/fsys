@@ -10,7 +10,7 @@
                 <a class="nav-link text-white" href="about.php">Sobre</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#">Cadastro</a>
+                <a class="nav-link text-white" href="register.php">Cadastro</a>
             </li>
             <!-- <li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>

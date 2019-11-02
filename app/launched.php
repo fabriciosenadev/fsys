@@ -14,7 +14,8 @@ $dateFrom = isset($_REQUEST['dateFrom']) ? $_REQUEST['dateFrom'] : null;
 $dateTo = isset($_REQUEST['dateTo']) ? $_REQUEST['dateTo'] : null;
 $btnFilter = isset($_REQUEST['btnFilter']) ? $_REQUEST : null;
 
-$dataSelect = $errors = [];
+$dataSelect = [];
+$errors = '';
 
 
 
@@ -22,7 +23,7 @@ $dataSelect = $errors = [];
 if ($btnFilter) {
 
     if (strtotime($dateFrom) > strtotime($dateTo)) {
-        $errors['date'] = "Data inicial menor que a final";
+        $errors = "Data inicial menor que a final";
     }
 
     if (!$errors) {

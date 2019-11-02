@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row">
 
-            <div class="col-sm">
+            <div class="col-sm-2">
                 <?php include '../resources/template/app/side-menu.php';?>
             </div>
 
@@ -15,7 +15,7 @@
 
                     <form action="" method="get" class="form-inline">
 
-                        <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
+                        <label class="sr-only" for="inlineFormInputGroupUsername2">Inicio</label>
                         <div class="input-group mb-2 mr-sm-2">
                             <div class="input-group-prepend">
                             <div class="input-group-text">De</div>
@@ -24,7 +24,7 @@
                                 id="inlineFormInputGroupUsername2" placeholder="Username" required>
                         </div>
 
-                        <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
+                        <label class="sr-only" for="inlineFormInputGroupUsername2">Fim</label>
                         <div class="input-group mb-2 mr-sm-2">
                             <div class="input-group-prepend">
                             <div class="input-group-text">Até</div>
@@ -36,8 +36,22 @@
                         <button type="submit" name="btnFilter" class="btn btn-success mb-2">Filtrar</button>
 
                     </form>
-
                 </div>
+                <?php
+                            if ($errors) {
+?>
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <strong>Veja bem!</strong> <?php echo $errors; ?>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+<?php
+                                    
+                            }
+?>
+                        </div>
+
 
                 <!-- <div class="row justify-content-center" style="margin-top:50px;"> -->
 
@@ -162,7 +176,7 @@
 
             </div>
 
-            <div class="col-sm-2"></div>
+            <div class="col-md-2"></div>
 
         </div>
     </div>

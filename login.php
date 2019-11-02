@@ -13,6 +13,10 @@ $email = isset($_POST['email']) ? $_POST['email'] : null;
 $password = isset($_POST['password']) ? $_POST['password'] : null;
 $btnLogin = isset($_POST['btnLogin']) ? $_POST['btnLogin'] : null;
 
+$email = filter_var($email, FILTER_VALIDATE_EMAIL);
+$securePass = password_hash($password, PASSWORD_DEFAULT);
+
+
 $_SESSION['logged'] = false;
 $reload = false;
 
@@ -28,8 +32,9 @@ if($btnLogin){
         
         // faz a consulta no banco de dados
         $userData = selectUser($email);
-
-        if ($userData['email'] == $email && $userData['password'] == $password) {
+        
+        // if ($userData['email'] == $email && $userData['password'] == $password) {
+        if ($userData['email'] == $email && password_verify($password, $userData['password'])) {
 
             $_SESSION['logged'] = true;
             $_SESSION['id_user'] = $userData['id'];
