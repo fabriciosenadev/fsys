@@ -81,9 +81,9 @@ CREATE TABLE IF NOT EXISTS `pay_methods` (
 -- Copiando dados para a tabela fsys.pay_methods: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `pay_methods` DISABLE KEYS */;
 INSERT INTO `pay_methods` (`id`, `pay_method`, `applicable`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(1, 'Dinheiro', 'WALLET', NOW(), NULL, NULL, NULL),
-	(2, 'Debito', 'ACCOUNT', NOW(), NULL, NULL, NULL),
-	(3, 'Credito', 'CREDIT', NOW(), NULL, NULL, NULL);
+	(1, 'Dinheiro', 'WALLET', NULL, NOW(), NULL, NULL),
+	(2, 'Debito', 'ACCOUNT', NULL, NOW(), NULL, NULL),
+	(3, 'Credito', 'CREDIT', NULL, NOW(), NULL, NULL);
 /*!40000 ALTER TABLE `pay_methods` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela fsys.pay_method_historics
