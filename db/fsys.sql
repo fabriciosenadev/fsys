@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
 
 -- Copiando dados para a tabela fsys.categories: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
---INSERT INTO `categories` (`id`, `category`, `applicable`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+-- INSERT INTO `categories` (`id`, `category`, `applicable`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
 --	(1, 'Salario', 'IN', NULL, NULL, NULL, NULL),
 --	(2, 'Transporte', 'OUT', NULL, NULL, NULL, NULL),
 --	(3, 'Supermercado', 'OUT', NULL, NULL, NULL, NULL);
@@ -124,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 -- Copiando dados para a tabela fsys.users: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
---INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `updated_at`, `deleted_at`) VALUES
+-- INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `updated_at`, `deleted_at`) VALUES
 --	(1, 'teste', 'teste@teste.com', '123', NULL, NULL, NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
