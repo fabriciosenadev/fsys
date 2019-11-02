@@ -18,17 +18,17 @@
                 <div class="row justify-content-center" style="margin-top:10px;">
                         
 
-                        <div class="border-top rounded-bottom" 
+                        <div class="border border-success rounded-bottom" 
                         style="width:400px;padding: 10px; background-color:white;">
 
                         <div class="col" style="margin:15px 0;">
 
                         <div>                                
 <?php
-                            if (0) {
+                            if ($_SESSION['errors']) {
 ?>
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <strong>Sucesso!</strong> <?php //echo $msg; ?>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>Opa!</strong> <?php echo $_SESSION['errors']; ?>
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -45,18 +45,11 @@
                             <div class="form-row">
 
                                 <div class="form-group col-md">
-                                    <label for="inputCategory">E-mail</label>
-                                        <input type="text" id="inputCategory"name="category" value="<?php //echo $category;?>"
-                                            class="form-control <?php //echo $styleCategory;?>">
+                                    <label for="inputEmail">E-mail</label>
+                                        <input type="email" id="inputEmail"name="email"
+                                            class="form-control" placeholder="seu@email.com" required>
                                         <div class="valid-feedback">
                                             Parece bom!
-                                        </div>  
-                                        <div class="invalid-feedback">
-<?php                                       
-                                            echo ($errors['category']) 
-                                                ?   $errors['category']
-                                                :   null;
-?>
                                         </div>  
                                 </div>
 
@@ -64,19 +57,9 @@
                             <div class="form-row">
 
                                 <div class="form-group col-md">
-                                    <label for="inputCategory">Senha</label>
-                                        <input type="text" id="inputCategory"name="category" value="<?php //echo $category;?>"
-                                            class="form-control <?php //echo $styleCategory;?>">
-                                        <div class="valid-feedback">
-                                            Parece bom!
-                                        </div>  
-                                        <div class="invalid-feedback">
-<?php                                       
-                                            echo ($errors['category']) 
-                                                ?   $errors['category']
-                                                :   null;
-?>
-                                        </div>  
+                                    <label for="inputPassword">Senha</label>
+                                        <input type="password" id="inputPassword" name="password"
+                                            class="form-control" placeholder="********" required> 
                                 </div>
 
                             </div>
@@ -87,10 +70,12 @@
                                 </div> -->
                                 <!-- <a href="#" class="forgot-password">esqueceu sua senha?</a> -->
                             </div>
-                            <button type="submit" class="btn btn-success form-control" name="btnSave">
+                            <button type="submit" class="btn btn-success form-control" name="btnLogin" value="Entrar">
                               Entrar
                             </button>
+
                             <div class="form-row">
+                            
                               <div class="form-group col-md">
 
                                 <a href="#" class="forgot-password">esqueceu sua senha?</a>
@@ -109,7 +94,7 @@
                 <div class="row justify-content-center" style="margin-top:10px;">
                         
 
-                      <div class="border-top rounded-bottom" 
+                      <div class="border border-success rounded-bottom" 
                         style="width:400px;padding: 10px; background-color:white;">
 
                         <div class="col" style="margin:15px 0;">
