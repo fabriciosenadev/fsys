@@ -13,14 +13,14 @@ function saveUser ($data)
 {
 
     $selectUser = selectUser($data);
-    // var_dump($selectUser);
+
     if (!empty($selectUser)) {
-        // echo "entrou no if";
+        
         return $selectUser;
     }
 
     $createUser = createUser($data);
-
+    // var_dump($createUser);
     return $createUser;
 
 }
@@ -35,14 +35,14 @@ function createUser ($data)
     $connection = $GLOBALS['connection'];
 
     extract($data);
-
+    // var_dump($data);
     $insert = "INSERT INTO users(name, email, password, created_at)";
-    $insert .= " VALUES ('$name', '$email', '$password', now() )";
+    $insert .= "VALUES('$name', '$email', '$password', now() )";
         
     if (mysqli_query($connection, $insert)) {
         $idUser = mysqli_insert_id($connection);
     }
-    
+    // var_dump($idUser);
     return $idUser;
 
 }
@@ -60,12 +60,13 @@ function selectUser($data)
     extract($data);
 
     $select = "SELECT * FROM users WHERE email = '$email'";
-    // echo $select;
+    
     $result = mysqli_query($connection, $select);
     while ($category = mysqli_fetch_assoc($result)) {
         
         $return[] = $category;
 
     }
+    
     return $return;
 }

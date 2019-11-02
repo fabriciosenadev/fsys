@@ -28,7 +28,9 @@
                             if ($msg) {
 ?>
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <strong>Sucesso!</strong> <?php echo $msg; ?>
+                                    <strong>Sucesso!</strong> <?php echo $msg; ?> 
+                                    Cliquei <a href="login.php">aqui</a>  
+                                    para fazer login.
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>

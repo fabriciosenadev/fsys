@@ -6,6 +6,8 @@ require_once 'resources/template/site/header.php';
 require_once "app/models/site/register.model.php";
 
 // var_dump($_REQUEST);
+session_start();
+
 $name = isset($_REQUEST['name']) ? $_REQUEST['name'] : null;
 $email = isset($_REQUEST['email']) ? $_REQUEST['email'] : null;
 $password = isset($_REQUEST['password']) ? $_REQUEST['password'] : null;
@@ -14,8 +16,9 @@ $btnRegister = isset($_REQUEST['btnRegister']) ? $_REQUEST['btnRegister'] : null
 
 $styleName = $styleEmail = $stylePassword = $styleVerify = $securePass = '';
 $errors = $dataSave = [];
+$reload = false;
 
-$msg = isset($_SESSION['success']) ? $_SESSION['success'] : null;
+$msg = isset($_SESSION['success']) ? $_SESSION['success']: null ;
 if (isset($_SESSION['success'])) {
     unset($_SESSION['success']);
 }
@@ -68,16 +71,15 @@ if ($btnRegister) {
         $dataSave['password'] = $securePass;
 
         $result = saveUser($dataSave);
-
-        if (is_array($result)) {
+        var_dump($result);
+        if (isset($result[0]['email'])) {
             $errors['email'] = "E-mail já cadastrado.";
             $styleEmail = "is-invalid";
         }
 
         if (is_int($result)) {
-            $_SESSION['success'] = "Usuário Cadastrado com sucesso.";
+            $_SESSION['success'] = "Usuário foi cadastrado.";
             header("Location: register.php");
-            
         }
 
     }
