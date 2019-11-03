@@ -26,7 +26,7 @@ if (isset($_SESSION['success'])) {
 if ($btnRegister) {
     
     // errors
-    if (strlen($name) < 15 ) {
+    if (strlen($name) < 10 ) {
         $errors['name'] = "Preencha seu nome completo";
         $styleName = "is-invalid";
     }
