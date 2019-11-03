@@ -50,16 +50,16 @@ if ($btnRegister) {
     }
 
 
-    if (count($errors) > 0 and strlen($name) >= 15) {
+    if (count($errors) > 0 and strlen($name) >= 10) {
         $styleName = "is-valid";
     }
     if (count($errors) > 0 and filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $styleEmail = "is-valid";
     }
-    if (count($errors) > 0 and !empty($password)) {
+    if (count($errors) > 0 and strlen($password) >= 8) {
         $stylePassword = "is-valid";
     }
-    if (count($errors) > 0 and !empty($verify)) {
+    if (count($errors) > 0 and strlen($verify) >= 8) {
         $styleVerify = "is-valid";
     }
 
