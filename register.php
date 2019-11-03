@@ -34,11 +34,11 @@ if ($btnRegister) {
         $errors['email'] = "Informe um e-mail válido";
         $styleEmail = "is-invalid";
     }
-    if (empty($password)) {
+    if (strlen($password) < 8) {
         $errors['password'] = "Informe a senha";
         $stylePassword = "is-invalid";
     }
-    if (empty($verify)) {
+    if (strlen($verify) < 8) {
         $errors['verify'] = "Repita a mesma senha";
         $styleVerify = "is-invalid";
     }

@@ -85,9 +85,9 @@
                             <div class="form-row">
 
                                 <div class="form-group col-md">
-                                    <label for="inputPassword">Senha</label>
+                                    <label for="inputPassword">Senha (minimo 8 caracteres)</label>
                                         <input type="password" id="inputPassword"name="password" value="<?php //echo $category;?>"
-                                            class="form-control <?php echo $stylePassword;?>" require>
+                                            class="form-control <?php //echo $stylePassword;?>" require>
                                         <div class="valid-feedback">
                                             Parece bom!
                                         </div>  
@@ -106,7 +106,7 @@
                                 <div class="form-group col-md">
                                     <label for="inputVerify">Repita a senha</label>
                                         <input type="password" id="inputVerify"name="verify" value="<?php //echo $category;?>"
-                                            class="form-control <?php echo $styleVerify;?>" require>
+                                            class="form-control <?php //echo $styleVerify;?>" require>
                                         <div class="valid-feedback">
                                             Parece bom!
                                         </div>  
