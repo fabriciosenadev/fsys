@@ -16,7 +16,9 @@ function selectCategories ($data)
     
     extract($data);
     $findCategories = "SELECT * FROM categories ";
-    $findCategories .= "WHERE applicable = '$applicable' AND created_by = $created_by";
+    $findCategories .= "WHERE applicable = '$applicable' AND created_by = $created_by ";
+    $findCategories .= "AND deleted_at IS NULL";
+
     $categories = mysqli_query($connection, $findCategories);    
 
     while($category = mysqli_fetch_assoc($categories))
