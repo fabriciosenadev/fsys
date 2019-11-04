@@ -10,20 +10,34 @@ require '../../db/connect.php';
  */
 function saveCategory ($data) 
 {
-    $selectRelation = selectRelationUserCategory($data);
-    //descobrir por que não está trazendo as categorias para o id_user
-    var_dump($selectRelation);
-    if (isset($data['category'])) {
-        // $selectCategory = selectCategory($data);
-    }
 
-    return $selectRelation;
-    if (!empty($selectRelation)) {
+    $selectCategory = selectCategory($data);
+
+    $dataRelation['id_user'] = $data['id_user'];
+    $dataRelation['created_by'] = $data['created_by'];
+    
+    if (empty($selectCategory)) {
+
+        $idCategory = createCategory($data);
+
+        $dataRelation['id_category'] = $idCategory;
+
+    } else {
+
+        $dataRelation['id_category'] = intval($selectCategory[0]['id']);
+        
+        $selectRelation = selectRelationUserCategory($dataRelation);
+
+        if (!empty($selectRelation)) {
+            var_dump($selectRelation);
+            return $selectRelation;
+        }
+
+        $createRelation = createRelationUserCategory($dataRelation);
+
+        return $createRelation;
     }
     
-    // $createCategory = createCategory($data);
-
-    // return $createCategory;
 }
 
 /**
@@ -48,6 +62,33 @@ function createCategory ($data)
 }
 
 
+/**
+ * function createRelationUserCategory
+ * @param array $data
+ * @return int|boolean
+ */
+function createRelationUserCategory ($data) 
+{
+    $connection = $GLOBALS['connection'];
+
+    extract($data);
+
+    $insert = "INSERT INTO category_users(id_user, id_category, created_by, created_at)";
+    $insert .= "VALUES($id_user, $id_category, $created_by, now() )";
+    
+    if (mysqli_query($connection, $insert)) {
+        $idRelation = mysqli_insert_id($connection);
+    }
+
+    return $idRelation;
+}
+
+
+/**
+ * function selectRelationUserCategory
+ * @param array $data
+ * @return array
+ */
 function selectRelationUserCategory ($data)
 {
     $connection = $GLOBALS['connection'];
@@ -55,13 +96,11 @@ function selectRelationUserCategory ($data)
 
     extract($data);
 
-    if (isset($category)) {
-
-    }
+    $andWhere = isset($id_category) ? "AND id_category = $id_category" : null;
 
     $selectRelation = "SELECT ct.id, ct.category, ct.applicable FROM category_users AS cat_us ";
     $selectRelation .= "JOIN categories AS ct ON cat_us.id_category = ct.id ";
-    $selectRelation .= "WHERE cat_us.id_user = $id_user";
+    $selectRelation .= "WHERE cat_us.id_user = $id_user $andWhere";
 
     $result = mysqli_query($connection, $selectRelation);
     while ($relation = mysqli_fetch_assoc($result)) {
@@ -69,6 +108,7 @@ function selectRelationUserCategory ($data)
         $return[] = $relation;
 
     }
+
     return $return;
 }
 
