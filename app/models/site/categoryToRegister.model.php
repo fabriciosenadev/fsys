@@ -104,7 +104,7 @@ function createRelationUserCategory ($data)
 
     $insert = "INSERT INTO category_users(id_user, id_category, created_by, created_at)";
     $insert .= "VALUES($id_user, $id_category, $created_by, now() )";
-    echo $insert;
+    
     if (mysqli_query($connection, $insert)) {
         $idRelation = mysqli_insert_id($connection);
     }
