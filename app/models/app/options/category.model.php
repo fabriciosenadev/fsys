@@ -15,7 +15,7 @@ function saveCategory ($data)
 
     $dataRelation['id_user'] = $data['id_user'];
     $dataRelation['created_by'] = $data['created_by'];
-    
+
     if (empty($selectCategory)) {
 
         $idCategory = createCategory($data);
@@ -100,7 +100,7 @@ function selectRelationUserCategory ($data)
 
     $selectRelation = "SELECT ct.id, ct.category, ct.applicable FROM category_users AS cat_us ";
     $selectRelation .= "JOIN categories AS ct ON cat_us.id_category = ct.id ";
-    $selectRelation .= "WHERE cat_us.id_user = $id_user $andWhere";
+    $selectRelation .= "WHERE cat_us.deleted_at IS NULL AND cat_us.id_user = $id_user $andWhere";
 
     $result = mysqli_query($connection, $selectRelation);
     while ($relation = mysqli_fetch_assoc($result)) {
@@ -144,14 +144,17 @@ function selectCategory ($data)
 
 /**
  * function deleteCategory
- * @param int $idCategory
+ * @param array $data
  * @return bool
  */
-function deleteCategory ($idCategory) 
+function deleteCategory ($data) 
 {
     $connection = $GLOBALS['connection'];
+
+    extract($data);
     
-    $update = "UPDATE categories SET deleted_at = now() WHERE id = $idCategory";
+    $update = "UPDATE category_users SET deleted_at = now() ";
+    $update .= "WHERE id_category = $id_category AND id_user = $id_user";
 
     $result = mysqli_query($connection, $update);
 
