@@ -6,6 +6,8 @@ $db_name = "fsys";
 
 $connection = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
 
+//realiza tratamento unicode vindo do HTML
+mysqli_set_charset($$connection , "utf8");
 // erros
 $error = "Falha na conexao: ".mysqli_connect_error();
 
