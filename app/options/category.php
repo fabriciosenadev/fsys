@@ -64,6 +64,7 @@ if($btnSave) {
         
         $dataSave['category'] = $category;
         $dataSave['applicable'] = $applicable;
+        $dataSave['id_user'] = intval($_SESSION['id_user']);
         $dataSave['created_by'] = intval($_SESSION['id_user']);
         
         $result = saveCategory($dataSave);
@@ -81,8 +82,9 @@ if($btnSave) {
 
     }
 }
-$dataSelect['created_by'] = $_SESSION['id_user'];
-$categories = selectCategory($dataSelect);
+$dataSelect['id_user'] = $_SESSION['id_user'];
+$categories = selectRelationUserCategory($dataSelect);
+// var_dump($categories);
 include '../../resources/views/app/options/category.view.php'; 
 
 

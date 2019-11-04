@@ -12,7 +12,7 @@
                 
                 <div class="input-group-append">
                     <button class="btn btn-success" type="button" id="button-addon2">
-                        <a href="resources/views/site/register.view.php" style="color:white;">Cadastre-se grátis</a>
+                        <a href="register.php" style="color:white;">Cadastre-se grátis</a>
                     </button>
                 </div>
             </div>

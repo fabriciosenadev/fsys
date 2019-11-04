@@ -15,10 +15,11 @@ function selectCategories ($data)
     $result = [];
     
     extract($data);
-    $findCategories = "SELECT * FROM categories ";
-    $findCategories .= "WHERE applicable = '$applicable' AND created_by = $created_by ";
-    $findCategories .= "AND deleted_at IS NULL";
-
+    
+    $findCategories = "SELECT ct.id, ct.category, ct.applicable FROM category_users AS cat_us ";
+    $findCategories .= "JOIN categories AS ct ON cat_us.id_category = ct.id ";
+    $findCategories .= "WHERE ct.applicable = '$applicable' AND cat_us.id_user = $id_user ";
+    $findCategories .= "AND cat_us.deleted_at IS NULL";
     $categories = mysqli_query($connection, $findCategories);    
 
     while($category = mysqli_fetch_assoc($categories))

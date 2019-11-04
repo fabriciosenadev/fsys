@@ -10,15 +10,34 @@ require '../../db/connect.php';
  */
 function saveCategory ($data) 
 {
+
     $selectCategory = selectCategory($data);
 
-    if (!empty($selectCategory)) {
-        return $selectCategory;
+    $dataRelation['id_user'] = $data['id_user'];
+    $dataRelation['created_by'] = $data['created_by'];
+    
+    if (empty($selectCategory)) {
+
+        $idCategory = createCategory($data);
+
+        $dataRelation['id_category'] = $idCategory;
+
+    } else {
+
+        $dataRelation['id_category'] = intval($selectCategory[0]['id']);
+        
+        $selectRelation = selectRelationUserCategory($dataRelation);
+
+        if (!empty($selectRelation)) {
+            var_dump($selectRelation);
+            return $selectRelation;
+        }
+
+        $createRelation = createRelationUserCategory($dataRelation);
+
+        return $createRelation;
     }
     
-    $createCategory = createCategory($data);
-
-    return $createCategory;
 }
 
 /**
@@ -42,6 +61,57 @@ function createCategory ($data)
     return $idCategory;
 }
 
+
+/**
+ * function createRelationUserCategory
+ * @param array $data
+ * @return int|boolean
+ */
+function createRelationUserCategory ($data) 
+{
+    $connection = $GLOBALS['connection'];
+
+    extract($data);
+
+    $insert = "INSERT INTO category_users(id_user, id_category, created_by, created_at)";
+    $insert .= "VALUES($id_user, $id_category, $created_by, now() )";
+    
+    if (mysqli_query($connection, $insert)) {
+        $idRelation = mysqli_insert_id($connection);
+    }
+
+    return $idRelation;
+}
+
+
+/**
+ * function selectRelationUserCategory
+ * @param array $data
+ * @return array
+ */
+function selectRelationUserCategory ($data)
+{
+    $connection = $GLOBALS['connection'];
+    $return = [];
+
+    extract($data);
+
+    $andWhere = isset($id_category) ? "AND id_category = $id_category" : null;
+
+    $selectRelation = "SELECT ct.id, ct.category, ct.applicable FROM category_users AS cat_us ";
+    $selectRelation .= "JOIN categories AS ct ON cat_us.id_category = ct.id ";
+    $selectRelation .= "WHERE cat_us.id_user = $id_user $andWhere";
+
+    $result = mysqli_query($connection, $selectRelation);
+    while ($relation = mysqli_fetch_assoc($result)) {
+        
+        $return[] = $relation;
+
+    }
+
+    return $return;
+}
+
 /**
  * function selectCategory
  * @param array|null $data
@@ -54,18 +124,23 @@ function selectCategory ($data)
 
     extract($data);
 
-    $where = isset($category) ? "AND category = '$category'" : '';
-    
-    $select = "SELECT * FROM categories WHERE deleted_at is null AND created_by = $created_by $where";
+    // $where = isset($category) ? "AND category = '$category'" : '';
+    if (isset($category)){
 
-    $result = mysqli_query($connection, $select);
-    while ($category = mysqli_fetch_assoc($result)) {
+        $select = "SELECT * FROM categories WHERE deleted_at is null AND category = '$category'";
         
-        $return[] = $category;
-
+    
+        $result = mysqli_query($connection, $select);
+        while ($category = mysqli_fetch_assoc($result)) {
+            
+            $return[] = $category;
+    
+        }
     }
     return $return;
 }
+
+
 
 /**
  * function deleteCategory
