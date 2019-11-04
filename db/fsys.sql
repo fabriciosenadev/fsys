@@ -40,7 +40,7 @@ DELETE FROM `categories`;
 -- Copiando estrutura para tabela fsys.category_users
 DROP TABLE IF EXISTS `category_users`;
 CREATE TABLE IF NOT EXISTS `category_users` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) DEFAULT NULL,
   `id_category` int(11) DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
