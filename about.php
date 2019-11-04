@@ -17,6 +17,9 @@ $redirect = false;
 $_SESSION['logged'] = false;
 $_SESSION['errors'] = [];
 
+$email = filter_var($email, FILTER_VALIDATE_EMAIL);
+// $securePass = password_hash($password, PASSWORD_DEFAULT);
+
 if($btnLogin){
     
     if ( empty($email) or empty($password) ) {
@@ -29,7 +32,7 @@ if($btnLogin){
         // faz a consulta no banco de dados
         $userData = selectUser($email);
 
-        if ($userData['email'] == $email && $userData['password'] == $password) {
+        if ($userData['email'] == $email && password_verify($password, $userData['password'])) {
             $_SESSION['logged'] = true;
             $_SESSION['id_user'] = $userData['id'];
         } else {
