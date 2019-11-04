@@ -30,7 +30,9 @@ if (isset($_SESSION['success'])) {
 
 if ($btnDelCategory && $delCategory) {
     
-    $result = deleteCategory($delCategory);
+    $dataDelete['id_category'] = $delCategory;
+    $dataDelete['id_user'] = $_SESSION['id_user'];
+    $result = deleteCategory($dataDelete);
 
     if ($result) {
         $_SESSION['success'] = "Categoria removida.";
