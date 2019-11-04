@@ -81,7 +81,7 @@ if($btnSave) {
 
     }
 }
-$dataSelect['created_by'] = $_SESSION['id_user'];
+$dataSelect['id_user'] = $_SESSION['id_user'];
 $categories = selectCategory($dataSelect);
 include '../../resources/views/app/options/category.view.php'; 
 

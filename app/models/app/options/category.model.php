@@ -10,15 +10,20 @@ require '../../db/connect.php';
  */
 function saveCategory ($data) 
 {
-    $selectCategory = selectCategory($data);
+    $selectRelation = selectRelationUserCategory($data);
+    //descobrir por que não está trazendo as categorias para o id_user
+    var_dump($selectRelation);
+    if (isset($data['category'])) {
+        // $selectCategory = selectCategory($data);
+    }
 
-    if (!empty($selectCategory)) {
-        return $selectCategory;
+    return $selectRelation;
+    if (!empty($selectRelation)) {
     }
     
-    $createCategory = createCategory($data);
+    // $createCategory = createCategory($data);
 
-    return $createCategory;
+    // return $createCategory;
 }
 
 /**
@@ -42,6 +47,31 @@ function createCategory ($data)
     return $idCategory;
 }
 
+
+function selectRelationUserCategory ($data)
+{
+    $connection = $GLOBALS['connection'];
+    $return = [];
+
+    extract($data);
+
+    if (isset($category)) {
+
+    }
+
+    $selectRelation = "SELECT ct.id, ct.category, ct.applicable FROM category_users AS cat_us ";
+    $selectRelation .= "JOIN categories AS ct ON cat_us.id_category = ct.id ";
+    $selectRelation .= "WHERE cat_us.id_user = $id_user";
+
+    $result = mysqli_query($connection, $selectRelation);
+    while ($relation = mysqli_fetch_assoc($result)) {
+        
+        $return[] = $relation;
+
+    }
+    return $return;
+}
+
 /**
  * function selectCategory
  * @param array|null $data
@@ -54,18 +84,23 @@ function selectCategory ($data)
 
     extract($data);
 
-    $where = isset($category) ? "AND category = '$category'" : '';
-    
-    $select = "SELECT * FROM categories WHERE deleted_at is null AND created_by = $created_by $where";
+    // $where = isset($category) ? "AND category = '$category'" : '';
+    if (isset($category)){
 
-    $result = mysqli_query($connection, $select);
-    while ($category = mysqli_fetch_assoc($result)) {
+        $select = "SELECT * FROM categories WHERE deleted_at is null AND category = '$category'";
         
-        $return[] = $category;
-
+    
+        $result = mysqli_query($connection, $select);
+        while ($category = mysqli_fetch_assoc($result)) {
+            
+            $return[] = $category;
+    
+        }
     }
     return $return;
 }
+
+
 
 /**
  * function deleteCategory

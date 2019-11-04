@@ -122,7 +122,7 @@ if($reload){
 
 //TODO: criar metodo de retorno de dados dos campos category e payMethod
 $dataSelect['applicable'] = 'OUT';
-$dataSelect['created_by'] = $_SESSION['id_user'];
+$dataSelect['id_user'] = $_SESSION['id_user'];
 $categories = selectCategories($dataSelect);    
 $payMethods = selectPayMethod();
 

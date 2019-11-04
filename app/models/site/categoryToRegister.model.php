@@ -6,22 +6,34 @@
  * @param int $idUser
  */
 function categoriesToNewUser ($idUser) {
-    $dataSave = [];
+
     $baseCategories = baseCategories();
-    // $idUser = 1;
-    $countBase = count($baseCategories);
-    // var_dump(baseCategories());
+
     foreach ($baseCategories as $key => $value) {
-        // $dataSave[$key] = $value;
-        //$i = $key ; 
+
         $firstCategories = $value;
         $firstCategories['created_by'] = $idUser;
 
-        $result = createCategory($firstCategories);
+        $returnSelect = selectExistsCategory($firstCategories['category']);
 
+        if (!$returnSelect[0]['id']) {
+
+            $result = createCategory($firstCategories);
+            $dataSave['id_category'] = $result;
+
+        } else {
+
+            $dataSave['id_category'] = $returnSelect[0]['id'];
+            $dataSave['id_category'] = intval($dataSave['id_category']);
+
+        }
+
+        $dataSave['id_user'] = $idUser;
+        $dataSave['created_by'] = $firstCategories['created_by'];
+
+        $returnRelation = createRelationUserCategory($dataSave);
+ 
     }
-
-    //  return true;
 
 }
 
@@ -33,16 +45,16 @@ function baseCategories() {
 
     return [
         [
-            "category" => "Salario",
+            "category" => "Salário",
             "applicable" => "IN"
         ], [
-            "category" => "Alimentacao",
+            "category" => "Alimentação",
             "applicable" => "OUT"
         ], [
             "category" => "Beleza",
             "applicable" => "OUT"
         ], [
-            "category" => "Educacao",
+            "category" => "Educação",
             "applicable" => "OUT"
         ], [
             "category" => "Lazer",
@@ -79,28 +91,49 @@ function createCategory ($data)
     return $idCategory;
 }
 
-// POSSIVEL IDÉIA
+/**
+ * function createRelationUserCategory
+ * @param array $data
+ * @return int|boolean
+ */
+function createRelationUserCategory ($data) 
+{
+    $connection = $GLOBALS['connection'];
+
+    extract($data);
+
+    $insert = "INSERT INTO category_users(id_user, id_category, created_by, created_at)";
+    $insert .= "VALUES($id_user, $id_category, $created_by, now() )";
+    echo $insert;
+    if (mysqli_query($connection, $insert)) {
+        $idRelation = mysqli_insert_id($connection);
+    }
+
+    return $idRelation;
+}
+
 /**
  * function selectCategory
  * @param array|null $data
  * @return array
  */
-// function selectCategory ($category) 
-// {
-//     $connection = $GLOBALS['connection'];
-//     $return = [];
+function selectExistsCategory ($category) 
+{
+    $connection = $GLOBALS['connection'];
+    $return = [];
 
-//     // extract($data);
+    // extract($data);
 
-//     // $where = isset($category) ? "AND category = '$category'" : '';
+    // $where = isset($category) ? "AND category = '$category'" : '';
     
-//     $select = "SELECT * FROM categories WHERE deleted_at is null AND category = '$category'";
+    $select = "SELECT * FROM categories WHERE deleted_at is null AND category = '$category'";
 
-//     $result = mysqli_query($connection, $select);
-//     while ($category = mysqli_fetch_assoc($result)) {
+    $result = mysqli_query($connection, $select);
+    while ($category = mysqli_fetch_assoc($result)) {
         
-//         $return[] = $category;
+        $return[] = $category;
 
-//     }
-//     return $return;
-// }
+    }
+    return $return;
+}
+

@@ -90,7 +90,7 @@ if ($btnSave) {
 
 //TODO: criar metodo de retorno de dados dos campos category e payMethod
 $dataSelect['applicable'] = 'IN';
-$dataSelect['created_by'] = $_SESSION['id_user'];
+$dataSelect['id_user'] = $_SESSION['id_user'];
 $categories = selectCategories($dataSelect);    
 
 include '../resources/views/app/launch.form.view.php'; 
