@@ -28,20 +28,11 @@ CREATE TABLE IF NOT EXISTS `categories` (
   PRIMARY KEY (`id`),
   KEY `fk_categories_created_by` (`created_by`),
   CONSTRAINT `fk_categories_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Copiando dados para a tabela fsys.categories: ~7 rows (aproximadamente)
 DELETE FROM `categories`;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` (`id`, `category`, `applicable`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(1, 'Salário', 'IN', 1, '2019-11-04 08:42:19', NULL, NULL),
-	(2, 'Alimentação', 'OUT', 1, '2019-11-04 08:42:20', NULL, NULL),
-	(3, 'Beleza', 'OUT', 1, '2019-11-04 08:42:20', NULL, NULL),
-	(4, 'Educação', 'OUT', 1, '2019-11-04 08:42:20', NULL, NULL),
-	(5, 'Lazer', 'OUT', 1, '2019-11-04 08:42:20', NULL, NULL),
-	(6, 'Saude', 'OUT', 1, '2019-11-04 08:42:20', NULL, NULL),
-	(7, 'Transporte', 'OUT', 1, '2019-11-04 08:42:20', NULL, NULL),
-	(8, 'Teste', 'IN', 2, '2019-11-04 09:59:23', NULL, NULL);
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela fsys.category_users
@@ -60,29 +51,11 @@ CREATE TABLE IF NOT EXISTS `category_users` (
   CONSTRAINT `fk_category_users_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_category_users_id_category` FOREIGN KEY (`id_category`) REFERENCES `categories` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_category_users_id_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Copiando dados para a tabela fsys.category_users: ~17 rows (aproximadamente)
 DELETE FROM `category_users`;
 /*!40000 ALTER TABLE `category_users` DISABLE KEYS */;
-INSERT INTO `category_users` (`id`, `id_user`, `id_category`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(1, 1, 1, 1, '2019-11-04 08:42:19', NULL, NULL),
-	(2, 1, 2, 1, '2019-11-04 08:42:20', NULL, NULL),
-	(3, 1, 3, 1, '2019-11-04 08:42:20', NULL, NULL),
-	(4, 1, 4, 1, '2019-11-04 08:42:20', NULL, NULL),
-	(5, 1, 5, 1, '2019-11-04 08:42:20', NULL, NULL),
-	(6, 1, 6, 1, '2019-11-04 08:42:20', NULL, NULL),
-	(7, 1, 7, 1, '2019-11-04 08:42:20', NULL, NULL),
-	(8, 2, 1, 2, '2019-11-04 09:54:19', NULL, NULL),
-	(9, 2, 2, 2, '2019-11-04 09:54:19', NULL, NULL),
-	(10, 2, 3, 2, '2019-11-04 09:54:19', NULL, NULL),
-	(11, 2, 4, 2, '2019-11-04 09:54:19', NULL, NULL),
-	(12, 2, 5, 2, '2019-11-04 09:54:19', NULL, NULL),
-	(13, 2, 6, 2, '2019-11-04 09:54:19', NULL, NULL),
-	(14, 2, 7, 2, '2019-11-04 09:54:19', NULL, NULL),
-	(15, 2, 8, 2, '2019-11-04 10:08:08', NULL, NULL),
-	(16, 1, 8, 1, '2019-11-04 10:11:48', NULL, '2019-11-04 10:34:54'),
-	(17, 1, 8, 1, '2019-11-04 10:34:33', NULL, '2019-11-04 10:34:54');
 /*!40000 ALTER TABLE `category_users` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela fsys.historics
@@ -107,21 +80,6 @@ CREATE TABLE IF NOT EXISTS `historics` (
 DELETE FROM `historics`;
 /*!40000 ALTER TABLE `historics` DISABLE KEYS */;
 /*!40000 ALTER TABLE `historics` ENABLE KEYS */;
-
--- Copiando estrutura para tabela fsys.password_resets
-CREATE TABLE IF NOT EXISTS `password_resets` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='geração de tokens para reset de senha de usuário';
-
--- Copiando dados para a tabela fsys.password_resets: ~0 rows (aproximadamente)
-DELETE FROM `password_resets`;
-/*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
-/*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela fsys.pay_methods
 CREATE TABLE IF NOT EXISTS `pay_methods` (
@@ -179,15 +137,28 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Copiando dados para a tabela fsys.users: ~2 rows (aproximadamente)
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(1, 'Marcela Cunha Montini', 'teste@teste.com', '$2y$10$Z1lcDnPQwEth2fngqe/ulOcVMYPZ7IBZ387Z6j5BBEEjNZMnYcxm.', '2019-11-04 08:42:19', NULL, NULL),
-	(2, 'Felipe Mat', 'teste2@teste.com', '$2y$10$6mNI.Iyx2HlJag/s4r9I6uT/z398cLl4tdLO1h0PmNz3yCkProaU.', '2019-11-04 09:54:19', NULL, NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela fsys.user_password_resets
+CREATE TABLE IF NOT EXISTS `user_password_resets` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user` int(11) NOT NULL,
+  `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `fk_user_password_resets_id_user` (`id_user`),
+  CONSTRAINT `fk_user_password_resets_id_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='geração de tokens para reset de senha de usuário';
+
+-- Copiando dados para a tabela fsys.user_password_resets: ~0 rows (aproximadamente)
+DELETE FROM `user_password_resets`;
+/*!40000 ALTER TABLE `user_password_resets` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_password_resets` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

@@ -48,6 +48,8 @@
                     break;
                 case 'register.php': $menu = false;
                     break;
+                case 'forgot.php': $menu = false;
+                    break;
                 case 'reset.php': $menu = false;
                     break;
                 default : $menu = true;

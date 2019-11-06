@@ -16,7 +16,7 @@ function categoriesToNewUser ($idUser) {
 
         $returnSelect = selectExistsCategory($firstCategories['category']);
 
-        if (!$returnSelect[0]['id']) {
+        if (!$returnSelect['id']) {
 
             $result = createCategory($firstCategories);
             $dataSave['id_category'] = $result;
