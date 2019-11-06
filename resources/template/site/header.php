@@ -41,10 +41,24 @@
     <div class='container-fluid'>
 
         <!-- inicio top menu -->
-        <?php 
-            if( ($script_name[$i - 1] != 'login.php') and ($script_name[$i - 1] != 'register.php') ){
+        <?php
+            switch ($script_name[$i - 1])
+            {
+                case 'login.php': $menu = false;
+                    break;
+                case 'register.php': $menu = false;
+                    break;
+                case 'reset.php': $menu = false;
+                    break;
+                default : $menu = true;
+            }
+
+            if ($menu) {
                 require_once 'top-menu.php';
             }
+            // if( ($script_name[$i - 1] != 'login.php') and ($script_name[$i - 1] != 'register.php') ){
+            //     require_once 'top-menu.php';
+            // }
         ?>
         <!-- fim top menu -->
     </div>
