@@ -78,7 +78,7 @@
                             
                               <div class="form-group col-md">
 
-                                <a href="#" class="forgot-password">esqueceu sua senha?</a>
+                                <a href="forgot.php" class="forgot-password">esqueceu sua senha?</a>
                               </div>
                                 
                             </div>
