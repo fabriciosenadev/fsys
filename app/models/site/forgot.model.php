@@ -1,6 +1,8 @@
 <?php
 // criação das definições do banco de dados
 require 'db/connect.php';
+require 'sendEmail.model.php';
+
 /**
  * function tryReset
  * @param string $email
@@ -10,12 +12,23 @@ function requestReset ($email)
     $returnSearch = searchEmail($email);
 
     if (!isset($returnSearch['email'])) {
+
         return $returnSearch;
+
     } 
 
-    $returnRequest = createRequest($returnSearch);
+    $returnCreate = createRequest($returnSearch);
 
-    return $returnRequest;
+    if (!is_int($returnCreate)) {
+
+        return $returnCreate;        
+
+    }
+    
+    $returnSend = sendEmail ($returnSearch);
+
+    return $returnSend;
+
 }
 
 /**
