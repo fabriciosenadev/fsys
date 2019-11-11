@@ -9,11 +9,17 @@ use PHPMailer\PHPMailer\Exception;
 // implementa SendGrid usando Composer
 require 'vendor/autoload.php';
 
-function sendEmail ($data)
+/**
+ * function sendEmail
+ * @param array @data
+ * @return boolean
+ */
+function sendEmail ($data, $idRequest)
 {
 
     extract($data);
     // Instantiation and passing `true` enables exceptions
+    $resetLink = resetLinkBuilder($idRequest);
     $mail = new PHPMailer(true);
 
     try {
@@ -41,9 +47,11 @@ function sendEmail ($data)
 
         // Content
         $mail->isHTML(true);                                  // Set email format to HTML
-        $mail->Subject = 'Teste';
-        $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-        $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+        $mail->Subject = 'Reset de senha - Fsys';
+        $mail->Body    = "Olá $name, <br>";
+        $mail->Body    .= " clique no link abaixo para alterar sua senha. <br>";
+        $mail->Body    .= " $resetLink";
+        // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         $mail->send();
         // echo 'Message has been sent';
@@ -58,4 +66,31 @@ function sendEmail ($data)
     }
     
     
+}
+
+
+function resetLinkBuilder($idRequest) 
+{
+    $data = getResetRequest($idRequest);
+
+    extract($data);
+
+    $resetScript = 'http://localhost/fsys/reset.php';
+
+    $linkToSend = $resetScript . "?id=" . $id . "&uid=" . $id_user . "&t=" . $token;
+
+    return $linkToSend;
+}
+
+function getResetRequest ($idRequest)
+{
+    $connection = $GLOBALS['connection'];
+
+    $select = "SELECT * FROM user_password_resets WHERE id = $idRequest";
+
+    $result = mysqli_query($connection, $select);
+
+    $return = mysqli_fetch_assoc($result);
+
+    return $return;
 }

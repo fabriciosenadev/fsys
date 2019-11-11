@@ -26,7 +26,7 @@ function requestReset ($email)
 
     }
     
-    $returnSend = sendEmail ($returnSearch);
+    $returnSend = sendEmail ($returnSearch, $returnCreate);
 
     return $returnSend;
 
