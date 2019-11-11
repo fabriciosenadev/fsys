@@ -25,12 +25,10 @@
 
                         <div>                                
 <?php
-                            if (0) {
+                            if ($msg) {
 ?>
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <strong>Sucesso!</strong> <?php //echo $msg; ?> 
-                                    Cliquei <a href="login.php">aqui</a>  
-                                    para fazer login.
+                                    <strong>Sucesso!</strong> <?php echo $msg; ?> 
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -49,15 +47,13 @@
                                 <div class="form-group col-md">
                                     <label for="inputEmail">E-mail</label>
                                         <input type="email" id="inputEmail"name="email" value="<?php echo $email;?>"
-                                            class="form-control <?php //echo $styleEmail;?>" require>
+                                            class="form-control <?php echo $styleEmail;?>" require>
                                         <div class="valid-feedback">
                                             Parece bom!
                                         </div>  
                                         <div class="invalid-feedback">
 <?php                                       
-                                            echo ($errors['email']) 
-                                                ?   $errors['email']
-                                                :   null;
+                                            echo $errors ? $errors : null;
 ?>
                                         </div>  
                                 </div>
