@@ -6,6 +6,7 @@ require 'sendEmail.model.php';
 /**
  * function tryReset
  * @param string $email
+ * @return boolean|null
  */
 function requestReset ($email)
 {
