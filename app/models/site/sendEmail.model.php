@@ -26,10 +26,10 @@ function sendEmail ($data, $idRequest)
         //Server settings
         // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
         $mail->isSMTP();                                            // Send using SMTP
-        $mail->Host       = 'Outlook.office365.com';                    // Set the SMTP server to send through
+        $mail->Host       = 'smtp.server';                    // Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-        $mail->Username   = 'fabricior.sena@outlook.com';                     // SMTP username
-        $mail->Password   = 'Pr1s!on3r';                               // SMTP password
+        $mail->Username   = 'email@address.to.send';                     // SMTP username
+        $mail->Password   = 'password of account to be sent';                               // SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
         $mail->Port       = 587;                                    // TCP port to connect to
 
