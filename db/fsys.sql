@@ -14,7 +14,7 @@
 
 -- Copiando estrutura do banco de dados para fsys
 DROP DATABASE IF EXISTS `fsys`;
-CREATE DATABASE IF NOT EXISTS `fsys` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
+CREATE DATABASE IF NOT EXISTS `fsys` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `fsys`;
 
 -- Copiando estrutura para tabela fsys.categories
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   PRIMARY KEY (`id`),
   KEY `fk_categories_created_by` (`created_by`),
   CONSTRAINT `fk_categories_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Copiando dados para a tabela fsys.categories: ~0 rows (aproximadamente)
 DELETE FROM `categories`;
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `category_users` (
   CONSTRAINT `fk_category_users_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_category_users_id_category` FOREIGN KEY (`id_category`) REFERENCES `categories` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_category_users_id_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Copiando dados para a tabela fsys.category_users: ~0 rows (aproximadamente)
 DELETE FROM `category_users`;
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `pay_methods` (
   CONSTRAINT `fk_pay_method_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Copiando dados para a tabela fsys.pay_methods: ~2 rows (aproximadamente)
+-- Copiando dados para a tabela fsys.pay_methods: ~3 rows (aproximadamente)
 DELETE FROM `pay_methods`;
 /*!40000 ALTER TABLE `pay_methods` DISABLE KEYS */;
 INSERT INTO `pay_methods` (`id`, `pay_method`, `applicable`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
@@ -146,12 +146,29 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Copiando dados para a tabela fsys.users: ~0 rows (aproximadamente)
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela fsys.user_password_resets
+DROP TABLE IF EXISTS `user_password_resets`;
+CREATE TABLE IF NOT EXISTS `user_password_resets` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user` int(11) NOT NULL,
+  `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `fk_user_password_resets_id_user` (`id_user`),
+  CONSTRAINT `fk_user_password_resets_id_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='geração de tokens para reset de senha de usuário';
+
+-- Copiando dados para a tabela fsys.user_password_resets: ~0 rows (aproximadamente)
+DELETE FROM `user_password_resets`;
+/*!40000 ALTER TABLE `user_password_resets` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_password_resets` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
