@@ -93,11 +93,13 @@
                                             
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">Data</th>
-                                                    <th scope="col">Categoria</th>
-                                                    <th scope="col">Valor</th>
+                                                    <th scope="col" width="20px">#</th>
+                                                    <th scope="col" width="120px">Data</th>
+                                                    <th scope="col" width="120px">Categoria</th>
+                                                    <th scope="col" width="120px">Valor</th>
                                                     <th scope="col">Descrição</th>
+                                                    <th scope="col" width="90px">Status</th>
+                                                    <th scope="col" width="180px">Ações</th>
                                                 </tr>
                                             </thead>
 
@@ -105,23 +107,49 @@
                                             <?php 
                                                 foreach($launches as $launch) {
                                                     if($launch['applicable'] == 'IN') {
-                                                            // $link = "?act=d&cat={$category['id']}";
-                                                ?>
+                                                        // $link = "?act=d&cat={$category['id']}";
+                                                        $class = $launch['status'] == 'PENDING' ? 'class = "bg-warning"' : 'class = "bg-success"';
+                                            ?>
                                                 <tr>
-                                                    <th scope="row"><?php echo $launch['id']?></th>
-                                                    <td><?php echo $launch['date']?></td>
-                                                    <td><?php echo $launch['category']?></td>
-                                                    <td><?php echo $launch['value']?></td>
-                                                    <td><?php echo $launch['description']?></td>
+                                                    <th scope="row"><?php echo $launch['id'];?></th>
+                                                    <td><?php echo $launch['date'];?></td>
+                                                    <td><?php echo $launch['category'];?></td>
+                                                    <td>R$ <?php echo number_format($launch['value'],2,',','.');?></td>
+                                                    <td><?php echo $launch['description'];?></td>
+                                                    <td <?php echo $class;?> style="color:white;">
+                                                        <?php echo $launch['status'];?>
+                                                    </td>
                                                     <td>
-                                                        <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
-                                                            <input type="hidden" name="delCategory" value="<?php echo $launch['id']?>">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <?php 
+                                                                if($launch['status'] == 'PENDING') {
+                                                                    ?>
+                                                                <a href="<?php //echo $link;?>" class="btn btn-sm btn-success" alt="Pago">
+                                                                <i class="far fa-check-square"></i>
+                                                            </a>
+                                                            <?php
+                                                                    }
+                                                                    ?>
+                                                            </div>
+                                                            <div class="col">
+                                                                <a href="<?php //echo $link;?>" class="btn btn-sm btn-warning">
+                                                                <i class="fas fa-pencil-alt"></i>
+                                                                </a>
+                                                            </div>  
+                                                            <div class="col">
+                                                                <a href="<?php //echo $link;?>" class="btn btn-sm btn-danger">
+                                                                    <i class="far fa-trash-alt"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- <form action="<?php $_SERVER['PHP_SELF'];?>" method="post">
+                                                            <input type="hidden" name="delCategory" value="<?php echo $launch['id'];?>">
                                                             <button type="submit" name="btnDelCategory" class="close" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>                    
-                                                        </form>
-                                                        <!-- <a href="<?php //echo $link;?>" >
-                                                        </a> -->
+                                                        </form> -->
+
                                                     </td>
                                                 </tr>
                                                 <?php
@@ -139,12 +167,15 @@
                                             
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">Data</th>
-                                                    <th scope="col">Categoria</th>
+                                                <th scope="col" width="20px">#</th>
+                                                    <th scope="col" width="120px">Data</th>
+                                                    <th scope="col" width="120px">Categoria</th>
                                                     <th scope="col">Forma Pagto.</th>
-                                                    <th scope="col">Valor</th>
+                                                    <th scope="col" width="120px">Valor</th>
+                                                    
                                                     <th scope="col">Descrição</th>
+                                                    <th scope="col" width="90px">Status</th>
+                                                    <th scope="col" width="180px">Ações</th>
                                                 </tr>
                                             </thead>
 
@@ -152,24 +183,51 @@
                                             <?php 
                                                 foreach($launches as $launch) {
                                                     if($launch['applicable'] == 'OUT') {
-                                                            // $link = "?act=d&cat={$category['id']}";
+                                                        // $link = "?act=d&cat={$category['id']}";
+                                                        $class = $launch['status'] == 'PENDING' ? 'class = "bg-warning"' : 'class = "bg-success"';
+                                                        
                                                 ?>
                                                 <tr>
-                                                    <th scope="row"><?php echo $launch['id']?></th>
-                                                    <td><?php echo $launch['date']?></td>
-                                                    <td><?php echo $launch['category']?></td>
-                                                    <td><?php echo $launch['pay_method']?></td>
-                                                    <td><?php echo $launch['value']?></td>
-                                                    <td><?php echo $launch['description']?></td>
+                                                    <th scope="row"><?php echo $launch['id'];?></th>
+                                                    <td><?php echo $launch['date'];?></td>
+                                                    <td><?php echo $launch['category'];?></td>
+                                                    <td><?php echo $launch['pay_method'];?></td>
+                                                    <td>R$ <?php echo number_format($launch['value'],2,',','.');?></td>
+                                                    <td><?php echo $launch['description'];?></td>
+                                                    <td <?php echo $class;?> style="color:white;">
+                                                        <?php echo $launch['status'];?>
+                                                    </td>
                                                     <td>
-                                                        <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
-                                                            <input type="hidden" name="delCategory" value="<?php echo $launch['id']?>">
+                                                        <div class="row justify-content-end">
+                                                            <div class="col">
+                                                                <?php 
+                                                                if($launch['status'] == 'PENDING') {
+                                                                    ?>
+                                                                <a href="<?php //echo $link;?>" class="btn btn-sm btn-success" alt="Pago">
+                                                                <i class="far fa-check-square"></i>
+                                                            </a>
+                                                            <?php
+                                                                    }
+                                                                    ?>
+                                                            </div>
+                                                            <div class="col">
+                                                                <a href="<?php //echo $link;?>" class="btn btn-sm btn-warning">
+                                                                <i class="fas fa-pencil-alt"></i>
+                                                                </a>
+                                                            </div>  
+                                                            <div class="col">
+                                                                <a href="<?php //echo $link;?>" class="btn btn-sm btn-danger">
+                                                                    <i class="far fa-trash-alt"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- <form action="<?php $_SERVER['PHP_SELF'];?>" method="post">
+                                                            <input type="hidden" name="delCategory" value="<?php echo $launch['id'];?>">
                                                             <button type="submit" name="btnDelCategory" class="close" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>                    
-                                                        </form>
-                                                        <!-- <a href="<?php //echo $link;?>" >
-                                                        </a> -->
+                                                        </form> -->
+
                                                     </td>
                                                 </tr>
                                                 <?php

@@ -39,9 +39,9 @@ function createHistoric($data)
 
     extract($data);
     
-    $insert = "INSERT INTO historics(date, id_category, description, value, created_by, created_at)";
-    $insert .= "VALUES('$date', $id_category, '$description', $value, $created_by, now() )";
-
+    $insert = "INSERT INTO historics(date, id_category, description, value, status, created_by, created_at)";
+    $insert .= "VALUES('$date', $id_category, '$description', $value, '$status', $created_by, now() )";
+    echo $insert;
     if (mysqli_query($connection, $insert) ) {
         $IdHistoric = mysqli_insert_id($connection);
     }

@@ -15,7 +15,7 @@ function selectLaunched ($data)
 
     extract($data);
 
-    $select = "SELECT h.id, h.date, c.category, c.applicable, pm.pay_method, h.value, h.description ";
+    $select = "SELECT h.id, h.date, c.category, c.applicable, pm.pay_method, h.value, h.status, h.description ";
     $select .= "FROM historics AS h ";
     $select .= "JOIN categories AS c ON c.id = h.id_category ";
     $select .= "LEFT JOIN pay_method_historics AS pmh ON pmh.id_historic = h.id ";

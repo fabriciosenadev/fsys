@@ -6,6 +6,7 @@
     <!-- determina a largunra do site -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/ddb3ae0b46.js" crossorigin="anonymous"></script>
 
     <title>fsys</title>
 </head>

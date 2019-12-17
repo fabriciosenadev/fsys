@@ -26,6 +26,7 @@ $btnSave = isset($_REQUEST['btnSave']) ? $_REQUEST : null;
 $errors = $dataSave = [];
 $styleDate = $styleCategory = $styleValue = '';
 $reload = false;
+$today = date("Y-m-d");
 
 $msg = isset($_SESSION['success']) ? $_SESSION['success']: null ;
 if (isset($_SESSION['success'])) {
@@ -75,6 +76,8 @@ if ($btnSave) {
         $dataSave['description'] = $description;
         $dataSave['value'] = $value;
         $dataSave['created_by'] = intval($_SESSION['id_user']);
+        $dataSave['status'] = strtotime($date) > strtotime($today) ? 'PENDING' : 'RECEIVED';
+
 
         $result = SaveLaunch($dataSave);
 

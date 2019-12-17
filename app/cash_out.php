@@ -27,6 +27,7 @@ $btnSave = isset($_REQUEST['btnSave']) ? $_REQUEST : null;
 $errors = $dataSelect = [];
 $styleDate = $styleCategory = $styleValue = $stylePayMethod ='';
 $reload = false;
+$today = date("Y-m-d");
 
 
 $msg = isset($_SESSION['success']) ? $_SESSION['success']: null ;
@@ -99,6 +100,10 @@ if ($btnSave) {
         $dataSave['value'] = $value;
         $dataSave['id_pay_method'] = $idPayMethod;
         $dataSave['created_by'] = intval($_SESSION['id_user']);
+        $dataSave['status'] = strtotime($date) > strtotime($today) ? 'PENDING' : 'PAID';
+
+        var_dump($dataSave);
+        // die();
 
         $result = SaveLaunch($dataSave);
 

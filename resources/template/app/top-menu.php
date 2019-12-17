@@ -23,7 +23,10 @@
                 
                 <div class="dropdown-menu dropdown-menu-right">
                 
-                    <!-- <a href="#" class="dropdown-item">Formas de pagamento</a> -->
+                    <a href="<?php echo $dir; ?>options/profile.php" class="dropdown-item">Perfil</a>
+
+                    <div class="dropdown-divider"></div>
+
                     <a href="<?php echo $dir; ?>options/category.php" class="dropdown-item">Categorias</a>
                     
                     <div class="dropdown-divider"></div>
