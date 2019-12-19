@@ -1,10 +1,10 @@
 <?php
-
+session_start();
 require_once '../../resources/template/app/header.php';
 require_once "../models/app/options/category.model.php";
 
 
-session_start();
+
 if (!$_SESSION['logged']) {
     $_SESSION['errors'] = "Faça login primeiro";
     header("Location: ../../login.php");

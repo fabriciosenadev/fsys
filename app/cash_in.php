@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once '../resources/template/app/header.php';
 
 // inclusão dos models utilizados
@@ -7,7 +7,7 @@ require_once "models/app/fulfill_fields.model.php";
 require_once "models/app/cash_flow.model.php";
 
 //controller
-session_start();
+
 if (!$_SESSION['logged']) {
     $_SESSION['errors'] = "Faça login primeiro";
     header("Location: ../login.php");
