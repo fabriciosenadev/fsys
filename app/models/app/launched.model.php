@@ -31,3 +31,31 @@ function selectLaunched ($data)
     }
     return $return;
 }
+
+/**
+ * function changeStatus
+ * @param array $data
+ * @return boolean
+ */
+function changeStatus ($data) {
+    $connection = $GLOBALS['connection'];
+
+    extract($data);
+
+    $update = "UPDATE historics SET status = '$status', updated_at = now() ";
+    $update .= "WHERE id = $id";
+
+    $result = mysqli_query($connection, $update);
+    return $result;    
+}
+
+
+function deleteRegister ($id) {
+    $connection = $GLOBALS['connection'];
+
+    $update = "UPDATE historics SET deleted_at = now() ";
+    $update .= "WHERE id = $id";
+
+    $result = mysqli_query($connection, $update);
+    return $result;    
+}
