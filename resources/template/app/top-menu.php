@@ -1,5 +1,5 @@
 <?php
-  require_once $dir.'../app/models/app/user.model.php';
+  require_once $dir.'../app/models/app/options/user.model.php';
   $idUser = $_SESSION['id_user'];
 
   $userData = selectUser($idUser);
