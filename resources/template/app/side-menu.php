@@ -6,7 +6,7 @@
         'cash_in.php',
         'cash_out.php',
         'launched.php',
-        'index.php'
+        'dashboard.php'
     ];
 
     foreach ($launchMenu as $page) {
