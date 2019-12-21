@@ -8,7 +8,6 @@ if (!$_SESSION['logged']) {
     header("Location: ../login.php");
 }
 
-header('Location: dashboard.php');
-
+include '../resources/views/app/index.view.php';
 
 require_once '../resources/template/app/footer.php';

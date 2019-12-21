@@ -15,7 +15,7 @@ function selectLaunched ($data)
 
     extract($data);
 
-    $select = "SELECT h.id, h.date, c.category, c.applicable, pm.pay_method, h.value, h.description ";
+    $select = "SELECT h.id, h.date, c.category, c.applicable, pm.pay_method, h.value, h.status, h.description ";
     $select .= "FROM historics AS h ";
     $select .= "JOIN categories AS c ON c.id = h.id_category ";
     $select .= "LEFT JOIN pay_method_historics AS pmh ON pmh.id_historic = h.id ";
@@ -30,4 +30,32 @@ function selectLaunched ($data)
 
     }
     return $return;
+}
+
+/**
+ * function changeStatus
+ * @param array $data
+ * @return boolean
+ */
+function changeStatus ($data) {
+    $connection = $GLOBALS['connection'];
+
+    extract($data);
+
+    $update = "UPDATE historics SET status = '$status', updated_at = now() ";
+    $update .= "WHERE id = $id";
+
+    $result = mysqli_query($connection, $update);
+    return $result;    
+}
+
+
+function deleteRegister ($id) {
+    $connection = $GLOBALS['connection'];
+
+    $update = "UPDATE historics SET deleted_at = now() ";
+    $update .= "WHERE id = $id";
+
+    $result = mysqli_query($connection, $update);
+    return $result;    
 }

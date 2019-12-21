@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once '../resources/template/app/header.php';
 
 // inclusão dos models utilizados
@@ -7,7 +7,7 @@ require_once "models/app/fulfill_fields.model.php";
 require_once "models/app/cash_flow.model.php";
 
 //controller
-session_start();
+
 if (!$_SESSION['logged']) {
     $_SESSION['errors'] = "Faça login primeiro";
     header("Location: ../login.php");
@@ -26,6 +26,7 @@ $btnSave = isset($_REQUEST['btnSave']) ? $_REQUEST : null;
 $errors = $dataSave = [];
 $styleDate = $styleCategory = $styleValue = '';
 $reload = false;
+$today = date("Y-m-d");
 
 $msg = isset($_SESSION['success']) ? $_SESSION['success']: null ;
 if (isset($_SESSION['success'])) {
@@ -75,6 +76,8 @@ if ($btnSave) {
         $dataSave['description'] = $description;
         $dataSave['value'] = $value;
         $dataSave['created_by'] = intval($_SESSION['id_user']);
+        $dataSave['status'] = strtotime($date) > strtotime($today) ? 'PENDING' : 'RECEIVED';
+
 
         $result = SaveLaunch($dataSave);
 

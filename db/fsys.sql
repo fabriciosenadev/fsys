@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
--- Servidor:                     localhost
--- Versão do servidor:           5.7.27-0ubuntu0.18.04.1 - (Ubuntu)
+-- Servidor:                     127.0.0.1
+-- Versão do servidor:           5.7.28-0ubuntu0.18.04.4 - (Ubuntu)
 -- OS do Servidor:               Linux
--- HeidiSQL Versão:              10.1.0.5464
+-- HeidiSQL Versão:              10.2.0.5599
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   PRIMARY KEY (`id`),
   KEY `fk_categories_created_by` (`created_by`),
   CONSTRAINT `fk_categories_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Copiando dados para a tabela fsys.categories: ~0 rows (aproximadamente)
 DELETE FROM `categories`;
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `category_users` (
   CONSTRAINT `fk_category_users_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_category_users_id_category` FOREIGN KEY (`id_category`) REFERENCES `categories` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_category_users_id_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Copiando dados para a tabela fsys.category_users: ~0 rows (aproximadamente)
 DELETE FROM `category_users`;
@@ -68,6 +68,7 @@ CREATE TABLE IF NOT EXISTS `historics` (
   `date` date DEFAULT NULL,
   `description` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
   `value` decimal(8,2) NOT NULL,
+  `status` enum('PAID','RECEIVED','PENDING') COLLATE utf8_unicode_ci NOT NULL,
   `id_category` int(11) DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -104,10 +105,8 @@ CREATE TABLE IF NOT EXISTS `pay_methods` (
 DELETE FROM `pay_methods`;
 /*!40000 ALTER TABLE `pay_methods` DISABLE KEYS */;
 INSERT INTO `pay_methods` (`id`, `pay_method`, `applicable`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(1, 'Dinheiro', 'WALLET', NULL, '2019-11-03 21:21:45', NULL, NULL);
-INSERT INTO `pay_methods` (`id`, `pay_method`, `applicable`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(2, 'Débito', 'ACCOUNT', NULL, '2019-11-03 21:21:45', NULL, NULL);
-INSERT INTO `pay_methods` (`id`, `pay_method`, `applicable`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+	(1, 'Dinheiro', 'WALLET', NULL, '2019-11-03 21:21:45', NULL, NULL),
+	(2, 'Débito', 'ACCOUNT', NULL, '2019-11-03 21:21:45', NULL, NULL),
 	(3, 'Crédito', 'CREDIT', NULL, '2019-11-03 21:21:45', NULL, NULL);
 /*!40000 ALTER TABLE `pay_methods` ENABLE KEYS */;
 
@@ -146,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Copiando dados para a tabela fsys.users: ~0 rows (aproximadamente)
 DELETE FROM `users`;
@@ -163,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `user_password_resets` (
   PRIMARY KEY (`id`),
   KEY `fk_user_password_resets_id_user` (`id_user`),
   CONSTRAINT `fk_user_password_resets_id_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='geração de tokens para reset de senha de usuário';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='geração de tokens para reset de senha de usuário';
 
 -- Copiando dados para a tabela fsys.user_password_resets: ~0 rows (aproximadamente)
 DELETE FROM `user_password_resets`;
