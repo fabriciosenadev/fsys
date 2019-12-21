@@ -38,9 +38,8 @@
                                         id="inlineFormInputGroupUsername2" placeholder="Username" 
                                         value="<?php echo $dateTo; ?>" required>
                                 </div>
-
                                 <input type="submit" name="btnFilter" class="btn btn-success mb-2" value="Filtrar">
-                                <!-- <button type="submit" name="btnFilter" class="btn btn-success mb-2">Filtrar</button> -->
+                                <!-- <button type="submit" name="btnFilter" class="btn btn-success mb-2">Filtrar <i class="fas fa-search"></i> </button> -->
 
                             </form>
 
@@ -82,6 +81,18 @@
 
                             <div class="col">
                             
+<?php
+                        if (empty($launches)) {
+?>
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <strong>Veja bem!</strong> Não encontramos resultados para esta pesquisa.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+<?php
+                        } else {
+?>
                                 <div class="row">
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                                         <li class="nav-item">
@@ -250,7 +261,9 @@
                                     </div>
                                                     
                                 </div>                
-                            
+                            <?php
+        }
+                            ?>
                             </div>
                         
                         </div>
