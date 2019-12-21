@@ -3,6 +3,11 @@
 // criação das definições do banco de dados
 require $dir.'../db/connect.php';
 
+/**
+ * function selectUser
+ * @param int $idUser
+ * @return array $data
+ */
 function selectUser ($idUser) {
     $connection = $GLOBALS['connection'];
 
