@@ -2,21 +2,19 @@
     // get link param
     $currentPage = explode("/", $_SERVER['REQUEST_URI']);
 
-    $pageCashIn = in_array("cash_in.php", $currentPage);
-    $pageCashOut = in_array("cash_out.php", $currentPage);
-    $pageLaunched = in_array("launched.php", $currentPage);
-    $pageIndex = in_array("index.php", $currentPage);
-    $pageCategory = in_array("category.php", $currentPage);
-    // var_dump($currentPage);
-    
-    if ($pageCategory) {
-        // launchMenu();
-    } else {
-        launchMenu();
-    }
-    // if ($category) {
-    //     optionMenu();
-    // }    
+    $launchMenu = [
+        'cash_in.php',
+        'cash_out.php',
+        'launched.php',
+        'index.php'
+    ];
+
+    foreach ($launchMenu as $page) {
+        if (in_array($page, $currentPage)) {
+            launchMenu();
+            var_dump($page);
+        }
+    }      
 
     function launchMenu() 
     {
