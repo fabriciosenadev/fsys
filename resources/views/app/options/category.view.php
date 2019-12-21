@@ -12,7 +12,11 @@
             </div>
 
             <div class="col-md-8" id="main">
-                <div class="row justify-content-center" style="margin-top:50px;">
+                <div class="row" style="margin-top:20px;">
+                    <h3>Minhas categorias</h3>
+                </div>
+
+                <div class="row justify-content-center" style="margin-top:30px;">
                         
                     <div class="border-top rounded-bottom" 
                         style="width:500px;padding: 10px; background-color:white;">
