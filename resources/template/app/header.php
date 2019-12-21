@@ -41,6 +41,11 @@
                 $dir = "../".$dir;
                 $go_back--;
             }
+            
+            require_once $dir."../app/models/app/options/user.model.php";
+            $idUser = $_SESSION['id_user'];
+            $userData = selectUser($idUser);
+            extract($userData);
 
             require_once 'top-menu.php';
         ?>
