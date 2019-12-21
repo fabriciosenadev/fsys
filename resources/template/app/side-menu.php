@@ -12,7 +12,6 @@
     foreach ($launchMenu as $page) {
         if (in_array($page, $currentPage)) {
             launchMenu();
-            var_dump($page);
         }
     }      
 
