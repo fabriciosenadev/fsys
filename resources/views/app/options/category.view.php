@@ -12,15 +12,13 @@
             </div>
 
             <div class="col-md-8" id="main">
-                <div class="row" style="margin-top:20px;">
-                    <h3>Minhas categorias</h3>
-                </div>
 
-                <div class="row justify-content-center" style="margin-top:30px;">
+                <div class="row justify-content-center" style="margin-top:50px;">
+                
                         
                     <div class="border-top rounded-bottom" 
                         style="width:500px;padding: 10px; background-color:white;">
-
+                        <h2>Minhas categorias</h2>
                         <div class="col" style="margin:15px 0;">
 
                             <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
