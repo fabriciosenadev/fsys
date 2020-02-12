@@ -38,8 +38,8 @@
 ?>
         <div class="row py-2 sticky-top flex-grow-1 justify-content-center">
             <div class="btn-group-vertical" role="group" aria-label="Basic example">
-                <a href="#" class="btn btn-success">Perfil</a>
-                <a href="#" class="btn btn-success">Categorias</a>
+                <a href="profile.php" class="btn btn-success">Perfil</a>
+                <a href="category.php" class="btn btn-success">Categorias</a>
                 <!-- <a href="#" class="btn btn-success">Another</a> -->
             </div>
         </div>
