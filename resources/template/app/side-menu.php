@@ -2,18 +2,24 @@
     // get link param
     $currentPage = explode("/", $_SERVER['REQUEST_URI']);
 
-    $launchMenu = [
-        'cash_in.php',
-        'cash_out.php',
-        'launched.php',
-        'dashboard.php'
-    ];
+    // $launchMenu = [
+    //     'cash_in.php',
+    //     'cash_out.php',
+    //     'launched.php',
+    //     'dashboard.php'
+    // ];
 
-    foreach ($launchMenu as $page) {
-        if (in_array($page, $currentPage)) {
-            launchMenu();
-        }
-    }      
+    // $optionMenu = [
+    //     'profile.php',
+    //     'caregory.php'
+    // ];
+    
+    if (!in_array('options', $currentPage))
+    {
+        launchMenu();        
+    } else {
+        optionMenu();
+    }
 
     function launchMenu() 
     {
@@ -32,8 +38,9 @@
 ?>
         <div class="row py-2 sticky-top flex-grow-1 justify-content-center">
             <div class="btn-group-vertical" role="group" aria-label="Basic example">
+                <a href="#" class="btn btn-success">Perfil</a>
                 <a href="#" class="btn btn-success">Categorias</a>
-                <a href="#" class="btn btn-success">Another option</a>
+                <!-- <a href="#" class="btn btn-success">Another</a> -->
             </div>
         </div>
 <?php
