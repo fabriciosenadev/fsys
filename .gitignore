@@ -1,2 +1,4 @@
 vendor
 composer.lock
+db\build.db.php
+db\connect.php
