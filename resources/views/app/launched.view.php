@@ -157,14 +157,13 @@
                                                             </div>
                                                             <div class="col-sm">
                                                                 <form action="cash_in.php" method="post">
-                                                                    <input type="hidden" name="historicId" value="<?php echo $launch['id']?>">
+                                                                    <input type="hidden" name="historicId" value="<?php echo $launch['id']; ?>">
+                                                                    <input type="hidden" name="dateFrom" value="<?php echo $dateFrom; ?>">
+                                                                    <input type="hidden" name="dateTo" value="<?php echo $dateTo; ?>">
                                                                     <button type="submit" class="btn btn-sm btn-warning">
-                                                                        <i class="fas fa-pencil-alt"></i>
+                                                                        <i class="fas fa-pencil-alt text-white"></i>
                                                                     </button>
                                                                 </form>
-                                                                <!-- <a href="#" class="btn btn-sm btn-warning">
-                                                                    <i class="fas fa-pencil-alt"></i>
-                                                                </a> -->
                                                             </div>  
                                                             <div class="col-sm">
                                                                 <a href="<?php echo $deleteLink;?>" class="btn btn-sm btn-danger">
