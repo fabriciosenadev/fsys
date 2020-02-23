@@ -156,9 +156,15 @@
                                                             ?>
                                                             </div>
                                                             <div class="col-sm">
-                                                                <a href="#" class="btn btn-sm btn-warning">
+                                                                <form action="cash_in.php" method="post">
+                                                                    <input type="hidden" name="historicId" value="<?php echo $launch['id']?>">
+                                                                    <button type="submit" class="btn btn-sm btn-warning">
+                                                                        <i class="fas fa-pencil-alt"></i>
+                                                                    </button>
+                                                                </form>
+                                                                <!-- <a href="#" class="btn btn-sm btn-warning">
                                                                     <i class="fas fa-pencil-alt"></i>
-                                                                </a>
+                                                                </a> -->
                                                             </div>  
                                                             <div class="col-sm">
                                                                 <a href="<?php echo $deleteLink;?>" class="btn btn-sm btn-danger">
@@ -231,9 +237,15 @@
                                                                     ?>
                                                             </div>
                                                             <div class="col">
-                                                                <a href="#" class="btn btn-sm btn-warning">
-                                                                <i class="fas fa-pencil-alt"></i>
-                                                                </a>
+                                                                <form action="cash_in.php" method="post">
+                                                                    <input type="hidden" name="historicId" value="<?php echo $launch['id']?>">
+                                                                    <button type="submit" class="btn btn-sm btn-warning">
+                                                                        <i class="fas fa-pencil-alt"></i>
+                                                                    </button>
+                                                                </form>
+                                                                <!-- <a href="#" class="btn btn-sm btn-warning">
+                                                                    <i class="fas fa-pencil-alt"></i>
+                                                                </a> -->
                                                             </div>  
                                                             <div class="col">
                                                                 <a href="<?php echo $deleteLink;?>" class="btn btn-sm btn-danger">

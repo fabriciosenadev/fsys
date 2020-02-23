@@ -1,2 +1,6 @@
 vendor
 composer.lock
+
+#database files
+db\build.db.php
+db\connect.php
