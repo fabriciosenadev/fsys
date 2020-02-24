@@ -1,11 +1,11 @@
 <?php
-
 session_start();
 require_once '../resources/template/app/header.php';
 
 // inclusão dos models utilizados
 require_once "models/app/fulfill_fields.model.php";
 require_once "models/app/cash_flow.model.php";
+require_once "models/app/launched.model.php";
 
 //controller
 
@@ -30,12 +30,37 @@ $styleDate = $styleCategory = $styleValue = $stylePayMethod ='';
 $reload = false;
 $today = date("Y-m-d");
 
+// dados vindo da alteração de lançamento
+$historicId = isset($_REQUEST['historicId']) ? $_REQUEST['historicId'] : null;
+$dateFrom = isset($_REQUEST['dateFrom']) ? $_REQUEST['dateFrom'] : null;
+$dateTo = isset($_REQUEST['dateTo']) ? $_REQUEST['dateTo'] : null;
+$dataSelect = [];
 
 $msg = isset($_SESSION['success']) ? $_SESSION['success']: null ;
 if (isset($_SESSION['success'])) {
     unset($_SESSION['success']);
 }
 
+// seleciona os dados do lancamento que será alterado
+if (!$btnSave && $historicId)
+{
+    $dataSelect['historic_id'] = $historicId;
+    $dataSelect['dateFrom'] = $dateFrom;
+    $dataSelect['dateTo'] = $dateTo;
+    $dataSelect['created_by'] = intval($_SESSION['id_user']);
+
+    $result = selectLaunched($dataSelect);
+    
+    $date = $result[0]['date'];
+    $idCategory = $result[0]['id_category'];
+    $description = $result[0]['description'];
+    $value = $result[0]['value'];
+    $idPayMethod = $result[0]['id_pay_method'];
+
+    $_SESSION['historicId'] = $historicId;
+    $_SESSION['dateFrom'] = $dateFrom;
+    $_SESSION['dateTo'] = $dateTo;
+}
 
 //TODO: criar metodo de gravação dos dados do lançamento
 if ($btnSave) {
@@ -102,29 +127,29 @@ if ($btnSave) {
         $dataSave['id_pay_method'] = $idPayMethod;
         $dataSave['created_by'] = intval($_SESSION['id_user']);
         $dataSave['status'] = strtotime($date) > strtotime($today) ? 'PENDING' : 'PAID';
+        $dataSave['historic_id'] = isset($_SESSION['historicId']) ? $_SESSION['historicId'] : null;
 
-        var_dump($dataSave);
-        // die();
-
-        $result = SaveLaunch($dataSave);
+        $result = isset($_SESSION['historicId']) ? updateLaunch($dataSave) : $result = saveLaunch($dataSave);
 
         if($result) {
-            $_SESSION['success'] = "Saída registrada.";
-            header("Location: cash_out.php");
+
+            if(isset($_SESSION['historicId'])) 
+            {
+                $_SESSION['success'] = "Registro alterado.";
+                $dateFrom = $_SESSION['dateFrom'];
+                $dateTo = $_SESSION['dateTo'];
+                unset($_SESSION['dateFrom'], $_SESSION['dateTo'], $_SESSION['historicId']);                
+                header("Location: launched.php?dateFrom=$dateFrom&dateTo=$dateTo&btnFilter=Filtrar");
+            }
+            else 
+            {
+                $_SESSION['success'] = "Saída registrada.";
+                header("Location: cash_out.php");
+            }
         }
     }
 
-    // if ($_SESSION['errors']) {
-    //     $reload = true;
-    // }
 }
-
-
-// redirecionamentos
-if($reload){
-    // header("Location: cash_in.php");
-}
-
 
 //TODO: criar metodo de retorno de dados dos campos category e payMethod
 $dataSelect['applicable'] = 'OUT';
