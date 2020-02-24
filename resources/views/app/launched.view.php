@@ -236,15 +236,14 @@
                                                                     ?>
                                                             </div>
                                                             <div class="col">
-                                                                <form action="cash_in.php" method="post">
-                                                                    <input type="hidden" name="historicId" value="<?php echo $launch['id']?>">
+                                                                <form action="cash_out.php" method="post">
+                                                                    <input type="hidden" name="historicId" value="<?php echo $launch['id']; ?>">
+                                                                    <input type="hidden" name="dateFrom" value="<?php echo $dateFrom; ?>">
+                                                                    <input type="hidden" name="dateTo" value="<?php echo $dateTo; ?>">
                                                                     <button type="submit" class="btn btn-sm btn-warning">
-                                                                        <i class="fas fa-pencil-alt"></i>
+                                                                        <i class="fas fa-pencil-alt text-white"></i>
                                                                     </button>
                                                                 </form>
-                                                                <!-- <a href="#" class="btn btn-sm btn-warning">
-                                                                    <i class="fas fa-pencil-alt"></i>
-                                                                </a> -->
                                                             </div>  
                                                             <div class="col">
                                                                 <a href="<?php echo $deleteLink;?>" class="btn btn-sm btn-danger">
@@ -252,12 +251,6 @@
                                                                 </a>
                                                             </div>
                                                         </div>
-                                                        <!-- <form action="<?php $_SERVER['PHP_SELF'];?>" method="post">
-                                                            <input type="hidden" name="delCategory" value="<?php echo $launch['id'];?>">
-                                                            <button type="submit" name="btnDelCategory" class="close" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>                    
-                                                        </form> -->
 
                                                     </td>
                                                 </tr>
@@ -282,21 +275,9 @@
 <?php
     }
 ?>                        
-                        
-                        
-                        
-
                     </div>
 
-
-
-
-
-
-
-
                 </div>
-
 
             </div>
 
