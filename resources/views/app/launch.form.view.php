@@ -169,8 +169,8 @@
 
                                 <div class="form-group col-md-6">
                                     <div id="installmentField">
-                                        <input type="text" id="inputInstallment" name="value" step="1" value="<?php echo $installment;?>"
-                                                    placeholder="Qtd. Parcelas" class="form-control  <?php echo $styleInstallment;?>" >
+                                        <input type="text" id="inputInstallment" name="installments" step="1" value="<?php echo $installments;?>"
+                                                    placeholder="Qtd. Parcelas" class="form-control  <?php echo $styleInstallments;?>" >
                                                 
                                             <div class="valid-feedback">
                                                 Parece bom!

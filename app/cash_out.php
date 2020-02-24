@@ -19,14 +19,15 @@ $date = isset($_REQUEST['date']) ? $_REQUEST['date'] : null;
 $idCategory = isset($_REQUEST['category']) ? $_REQUEST['category'] : null;
 $description = isset($_REQUEST['description']) ? $_REQUEST['description'] : null;
 $idPayMethod = isset($_REQUEST['payMethod']) ? $_REQUEST['payMethod'] : null;
-
+$instalments = isset($_REQUEST['installments']) ? $_REQUEST['installments'] : null;
+var_dump($_REQUEST);
 $value = isset($_REQUEST['value']) ? str_replace(',','.',$_REQUEST['value']) : null;
 $value = floatval($value);
 
 $btnSave = isset($_REQUEST['btnSave']) ? $_REQUEST : null;
 
 $errors = $dataSelect = [];
-$styleDate = $styleCategory = $styleValue = $stylePayMethod ='';
+$styleDate = $styleCategory = $styleValue = $stylePayMethod = $styleInstallment= $installment ='';
 $reload = false;
 $today = date("Y-m-d");
 
