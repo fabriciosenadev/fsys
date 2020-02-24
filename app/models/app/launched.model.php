@@ -15,8 +15,8 @@ function selectLaunched ($data)
 
     extract($data);
 
-    $select = "SELECT h.id, h.date, c.category, c.applicable, pm.pay_method, h.value, h.status, h.description ";
-    $select .= ",h.id_category ";
+    $select = "SELECT h.id, h.date, c.category, c.applicable, pm.pay_method, h.value, h.status ";
+    $select .= ", h.description, h.id_category, pmh.id_pay_method ";
     $select .= "FROM historics AS h ";
     $select .= "JOIN categories AS c ON c.id = h.id_category ";
     $select .= "LEFT JOIN pay_method_historics AS pmh ON pmh.id_historic = h.id ";
@@ -24,7 +24,6 @@ function selectLaunched ($data)
     $select .= "WHERE h.deleted_at IS NULL AND h.created_by = $created_by AND h.date between '$dateFrom' AND '$dateTo' ";
     $select .= isset($historic_id) ? "AND h.id = $historic_id " : " ";
     $select .= "ORDER BY h.date, c.category, h.created_at ASC";
-    
     $result = mysqli_query($connection, $select);
     while ($launchment = mysqli_fetch_assoc($result)) {
         
@@ -72,12 +71,25 @@ function updateLaunch($data)
     $connection = $GLOBALS['connection'];
 
     extract($data);
-
+    
     $update = "UPDATE historics SET date = '$date', id_category = $id_category, ";
     $update .= "description = '$description', value = $value, ";
     $update .= "status = '$status', created_by = $created_by, updated_at = now() ";
     $update .= "WHERE id = $historic_id";
     
-    return mysqli_query($connection, $update);
-    
+    if(isset($id_pay_method))
+    {
+        if(mysqli_query($connection, $update))
+        {
+            $update = "UPDATE pay_method_historics SET id_pay_method = $id_pay_method, ";
+            $update .= "updated_at = now() ";
+            $update .= "WHERE id_historic = $historic_id";
+
+            return mysqli_query($connection, $update);
+        }
+    }
+    else
+    {
+        return mysqli_query($connection, $update);    
+    }
 }
