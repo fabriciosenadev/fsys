@@ -27,9 +27,11 @@
           <?php echo $name; ?>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a href="<?php echo $dir; ?>options/profile.php" class="dropdown-item">Perfil</a>
-            <div class="dropdown-divider"></div>
-            <a href="<?php echo $dir; ?>options/category.php" class="dropdown-item">Categorias</a>
+            <!-- <a href="<?php //echo $dir; ?>options/profile.php" class="dropdown-item">Perfil</a> -->
+            <!-- <a href="<?php //echo $dir; ?>options/profile.php" class="dropdown-item">Perfil</a> -->
+            <!-- <div class="dropdown-divider"></div>
+            <a href="<?php //echo $dir; ?>options/category.php" class="dropdown-item">Categorias</a> -->
+            <a href="<?php echo $dir; ?>options/" class="dropdown-item">Opções</a>
             <div class="dropdown-divider"></div>
             <a href="<?php echo $dir; ?>logout.php" class="dropdown-item"><strong>Sair</strong></a>
         </div>

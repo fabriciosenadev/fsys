@@ -4,6 +4,7 @@
 // criação das definições do banco de dados
 require 'db/connect.php';
 require_once 'categoryToRegister.model.php';
+require_once 'houseToUser.model.php';
 
 /**
  * function saveUser
@@ -43,6 +44,7 @@ function createUser ($data)
     if (mysqli_query($connection, $insert)) {
         $idUser = mysqli_insert_id($connection);
         categoriesToNewUser($idUser);
+        houseToUser($idUser);
     }
     // var_dump($idUser);
     return $idUser;

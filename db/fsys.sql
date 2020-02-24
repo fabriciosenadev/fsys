@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Servidor:                     127.0.0.1
--- Versão do servidor:           5.7.28-0ubuntu0.18.04.4 - (Ubuntu)
+-- Versão do servidor:           5.7.29-0ubuntu0.18.04.1 - (Ubuntu)
 -- OS do Servidor:               Linux
--- HeidiSQL Versão:              10.2.0.5599
+-- HeidiSQL Versão:              10.3.0.5771
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -85,6 +85,38 @@ CREATE TABLE IF NOT EXISTS `historics` (
 DELETE FROM `historics`;
 /*!40000 ALTER TABLE `historics` DISABLE KEYS */;
 /*!40000 ALTER TABLE `historics` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela fsys.houses
+DROP TABLE IF EXISTS `houses`;
+CREATE TABLE IF NOT EXISTS `houses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `house` varchar(50) NOT NULL,
+  `status` enum('EMPTY','BUSY') NOT NULL COMMENT 'A CASA PODE ESTAR OCUPADA OU VAZIA',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Copiando dados para a tabela fsys.houses: ~0 rows (aproximadamente)
+DELETE FROM `houses`;
+/*!40000 ALTER TABLE `houses` DISABLE KEYS */;
+/*!40000 ALTER TABLE `houses` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela fsys.house_users
+DROP TABLE IF EXISTS `house_users`;
+CREATE TABLE IF NOT EXISTS `house_users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_house` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_house_users_id_houses` (`id_house`),
+  KEY `fk_house_users_id_users` (`id_user`),
+  CONSTRAINT `fk_house_users_id_houses` FOREIGN KEY (`id_house`) REFERENCES `houses` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_house_users_id_users` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Copiando dados para a tabela fsys.house_users: ~0 rows (aproximadamente)
+DELETE FROM `house_users`;
+/*!40000 ALTER TABLE `house_users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `house_users` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela fsys.pay_methods
 DROP TABLE IF EXISTS `pay_methods`;
