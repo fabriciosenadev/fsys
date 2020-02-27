@@ -19,15 +19,15 @@ $date = isset($_REQUEST['date']) ? $_REQUEST['date'] : null;
 $idCategory = isset($_REQUEST['category']) ? $_REQUEST['category'] : null;
 $description = isset($_REQUEST['description']) ? $_REQUEST['description'] : null;
 $idPayMethod = isset($_REQUEST['payMethod']) ? $_REQUEST['payMethod'] : null;
-$instalments = isset($_REQUEST['installments']) ? $_REQUEST['installments'] : null;
-var_dump($_REQUEST);
+$installments = isset($_REQUEST['installments']) ? $_REQUEST['installments'] : null;
+// var_dump($_REQUEST);
 $value = isset($_REQUEST['value']) ? str_replace(',','.',$_REQUEST['value']) : null;
 $value = floatval($value);
 
 $btnSave = isset($_REQUEST['btnSave']) ? $_REQUEST : null;
 
 $errors = $dataSelect = [];
-$styleDate = $styleCategory = $styleValue = $stylePayMethod = $styleInstallment= $installment ='';
+$styleDate = $styleCategory = $styleValue = $stylePayMethod = $styleInstallments ='';
 $reload = false;
 $today = date("Y-m-d");
 
@@ -82,6 +82,11 @@ if ($btnSave) {
         $styleValue = 'is-invalid';    
     } 
 
+    if(empty($installments) || $value < 1){
+        $errors['installment'] = "Preencha o valor.";
+        $styleInstallments = 'is-invalid';    
+    } 
+
     if (count($errors) > 0 && !(empty($date))){
         $styleDate = 'is-valid';
     }
@@ -115,17 +120,28 @@ if ($btnSave) {
         $stylePayMethod = 'is-valid';
     }
 
+    if (count($errors) > 0 && !(empty($installments))){
+        $styleInstallments = 'is-valid';
+    }
+
     // valida descrição enviada pelo usuário
     $description = $description ? filter_var($description, FILTER_SANITIZE_STRING) : 'null';
 
     // metodo de gravação de dados
     if(!($errors)) {
         // echo "nothing of errors found";
+
+        $creditInstallments = calculateInstallments($installments, $value);
+
+        var_dump($creditInstallments);
+        die();
+
         $dataSave['date'] = $date;
         $dataSave['id_category'] = $idCategory;
         $dataSave['description'] = $description;
         $dataSave['value'] = $value;
         $dataSave['id_pay_method'] = $idPayMethod;
+        $dataSave['installments'] = $installments;
         $dataSave['created_by'] = intval($_SESSION['id_user']);
         $dataSave['status'] = strtotime($date) > strtotime($today) ? 'PENDING' : 'PAID';
         $dataSave['historic_id'] = isset($_SESSION['historicId']) ? $_SESSION['historicId'] : null;
@@ -158,7 +174,58 @@ $dataSelect['id_user'] = $_SESSION['id_user'];
 $categories = selectCategories($dataSelect);    
 $payMethods = selectPayMethod();
 
-include '../resources/views/app/launch.form.view.php'; 
+function calculateInstallments(int $installments, $value)
+{
+    $arrayValues = [];
+    $partialValue = floatval(number_format($value/$installments,2));
+    // var_dump($partialValue);
+    for($i = 0; $i < $installments; $i++)
+    {
+        $arrayValues[$i]=floatval($partialValue);
+    }
+    // var_dump($arrayValues);
+    // var_dump(array_sum($arrayValues));
+    // se a soma das parcelas for menor que o valor total informado
+    if(array_sum($arrayValues) < $value)
+    {
+        echo "o array é menor que o valor inicial";
 
+        $diff = $value - array_sum($arrayValues);
+        $diff = floatval(number_format($diff,2));
+        // var_dump($diff);
+        $count = 0;
+        while($diff > 0)
+        {
+            $arrayValues[$count] += 0.01;
+            $count++;
+            $diff -= 0.01;
+        }
+        // var_dump($arrayValues);
+    }
+    
+    // se a soma das parcelas for maior que o valor total informado
+    if(array_sum($arrayValues) > $value)
+    {
+        echo "o array é maior que o valor inicial";
+
+        $diff = array_sum($arrayValues) - $value;
+        $diff = floatval(number_format($diff,2));
+        // var_dump($diff);
+        $count = $installments - 1;
+
+        while($diff > 0)
+        {
+            $arrayValues[$count] -= 0.01;
+            $count--;
+            $diff -= 0.01;
+        }
+        // var_dump($arrayValues);
+        // var_dump(array_sum($arrayValues));
+    }
+    
+    return $arrayValues;
+}
+
+include '../resources/views/app/launch.form.view.php'; 
 
 require_once '../resources/template/app/footer.php';
