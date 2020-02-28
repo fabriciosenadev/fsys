@@ -125,7 +125,7 @@ if ($btnSave) {
     }
 
     // valida descrição enviada pelo usuário
-    $description = $description ? filter_var($description, FILTER_SANITIZE_STRING) : 'null';
+    $description = $description ? filter_var($description, FILTER_SANITIZE_STRING) : '';
 
     // metodo de gravação de dados
     if(!($errors)) {
@@ -145,6 +145,7 @@ if ($btnSave) {
         $dataSave['created_by'] = intval($_SESSION['id_user']);
         $dataSave['status'] = strtotime($date) > strtotime($today) ? 'PENDING' : 'PAID';
         $dataSave['historic_id'] = isset($_SESSION['historicId']) ? $_SESSION['historicId'] : null;
+        $dataSave['credit_installment'] = $creditInstallments;
 
         $result = isset($_SESSION['historicId']) ? updateLaunch($dataSave) : $result = saveLaunch($dataSave);
 
