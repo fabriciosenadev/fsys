@@ -133,8 +133,8 @@ if ($btnSave) {
 
         $creditInstallments = calculateInstallments($installments, $value);
 
-        var_dump($creditInstallments);
-        die();
+        // var_dump($creditInstallments);
+        // die();
 
         $dataSave['date'] = $date;
         $dataSave['id_category'] = $idCategory;
