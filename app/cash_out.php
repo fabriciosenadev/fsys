@@ -188,7 +188,7 @@ function calculateInstallments(int $installments, $value)
     // se a soma das parcelas for menor que o valor total informado
     if(array_sum($arrayValues) < $value)
     {
-        echo "o array é menor que o valor inicial";
+        // echo "o array é menor que o valor inicial";
 
         $diff = $value - array_sum($arrayValues);
         $diff = floatval(number_format($diff,2));
@@ -206,7 +206,7 @@ function calculateInstallments(int $installments, $value)
     // se a soma das parcelas for maior que o valor total informado
     if(array_sum($arrayValues) > $value)
     {
-        echo "o array é maior que o valor inicial";
+        // echo "o array é maior que o valor inicial";
 
         $diff = array_sum($arrayValues) - $value;
         $diff = floatval(number_format($diff,2));
