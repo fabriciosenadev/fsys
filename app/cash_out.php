@@ -20,7 +20,6 @@ $idCategory = isset($_REQUEST['category']) ? $_REQUEST['category'] : null;
 $description = isset($_REQUEST['description']) ? $_REQUEST['description'] : null;
 $idPayMethod = isset($_REQUEST['payMethod']) ? $_REQUEST['payMethod'] : null;
 $installments = isset($_REQUEST['installments']) ? $_REQUEST['installments'] : null;
-// var_dump($_REQUEST);
 $value = isset($_REQUEST['value']) ? str_replace(',','.',$_REQUEST['value']) : null;
 $value = floatval($value);
 
@@ -82,7 +81,7 @@ if ($btnSave) {
         $styleValue = 'is-invalid';    
     } 
 
-    if(empty($installments) || $value < 1){
+    if((empty($installments) && $idPayMethod == 3) || $value < 1){
         $errors['installment'] = "Preencha o valor.";
         $styleInstallments = 'is-invalid';    
     } 
@@ -128,27 +127,22 @@ if ($btnSave) {
     $description = $description ? filter_var($description, FILTER_SANITIZE_STRING) : '';
 
     // metodo de gravação de dados
-    if(!($errors)) {
-        // echo "nothing of errors found";
-
-        $creditInstallments = calculateInstallments($installments, $value);
-
-        // var_dump($creditInstallments);
-        // die();
+    if(!($errors)) {        
+        $creditInstallments = $installments ? calculateInstallments($installments, $value) : null;
 
         $dataSave['date'] = $date;
         $dataSave['id_category'] = $idCategory;
         $dataSave['description'] = $description;
         $dataSave['value'] = $value;
         $dataSave['id_pay_method'] = $idPayMethod;
-        $dataSave['installments'] = $installments;
+        $dataSave['installments'] = $installments == '' ? null : $installments;
         $dataSave['created_by'] = intval($_SESSION['id_user']);
         $dataSave['status'] = strtotime($date) > strtotime($today) ? 'PENDING' : 'PAID';
         $dataSave['historic_id'] = isset($_SESSION['historicId']) ? $_SESSION['historicId'] : null;
-        $dataSave['credit_installment'] = $creditInstallments;
+        $dataSave['credit_installments'] = $creditInstallments;        
 
         $result = isset($_SESSION['historicId']) ? updateLaunch($dataSave) : $result = saveLaunch($dataSave);
-
+        
         if($result) {
 
             if(isset($_SESSION['historicId'])) 
@@ -164,6 +158,9 @@ if ($btnSave) {
                 $_SESSION['success'] = "Saída registrada.";
                 header("Location: cash_out.php");
             }
+        } else {
+            $errors['result'] = 'Tivemos um problema para salvar o lançamento, tente novamente. Se este erro ocorrer novamente contate o Administrador.';
+            // header("Location: cash_out.php");
         }
     }
 
@@ -179,21 +176,17 @@ function calculateInstallments(int $installments, $value)
 {
     $arrayValues = [];
     $partialValue = floatval(number_format($value/$installments,2));
-    // var_dump($partialValue);
+
     for($i = 0; $i < $installments; $i++)
     {
         $arrayValues[$i]=floatval($partialValue);
     }
-    // var_dump($arrayValues);
-    // var_dump(array_sum($arrayValues));
+
     // se a soma das parcelas for menor que o valor total informado
     if(array_sum($arrayValues) < $value)
     {
-        // echo "o array é menor que o valor inicial";
-
         $diff = $value - array_sum($arrayValues);
         $diff = floatval(number_format($diff,2));
-        // var_dump($diff);
         $count = 0;
         while($diff > 0)
         {
@@ -201,17 +194,13 @@ function calculateInstallments(int $installments, $value)
             $count++;
             $diff -= 0.01;
         }
-        // var_dump($arrayValues);
     }
     
     // se a soma das parcelas for maior que o valor total informado
     if(array_sum($arrayValues) > $value)
     {
-        // echo "o array é maior que o valor inicial";
-
         $diff = array_sum($arrayValues) - $value;
         $diff = floatval(number_format($diff,2));
-        // var_dump($diff);
         $count = $installments - 1;
 
         while($diff > 0)
@@ -220,8 +209,6 @@ function calculateInstallments(int $installments, $value)
             $count--;
             $diff -= 0.01;
         }
-        // var_dump($arrayValues);
-        // var_dump(array_sum($arrayValues));
     }
     
     return $arrayValues;

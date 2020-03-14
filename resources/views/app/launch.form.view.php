@@ -177,7 +177,7 @@
                                             </div>
                                             <div class="invalid-feedback">
 <?php                                       
-                                                echo ($errors['installment']) 
+                                                echo ($errors['installment'] && $idPayMethod == 3) 
                                                     ?   $errors['installment']
                                                     :   null;
 ?>
