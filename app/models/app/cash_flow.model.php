@@ -1,5 +1,4 @@
 <?php
-namespace App\Models\App;
 // criação das definições do banco de dados
 
 require '../db/connect.php';
@@ -91,9 +90,7 @@ function savePayMethodOut($data)
 function saveValues($data)
 {
     $connection = $GLOBALS['connection'];
-    $token = new token();
-    var_dump($token->tokenGenerate());
-    die();
+    
     $insert = '';
     $idCollection = [];
 
