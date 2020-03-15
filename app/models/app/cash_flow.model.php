@@ -10,8 +10,6 @@ require '../db/connect.php';
  */
 function saveLaunch($data) 
 {   
-    $data['id_value'] = [];
-    
     $saveValues = saveValues($data);
     $data['ids_value'] = $saveValues;
     
@@ -19,7 +17,7 @@ function saveLaunch($data)
 
     if ($createHistoricReturn && isset($data['id_pay_method'])) 
     {
-        $data['id_historic'] = $createHistoricReturn;
+        $data['ids_historic'] = $createHistoricReturn;
 
         $savePayMethodOutReturn = savePayMethodOut($data);
 
@@ -34,13 +32,13 @@ function saveLaunch($data)
 /**
  * function createHistoric
  * @param array $data
- * @return int|boolean
+ * @return array
  */
 function createHistoric($data)
 {
     $connection = $GLOBALS['connection'];
     
-    $idHistoric = [];
+    $idCollection = [];
 
     extract($data);
 
@@ -51,35 +49,36 @@ function createHistoric($data)
         
         if(mysqli_query($connection, $insert))
         {
-            $idHistoric = mysqli_insert_id($connection);
+            $idCollection[] = mysqli_insert_id($connection);
             $dateConverted1 = strtotime($date);
             $dateConverted2 = strtotime('+1 month', $dateConverted1);
             $date = date('Y-m-d',$dateConverted2);
         }
     }
-    return $idHistoric;
+    return $idCollection;
 }
 
 /**
  * function savePayMethodOut
  * @param array $data
- * @return int|boolean
+ * @return array
  */
 function savePayMethodOut($data)
 {
     $connection = $GLOBALS['connection'];
-
+    $idCollection = [];
     extract($data);
-
-    $insert = "INSERT INTO pay_method_historics(id_historic, id_pay_method, created_by, created_at)";
-    $insert .= "VALUES($id_historic, $id_pay_method, $created_by, now() )";
-
-    if (mysqli_query($connection, $insert) ) {
-        $IdPayMethodHistoric = mysqli_insert_id($connection);
+    
+    foreach($ids_historic as $id_historic)
+    {        
+        $insert = "INSERT INTO pay_method_historics(id_historic, id_pay_method, created_by, created_at)";
+        $insert .= "VALUES($id_historic, $id_pay_method, $created_by, now() )";
+        if (mysqli_query($connection, $insert) ) 
+        {
+            $idCollection = mysqli_insert_id($connection);
+        }
     }
-
-    return $IdPayMethodHistoric;
-
+    return $idCollection;
 }
 
 /**
