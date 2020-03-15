@@ -6,7 +6,7 @@ require '../db/connect.php';
 /**
  *  function saveLaunch
  *  @param array $data
- *  @return int|boolean
+ *  @return array
  */
 function saveLaunch($data) 
 {   
