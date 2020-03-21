@@ -11,7 +11,9 @@ require '../db/connect.php';
 function saveLaunch($data) 
 {   
     $saveValues = saveValues($data);
+    $saveDescription = saveDescription($data);
     $data['ids_value'] = $saveValues;
+    $data['id_description'] = $saveDescription;
     
     $createHistoricReturn = createHistoric($data);
 
@@ -43,9 +45,9 @@ function createHistoric($data)
     extract($data);
 
     foreach($ids_value as $id_value)
-    {        
-        $insert = "INSERT INTO historics(date, description, status, id_category, id_value, created_by, created_at)";
-        $insert .= "VALUES('$date', '$description', '$status', $id_category, $id_value, $created_by, now())";
+    {
+        $insert = "INSERT INTO historics(date, id_description, status, id_category, id_value, created_by, created_at)";
+        $insert .= "VALUES('$date', '$id_description', '$status', $id_category, $id_value, $created_by, now())";
         
         if(mysqli_query($connection, $insert))
         {
@@ -95,7 +97,7 @@ function saveValues($data)
 
     extract($data);
     
-    if($installments)
+    if(isset($installments) && $installments)
     {
         $installments = (int) $installments;
         
@@ -124,4 +126,26 @@ function saveValues($data)
         }
     }
     return $idCollection;
+}
+
+/**
+ * function saveDescription
+ * @param array $data
+ * @return int|Boolean
+ */
+function saveDescription($data)
+{
+    $connection = $GLOBALS['connection'];
+
+    extract($data);
+
+    $insert = "INSERT INTO descriptions(description, created_by, created_at)";
+    $insert .= "VALUES('$description', $created_by, now())";
+    
+    if(mysqli_query($connection, $insert))
+    {
+        return mysqli_insert_id($connection);
+    }
+
+    
 }

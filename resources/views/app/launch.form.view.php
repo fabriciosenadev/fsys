@@ -164,9 +164,11 @@
                             }
 ?>
                             </div>
-
-                             <div class="form-row">
-
+                            <div class="form-row">
+<?php 
+                            if (isset($payMethods))
+                            {
+?>
                                 <div class="form-group col-md-6">
                                     <div id="installmentField">
                                         <input type="text" id="inputInstallment" name="installments" step="1" value="<?php echo $installments;?>"
@@ -184,6 +186,9 @@
                                             </div>
                                     </div>
                                 </div>
+<?php 
+                            };
+?>
                                 <div class="form-group col-md-2">
                                     <button type="submit" class="btn btn-success" name="btnSave" id="btnSave">
                                         <?php echo isset($historicId)? "Alterar":"Salvar";?>
