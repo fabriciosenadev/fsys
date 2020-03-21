@@ -114,8 +114,9 @@ function saveValues($data)
     }
     else
     {
-        $insert = "INSERT INTO values(value, created_by, created_at)";
+        $insert = "INSERT INTO `values`(`value`, created_by, created_at)";
         $insert .= "VALUES($value, $created_by, now())";
+        $insert = addslashes($insert);
 
         if(mysqli_query($connection, $insert))
         {
