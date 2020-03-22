@@ -111,109 +111,23 @@
                                             
                                             <thead>
                                                 <tr>
-                                                    <!-- <th scope="col" width="20px">#</th> -->
-                                                    <th scope="col" width="120px" class="text-center">Data</th>
-                                                    <th scope="col" width="120px" class="text-center">Categoria</th>
-                                                    <th scope="col" width="120px" class="text-center">Valor</th>
-                                                    <th scope="col" class="text-center">Descrição</th>
-                                                    <th scope="col" width="90px" class="text-center">Status</th>
-                                                    <th scope="col" width="180px" class="text-center">Ações</th>
-                                                </tr>
-                                            </thead>
-
-                                            <tbody>
-                                            <?php 
-                                                foreach($launches as $launch) {
-                                                    if($launch['applicable'] == 'IN') {
-                                                        $statusLink = "?act=received&historicId={$launch['id']}&dateFrom=$dateFrom&dateTo=$dateTo";
-                                                        $deleteLink = "?act=delete&historicId={$launch['id']}&dateFrom=$dateFrom&dateTo=$dateTo";
-                                                        $class = $launch['status'] == 'PENDING' ? 'bg-warning' : 'bg-success';
-                                            ?>
-                                                <tr>
-                                                    <!-- <th scope="row"><?php echo $launch['id'];?></th> -->
-                                                    <td><?php echo date("d/m/Y",strtotime($launch['date']));?></td>
-                                                    <td><?php echo $launch['category'];?></td>
-                                                    <td> 
-                                                        R$ <?php echo number_format($launch['value'],2,',','.');?>
-                                                    </td>
-                                                    <td><?php echo $launch['description']; ?></td>
-                                                    <td>
-                                                        <div class=" text-center <?php echo $class;?>" style="padding:4px;border-radius:20px;color:white;">                                                        
-                                                            <?php echo $launch['status'] == 'RECEIVED' ? 'Recebido' : 'Pendente';?>                                                        
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="row">
-                                                            <div class="col-sm">
-                                                            <?php 
-                                                                if($launch['status'] == 'PENDING') {
-                                                            ?>
-                                                                <a href="<?php echo $statusLink;?>" class="btn btn-sm btn-success" alt="Pago">
-                                                                    <i class="far fa-check-square"></i>
-                                                                </a>
-                                                            <?php
-                                                                }
-                                                            ?>
-                                                            </div>
-                                                            <div class="col-sm">
-                                                                <form action="cash_in.php" method="post">
-                                                                    <input type="hidden" name="historicId" value="<?php echo $launch['id']; ?>">
-                                                                    <input type="hidden" name="dateFrom" value="<?php echo $dateFrom; ?>">
-                                                                    <input type="hidden" name="dateTo" value="<?php echo $dateTo; ?>">
-                                                                    <button type="submit" class="btn btn-sm btn-warning">
-                                                                        <i class="fas fa-pencil-alt text-white"></i>
-                                                                    </button>
-                                                                </form>
-                                                            </div>  
-                                                            <div class="col-sm">
-                                                                <a href="<?php echo $deleteLink;?>" class="btn btn-sm btn-danger">
-                                                                    <i class="far fa-trash-alt"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <?php
-                                                        }
-                                                    }
-                                                ?>
-                                            </tbody>
-
-                                        </table>
-
-                                    </div>
-
-                                    <div class="tab-pane fade" id="out" role="tabpanel" aria-labelledby="out-tab">
-                                        <table class="table table-striped">
-                                            
-                                            <thead>
-                                                <tr>
                                                     <th scope="col" width="30px" class="text-center">#</th>
-                                                    <th scope="col" >Data</th>
-                                                    <!-- <th scope="col" width="120px">Categoria</th> -->
-                                                    <th scope="col">Forma Pagto.</th>
-                                                    <th scope="col" >Valor (R$)</th>                                                    
-                                                    <!-- <th scope="col">Descrição</th> -->
-                                                    <th scope="col" class="text-center">Status</th>
-                                                    <!-- <th scope="col" width="180px" class="text-center">Ações</th> -->
+                                                    <th scope="col">Data</th>                                                    
+                                                    <th scope="col">Valor (R$)</th>                                                    
+                                                    <th scope="col" class="text-center">Status</th>                                                    
                                                 </tr>
                                             </thead>
 
                                             <tbody>
-                                            <?php 
-                                                foreach($launches as $launch) {
-                                                    if($launch['applicable'] == 'OUT') {
-                                                        $statusLink = "?act=paid&historicId={$launch['id']}&dateFrom=$dateFrom&dateTo=$dateTo";
-                                                        $deleteLink = "?act=delete&historicId={$launch['id']}&dateFrom=$dateFrom&dateTo=$dateTo";
+<?php 
+                                                foreach($launches as $launch) 
+                                                {
+                                                    if($launch['applicable'] == 'IN') 
+                                                    {
                                                         $class = $launch['status'] == 'PENDING' ? 'bg-warning' : 'bg-success';
-                                                        
-                                                ?>
+?>
                                                 <tr>
-                                                    <th scope="row">
-                                                    <!-- <?php echo $launch['id'];?> -->                                                        
-                                                        <!-- <a href="#" class="btn btn-sm">
-                                                            <i class="far fa-eye"></i>                                                        
-                                                        </a> -->
+                                                    <th scope="row">                                                    
                                                         <form action="single.php" method="post">
                                                             <input type="hidden" name="historicId" value="<?php echo $launch['id']; ?>">
                                                             <input type="hidden" name="dateFrom" value="<?php echo $dateFrom; ?>">
@@ -223,76 +137,86 @@
                                                             </button>
                                                         </form>
                                                     </th>
-                                                    <td><?php echo date("d/m/Y",strtotime($launch['date']));?></td>
-                                                    <!-- <td><?php echo $launch['category'];?></td> -->
-                                                    <td><?php echo $launch['pay_method'];?></td>
+                                                    <td><?php echo date("d/m/Y",strtotime($launch['date']));?></td>                                                    
+                                                    <td> 
+                                                        <?php echo number_format($launch['value'],2,',','.');?>
+                                                    </td>                                                    
                                                     <td>
-                                                        <?php echo  
-                                                            $launch['pm_applicable'] == 'CREDIT' ?
-                                                            number_format($launch['value_installment'],2,',','.') :
-                                                            number_format($launch['value'],2,',','.');
-                                                        ?>
-                                                    </td>
-                                                    <!-- <td><?php 
-                                                            $installmentsVisible = "[".$launch['current_installment'] ." de ". $launch['installments']. "]";
-                                                            echo isset($launch['installments']) ? $installmentsVisible :  '';  
-                                                            echo $launch['description'];
-                                                        ?>
-                                                    </td> -->
-                                                    <td>
-                                                        <div class=" text-center <?php echo $class;?>" style="padding:4px;border-radius:20px;color:white;min-width:80px;">                                                        
-                                                            <?php echo $launch['status'] == 'PAID' ? 'Pago' : 'Pendente';?>                                                        
+                                                        <div class=" text-center <?php echo $class;?>" style="padding:4px;border-radius:20px;color:white;">                                                        
+                                                            <?php echo $launch['status'] == 'RECEIVED' ? 'Recebido' : 'Pendente';?>                                                        
                                                         </div>
                                                     </td>
-                                                    <!-- <td>
-                                                        <div class="row justify-content-end">
-                                                            <div class="col">
-                                                                <?php 
-                                                                if($launch['status'] == 'PENDING') {
-                                                                    ?>
-                                                                <a href="<?php echo $statusLink; ?>" class="btn btn-sm btn-success" alt="Pago">
-                                                                <i class="far fa-check-square"></i>
-                                                            </a>
-                                                            <?php
-                                                                    }
-                                                                    ?>
-                                                            </div>
-                                                            <div class="col">
-                                                                <form action="cash_out.php" method="post">
-                                                                    <input type="hidden" name="historicId" value="<?php echo $launch['id']; ?>">
-                                                                    <input type="hidden" name="dateFrom" value="<?php echo $dateFrom; ?>">
-                                                                    <input type="hidden" name="dateTo" value="<?php echo $dateTo; ?>">
-                                                                    <button type="submit" class="btn btn-sm btn-warning">
-                                                                        <i class="fas fa-pencil-alt text-white"></i>
-                                                                    </button>
-                                                                </form>
-                                                            </div>  
-                                                            <div class="col">
-                                                                <a href="<?php echo $deleteLink;?>" class="btn btn-sm btn-danger">
-                                                                    <i class="far fa-trash-alt"></i>
-                                                                </a>
-                                                            </div>
-
-                                                        </div>
-                                                        <br>
-                                                        
-
-                                                    </td>
-                                                </tr> -->
-                                                <?php
-                                                        }
+                                                </tr>
+<?php
                                                     }
-                                                ?>
+                                                }
+?>
                                             </tbody>
 
                                         </table>
-                                    
+
+                                    </div>
+
+                                    <div class="tab-pane fade" id="out" role="tabpanel" aria-labelledby="out-tab">
+
+                                        <table class="table table-striped">
+                                            
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" width="30px" class="text-center">#</th>
+                                                    <th scope="col">Data</th>                                                    
+                                                    <th scope="col">Valor (R$)</th>                                                    
+                                                    <th scope="col" class="text-center">Status</th>
+                                                    
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+<?php 
+                                                foreach($launches as $launch) 
+                                                {
+                                                    if($launch['applicable'] == 'OUT') 
+                                                    {
+                                                        $class = $launch['status'] == 'PENDING' ? 'bg-warning' : 'bg-success';
+?>
+                                                <tr>
+                                                    <th scope="row">                                                    
+                                                        <form action="single.php" method="post">
+                                                            <input type="hidden" name="historicId" value="<?php echo $launch['id']; ?>">
+                                                            <input type="hidden" name="dateFrom" value="<?php echo $dateFrom; ?>">
+                                                            <input type="hidden" name="dateTo" value="<?php echo $dateTo; ?>">
+                                                            <button type="submit" class="btn btn-sm">
+                                                                <i class="far fa-eye"></i>
+                                                            </button>
+                                                        </form>
+                                                    </th>
+                                                    <td><?php echo date("d/m/Y",strtotime($launch['date']));?></td>                                                    
+                                                    <td> 
+                                                        <?php   echo  
+                                                                $launch['pm_applicable'] == 'CREDIT' ?
+                                                                number_format($launch['value_installment'],2,',','.') :
+                                                                number_format($launch['value'],2,',','.');
+                                                        ?>
+                                                    </td>                                                    
+                                                    <td>
+                                                        <div class=" text-center <?php echo $class;?>" style="padding:4px;border-radius:20px;color:white;">                                                        
+                                                            <?php echo $launch['status'] == 'PAID' ? 'Pago' : 'Pendente';?>                                                        
+                                                        </div>
+                                                    </td>
+                                                </tr>
+<?php
+                                                    }
+                                                }
+?>
+                                            </tbody>
+                                        </table>
+
                                     </div>
                                                     
                                 </div>                
-                            <?php
+<?php
         }
-                            ?>
+?>
                             </div>
                         
                         </div>
