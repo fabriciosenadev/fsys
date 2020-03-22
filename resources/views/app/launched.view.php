@@ -58,12 +58,17 @@
                             <strong>&raquo;</strong> Forma de Pagamento: <?php echo $result[0]['pay_method'];?>
                         </p>
                         <p>
-                            <strong>&raquo;</strong> Valor: R$<?php echo $result[0]['value'];?> 
+                            <strong>&raquo;</strong> Valor: R$
                             <?php 
                                 if($result[0]['installments'])
                                 {
                                     $installmentsView = $result[0]['current_installment']." de ".$result[0]['installments'];
+                                    echo $result[0]['value_installment'];
                                     echo " - Parcelas: ".$installmentsView;
+                                }
+                                else
+                                {
+                                    echo $result[0]['value'];
                                 }
                             ?>
                         </p>
@@ -112,9 +117,6 @@
                         </div>
 
                     </div>
-
-
-
 
                 </div>
                                          
