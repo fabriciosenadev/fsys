@@ -200,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Copiando dados para a tabela fsys.users: ~0 rows (aproximadamente)
 DELETE FROM `users`;
@@ -232,6 +232,7 @@ CREATE TABLE IF NOT EXISTS `values` (
   `value_installment` decimal(8,2) DEFAULT NULL,
   `installments` int(11) DEFAULT NULL,
   `current_installment` int(11) DEFAULT NULL,
+  `unique_id` varchar(50) NOT NULL,
   `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,

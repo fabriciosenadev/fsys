@@ -124,7 +124,8 @@ if ($btnSave) {
     }
 
     // valida descrição enviada pelo usuário
-    $description = $description ? filter_var($description, FILTER_SANITIZE_STRING) : '';
+    $description = filter_var($description, FILTER_SANITIZE_STRING);
+    $description = $description ? $description : null;
 
     // metodo de gravação de dados
     if(!($errors)) {        
