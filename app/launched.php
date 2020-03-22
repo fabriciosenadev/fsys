@@ -83,7 +83,7 @@ if ($btnFilter) {
 
 
 
-include '../resources/views/app/launched.view.php'; 
+include '../resources/views/app/launched.search.php'; 
 
 
 require_once '../resources/template/app/footer.php';
