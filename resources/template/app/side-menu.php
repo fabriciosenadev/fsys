@@ -15,11 +15,11 @@
     {
 ?>
         <div class="row justify-content-center">
-            <div class="accordion " id="accordionExample">
+            <div class="accordion" id="accordionExample">
 
-                <div class="card text-center text-white rounded" style="width:100px;">
+                <div class="card text-center text-white border rounded-lg" style="width:100px;background-color:#d6d6d6;" >
                     
-                    <div class="card-header bg-success" id="headingOne">
+                    <div class="card-header bg-success border-0" id="headingOne">
                         <button class="btn btn-sm text-white" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             <h6 class="mb-0">
                                 Novo
@@ -27,7 +27,7 @@
                         </button>
                     </div>
 
-                    <div id="collapseOne" class="collapse bg-transparent" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div id="collapseOne" class="collapse  border-success" aria-labelledby="headingOne" data-parent="#accordionExample">
                         <div class="card-body">
                             
                             <div class="row py-2 sticky-top flex-grow-1 justify-content-center">
