@@ -94,7 +94,7 @@ function saveValues($data)
     
     $insert = '';
     $idCollection = [];
-
+    $unique_id = uniqid(rand(), true);
     extract($data);
     
     if(isset($installments) && $installments)
@@ -104,8 +104,8 @@ function saveValues($data)
         foreach($credit_installments as $i => $value_installment)
         {
             $current_installment = $i + 1;
-            $insert = "INSERT INTO `values`(`value`, value_installment, installments, current_installment, created_by, created_at)";
-            $insert .= "VALUES($value, $value_installment, $installments, $current_installment, $created_by, now())";
+            $insert = "INSERT INTO `values`(`value`, value_installment, installments, current_installment, unique_id, created_by, created_at)";
+            $insert .= "VALUES($value, $value_installment, $installments, $current_installment, $unique_id, $created_by, now())";
             $insert = addslashes($insert);
             
             if(mysqli_query($connection, $insert))
@@ -116,8 +116,8 @@ function saveValues($data)
     }
     else
     {
-        $insert = "INSERT INTO `values`(`value`, created_by, created_at)";
-        $insert .= "VALUES($value, $created_by, now())";
+        $insert = "INSERT INTO `values`(`value`, unique_id, created_by, created_at)";
+        $insert .= "VALUES($value, $unique_id, $created_by, now())";
         $insert = addslashes($insert);
 
         if(mysqli_query($connection, $insert))
