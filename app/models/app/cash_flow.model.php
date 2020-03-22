@@ -11,6 +11,7 @@ require '../db/connect.php';
 function saveLaunch($data) 
 {   
     $saveValues = saveValues($data);
+    
     $saveDescription = saveDescription($data);
     $data['ids_value'] = $saveValues;
     $data['id_description'] = $saveDescription;
@@ -105,7 +106,7 @@ function saveValues($data)
         {
             $current_installment = $i + 1;
             $insert = "INSERT INTO `values`(`value`, value_installment, installments, current_installment, unique_id, created_by, created_at)";
-            $insert .= "VALUES($value, $value_installment, $installments, $current_installment, $unique_id, $created_by, now())";
+            $insert .= "VALUES($value, $value_installment, $installments, $current_installment, '$unique_id', $created_by, now())";
             $insert = addslashes($insert);
             
             if(mysqli_query($connection, $insert))
@@ -117,9 +118,9 @@ function saveValues($data)
     else
     {
         $insert = "INSERT INTO `values`(`value`, unique_id, created_by, created_at)";
-        $insert .= "VALUES($value, $unique_id, $created_by, now())";
-        $insert = addslashes($insert);
+        $insert .= "VALUES($value, '$unique_id', $created_by, now())";
 
+        // $insert = addslashes($insert);
         if(mysqli_query($connection, $insert))
         {
             $idCollection[] = mysqli_insert_id($connection);
