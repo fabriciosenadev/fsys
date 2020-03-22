@@ -133,8 +133,8 @@
                             if ($visible) {
 ?>
                                 <div class="form-group col-md-6">
-                                    <label for="inputPayMethod">Forma de Pagamento</label>
-                                        <select id="inputPayMethod" name="payMethod" 
+                                    <label for="selectPayMethod">Forma de Pagamento</label>
+                                        <select id="selectPayMethod" name="payMethod" onload="changeState(this)"
                                             class="form-control <?php echo $stylePayMethod;?>">
                                             <option value="">Escolha...</option>
 <?php
@@ -164,11 +164,33 @@
                             }
 ?>
                             </div>
-
-                             <div class="form-row">
-
+                            <div class="form-row">
+<?php 
+                            if (isset($payMethods))
+                            {
+?>
+                                <div class="form-group col-md-6">
+                                    <div id="installmentField">
+                                        <input type="text" id="inputInstallment" name="installments" step="1" value="<?php echo $installments;?>"
+                                                    placeholder="Qtd. Parcelas" class="form-control  <?php echo $styleInstallments;?>" >
+                                                
+                                            <div class="valid-feedback">
+                                                Parece bom!
+                                            </div>
+                                            <div class="invalid-feedback">
+<?php                                       
+                                                echo ($errors['installment'] && $idPayMethod == 3) 
+                                                    ?   $errors['installment']
+                                                    :   null;
+?>
+                                            </div>
+                                    </div>
+                                </div>
+<?php 
+                            };
+?>
                                 <div class="form-group col-md-2">
-                                    <button type="submit" class="btn btn-success" name="btnSave">
+                                    <button type="submit" class="btn btn-success" name="btnSave" id="btnSave">
                                         <?php echo isset($historicId)? "Alterar":"Salvar";?>
                                     </button>    
                                 </div>
@@ -178,8 +200,8 @@
                         </form>
 
                         <div>
-                        <?php
-                                if($msg){
+<?php
+                            if($msg){
 ?>
                                 <div class="form-group col-md">
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -190,8 +212,7 @@
                                     </div>
                                 </div>
 <?php
-                                    // unset($_SESSION['success']);
-                                }
+                            }
 ?>                        
                         </div>
                     </div>
@@ -212,3 +233,34 @@
 
 
 
+<script>
+    
+    let selectPayMethod = document.querySelector('#selectPayMethod');
+    let field = document.getElementById('selectPayMethod').value;
+    let installmentField = document.getElementById('installmentField');
+    
+    selectPayMethod.addEventListener('change', changeState);
+
+    // seta o valor após carregar a pagina
+    if (field == 3)
+    {
+        installmentField.style.visibility = 'visible'; 
+    } 
+    else 
+    { 
+        installmentField.style.visibility = 'hidden';
+    }
+    
+    // seta o valor quando o evento change é acionado
+    function changeState () 
+    {   
+        if (selectPayMethod.value == 3)
+        {
+            installmentField.style.visibility = 'visible'; 
+        } 
+        else 
+        { 
+            installmentField.style.visibility = 'hidden';
+        }
+    }
+</script>

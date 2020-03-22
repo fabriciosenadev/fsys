@@ -2,7 +2,7 @@
 -- Servidor:                     127.0.0.1
 -- Versão do servidor:           5.7.29-0ubuntu0.18.04.1 - (Ubuntu)
 -- OS do Servidor:               Linux
--- HeidiSQL Versão:              10.3.0.5771
+-- HeidiSQL Versão:              11.0.0.5919
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -61,15 +61,34 @@ DELETE FROM `category_users`;
 /*!40000 ALTER TABLE `category_users` DISABLE KEYS */;
 /*!40000 ALTER TABLE `category_users` ENABLE KEYS */;
 
+-- Copiando estrutura para tabela fsys.descriptions
+DROP TABLE IF EXISTS `descriptions`;
+CREATE TABLE IF NOT EXISTS `descriptions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `description` varchar(255) DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_descriptions_id_user` (`created_by`),
+  CONSTRAINT `fk_descriptions_id_user` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Copiando dados para a tabela fsys.descriptions: ~0 rows (aproximadamente)
+DELETE FROM `descriptions`;
+/*!40000 ALTER TABLE `descriptions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `descriptions` ENABLE KEYS */;
+
 -- Copiando estrutura para tabela fsys.historics
 DROP TABLE IF EXISTS `historics`;
 CREATE TABLE IF NOT EXISTS `historics` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date` date DEFAULT NULL,
-  `description` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `value` decimal(8,2) NOT NULL,
+  `id_description` int(11) DEFAULT NULL,
   `status` enum('PAID','RECEIVED','PENDING') COLLATE utf8_unicode_ci NOT NULL,
   `id_category` int(11) DEFAULT NULL,
+  `id_value` int(11) DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -77,8 +96,12 @@ CREATE TABLE IF NOT EXISTS `historics` (
   PRIMARY KEY (`id`),
   KEY `fk_historics_created_by` (`created_by`),
   KEY `fk_historics_id_category` (`id_category`),
+  KEY `fk_historics_id_values` (`id_value`),
+  KEY `fk_historics_id_description` (`id_description`),
   CONSTRAINT `fk_historics_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_historics_id_category` FOREIGN KEY (`id_category`) REFERENCES `categories` (`id`) ON DELETE CASCADE
+  CONSTRAINT `fk_historics_id_category` FOREIGN KEY (`id_category`) REFERENCES `categories` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_historics_id_description` FOREIGN KEY (`id_description`) REFERENCES `descriptions` (`id`),
+  CONSTRAINT `fk_historics_id_values` FOREIGN KEY (`id_value`) REFERENCES `values` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Copiando dados para a tabela fsys.historics: ~0 rows (aproximadamente)
@@ -146,9 +169,9 @@ INSERT INTO `pay_methods` (`id`, `pay_method`, `applicable`, `created_by`, `crea
 DROP TABLE IF EXISTS `pay_method_historics`;
 CREATE TABLE IF NOT EXISTS `pay_method_historics` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_historic` int(11) NOT NULL DEFAULT '0',
-  `id_pay_method` int(11) NOT NULL DEFAULT '0',
-  `created_by` int(11) NOT NULL DEFAULT '0',
+  `id_historic` int(11) DEFAULT NULL,
+  `id_pay_method` int(11) DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
@@ -156,9 +179,9 @@ CREATE TABLE IF NOT EXISTS `pay_method_historics` (
   KEY `fk_pay_method_historics_id_historics` (`id_historic`),
   KEY `fk_pay_method_historics_id_pay_methods` (`id_pay_method`),
   KEY `fk_pay_method_historics_id_users` (`created_by`),
-  CONSTRAINT `fk_pay_method_historics_id_historics` FOREIGN KEY (`id_historic`) REFERENCES `historics` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_pay_method_historics_id_pay_methods` FOREIGN KEY (`id_pay_method`) REFERENCES `pay_methods` (`id`),
-  CONSTRAINT `fk_pay_method_historics_id_users` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE
+  CONSTRAINT `fk_pay_method_historics_id_historics` FOREIGN KEY (`id_historic`) REFERENCES `historics` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `fk_pay_method_historics_id_pay_methods` FOREIGN KEY (`id_pay_method`) REFERENCES `pay_methods` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `fk_pay_method_historics_id_users` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='relation between historics and pay_methods';
 
 -- Copiando dados para a tabela fsys.pay_method_historics: ~0 rows (aproximadamente)
@@ -177,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Copiando dados para a tabela fsys.users: ~0 rows (aproximadamente)
 DELETE FROM `users`;
@@ -200,6 +223,58 @@ CREATE TABLE IF NOT EXISTS `user_password_resets` (
 DELETE FROM `user_password_resets`;
 /*!40000 ALTER TABLE `user_password_resets` DISABLE KEYS */;
 /*!40000 ALTER TABLE `user_password_resets` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela fsys.values
+DROP TABLE IF EXISTS `values`;
+CREATE TABLE IF NOT EXISTS `values` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `value` decimal(8,2) NOT NULL DEFAULT '0.00',
+  `value_installment` decimal(8,2) DEFAULT NULL,
+  `installments` int(11) DEFAULT NULL,
+  `current_installment` int(11) DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_values_id_users` (`created_by`),
+  CONSTRAINT `fk_values_id_users` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Copiando dados para a tabela fsys.values: ~0 rows (aproximadamente)
+DELETE FROM `values`;
+/*!40000 ALTER TABLE `values` DISABLE KEYS */;
+/*!40000 ALTER TABLE `values` ENABLE KEYS */;
+
+-- Copiando estrutura para view fsys.v_historic
+DROP VIEW IF EXISTS `v_historic`;
+-- Criando tabela temporária para evitar erros de dependência de VIEW
+CREATE TABLE `v_historic` (
+	`id` INT(11) NOT NULL,
+	`date` DATE NULL,
+	`id_description` INT(11) NULL,
+	`status` ENUM('PAID','RECEIVED','PENDING') NOT NULL COLLATE 'utf8_unicode_ci',
+	`id_value` INT(11) NULL,
+	`id_category` INT(11) NULL,
+	`category` VARCHAR(50) NOT NULL COLLATE 'utf8_unicode_ci',
+	`applicable` ENUM('IN','OUT') NOT NULL COMMENT 'IN = ENTRADA, OUT= SAIDA' COLLATE 'utf8_unicode_ci',
+	`description` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`value` DECIMAL(8,2) NOT NULL,
+	`value_installment` DECIMAL(8,2) NULL,
+	`installments` INT(11) NULL,
+	`current_installment` INT(11) NULL,
+	`pay_method` VARCHAR(50) NULL COLLATE 'utf8_unicode_ci',
+	`pm_applicable` ENUM('WALLET','ACCOUNT','CREDIT') NULL COLLATE 'utf8_unicode_ci',
+	`id_pay_method` INT(11) NULL,
+	`created_by` INT(11) NULL,
+	`created_at` TIMESTAMP NULL
+) ENGINE=MyISAM;
+
+-- Copiando estrutura para view fsys.v_historic
+-- DROP VIEW IF EXISTS `v_historic`;
+-- Removendo tabela temporária e criando a estrutura VIEW final
+DROP TABLE IF EXISTS `v_historic`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `v_historic` AS select `h`.`id` AS `id`,`h`.`date` AS `date`,`h`.`id_description` AS `id_description`,`h`.`status` AS `status`,`h`.`id_value` AS `id_value`,`h`.`id_category` AS `id_category`,`c`.`category` AS `category`,`c`.`applicable` AS `applicable`,`d`.`description` AS `description`,`v`.`value` AS `value`,`v`.`value_installment` AS `value_installment`,`v`.`installments` AS `installments`,`v`.`current_installment` AS `current_installment`,`pm`.`pay_method` AS `pay_method`,`pm`.`applicable` AS `pm_applicable`,`pmh`.`id_pay_method` AS `id_pay_method`,`h`.`created_by` AS `created_by`,`h`.`created_at` AS `created_at` from (((((`historics` `h` join `categories` `c` on((`c`.`id` = `h`.`id_category`))) join `values` `v` on((`v`.`id` = `h`.`id_value`))) join `descriptions` `d` on((`d`.`id` = `h`.`id_description`))) left join `pay_method_historics` `pmh` on((`pmh`.`id_historic` = `h`.`id`))) left join `pay_methods` `pm` on((`pm`.`id` = `pmh`.`id_pay_method`))) where isnull(`h`.`deleted_at`);
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

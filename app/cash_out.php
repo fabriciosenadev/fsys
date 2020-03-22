@@ -19,14 +19,14 @@ $date = isset($_REQUEST['date']) ? $_REQUEST['date'] : null;
 $idCategory = isset($_REQUEST['category']) ? $_REQUEST['category'] : null;
 $description = isset($_REQUEST['description']) ? $_REQUEST['description'] : null;
 $idPayMethod = isset($_REQUEST['payMethod']) ? $_REQUEST['payMethod'] : null;
-
+$installments = isset($_REQUEST['installments']) ? $_REQUEST['installments'] : null;
 $value = isset($_REQUEST['value']) ? str_replace(',','.',$_REQUEST['value']) : null;
 $value = floatval($value);
 
 $btnSave = isset($_REQUEST['btnSave']) ? $_REQUEST : null;
 
 $errors = $dataSelect = [];
-$styleDate = $styleCategory = $styleValue = $stylePayMethod ='';
+$styleDate = $styleCategory = $styleValue = $stylePayMethod = $styleInstallments ='';
 $reload = false;
 $today = date("Y-m-d");
 
@@ -81,6 +81,11 @@ if ($btnSave) {
         $styleValue = 'is-invalid';    
     } 
 
+    if((empty($installments) && $idPayMethod == 3) || $value < 1){
+        $errors['installment'] = "Preencha o valor.";
+        $styleInstallments = 'is-invalid';    
+    } 
+
     if (count($errors) > 0 && !(empty($date))){
         $styleDate = 'is-valid';
     }
@@ -114,23 +119,30 @@ if ($btnSave) {
         $stylePayMethod = 'is-valid';
     }
 
+    if (count($errors) > 0 && !(empty($installments))){
+        $styleInstallments = 'is-valid';
+    }
+
     // valida descrição enviada pelo usuário
-    $description = $description ? filter_var($description, FILTER_SANITIZE_STRING) : 'null';
+    $description = $description ? filter_var($description, FILTER_SANITIZE_STRING) : '';
 
     // metodo de gravação de dados
-    if(!($errors)) {
-        // echo "nothing of errors found";
+    if(!($errors)) {        
+        $creditInstallments = $installments ? calculateInstallments($installments, $value) : null;
+
         $dataSave['date'] = $date;
         $dataSave['id_category'] = $idCategory;
         $dataSave['description'] = $description;
         $dataSave['value'] = $value;
         $dataSave['id_pay_method'] = $idPayMethod;
+        $dataSave['installments'] = $installments == '' ? null : $installments;
         $dataSave['created_by'] = intval($_SESSION['id_user']);
         $dataSave['status'] = strtotime($date) > strtotime($today) ? 'PENDING' : 'PAID';
         $dataSave['historic_id'] = isset($_SESSION['historicId']) ? $_SESSION['historicId'] : null;
+        $dataSave['credit_installments'] = $creditInstallments;        
 
         $result = isset($_SESSION['historicId']) ? updateLaunch($dataSave) : $result = saveLaunch($dataSave);
-
+        
         if($result) {
 
             if(isset($_SESSION['historicId'])) 
@@ -146,6 +158,9 @@ if ($btnSave) {
                 $_SESSION['success'] = "Saída registrada.";
                 header("Location: cash_out.php");
             }
+        } else {
+            $errors['result'] = 'Tivemos um problema para salvar o lançamento, tente novamente. Se este erro ocorrer novamente contate o Administrador.';
+            // header("Location: cash_out.php");
         }
     }
 
@@ -157,7 +172,48 @@ $dataSelect['id_user'] = $_SESSION['id_user'];
 $categories = selectCategories($dataSelect);    
 $payMethods = selectPayMethod();
 
-include '../resources/views/app/launch.form.view.php'; 
+function calculateInstallments(int $installments, $value)
+{
+    $arrayValues = [];
+    $partialValue = floatval(number_format($value/$installments,2));
 
+    for($i = 0; $i < $installments; $i++)
+    {
+        $arrayValues[$i]=floatval($partialValue);
+    }
+
+    // se a soma das parcelas for menor que o valor total informado
+    if(array_sum($arrayValues) < $value)
+    {
+        $diff = $value - array_sum($arrayValues);
+        $diff = floatval(number_format($diff,2));
+        $count = 0;
+        while($diff > 0)
+        {
+            $arrayValues[$count] += 0.01;
+            $count++;
+            $diff -= 0.01;
+        }
+    }
+    
+    // se a soma das parcelas for maior que o valor total informado
+    if(array_sum($arrayValues) > $value)
+    {
+        $diff = array_sum($arrayValues) - $value;
+        $diff = floatval(number_format($diff,2));
+        $count = $installments - 1;
+
+        while($diff > 0)
+        {
+            $arrayValues[$count] -= 0.01;
+            $count--;
+            $diff -= 0.01;
+        }
+    }
+    
+    return $arrayValues;
+}
+
+include '../resources/views/app/launch.form.view.php'; 
 
 require_once '../resources/template/app/footer.php';
