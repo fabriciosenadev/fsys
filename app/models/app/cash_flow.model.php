@@ -107,7 +107,7 @@ function saveValues($data)
             $current_installment = $i + 1;
             $insert = "INSERT INTO `values`(`value`, value_installment, installments, current_installment, unique_id, created_by, created_at)";
             $insert .= "VALUES($value, $value_installment, $installments, $current_installment, '$unique_id', $created_by, now())";
-            $insert = addslashes($insert);
+            //$insert = addslashes($insert);
             
             if(mysqli_query($connection, $insert))
             {
